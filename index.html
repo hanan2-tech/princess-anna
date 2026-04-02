@@ -56,6 +56,8 @@ header{position:sticky;top:0;z-index:1000;background:rgba(10,10,15,.88);backdrop
 .nav-menu a:hover{color:var(--tw)}
 .nav-menu a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background:var(--np);transition:width var(--t);box-shadow:0 0 8px var(--gp)}
 .nav-menu a:hover::after{width:100%}
+#mute-btn{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:1px solid rgba(160,0,255,.15);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all var(--t);flex-shrink:0}
+#mute-btn:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
 .hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
 .hamburger span{display:block;width:22px;height:2px;background:var(--tw);border-radius:2px;transition:all var(--t)}
 #menu-toggle{display:none}
@@ -551,6 +553,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
     <li><a href="javascript:void(0)" onclick="openPage('bundle')">🎁 בני סט</a></li>
     <li><a href="javascript:void(0)" onclick="openPage('wishlist')">💜</a></li>
   </ul>
+  <button id="mute-btn" onclick="toggleMute()" title="השתק/הפעל צלילים">🔊</button>
   <label class="hamburger" for="menu-toggle" aria-label="תפריט"><span></span><span></span><span></span></label>
 </div>
 </header>
@@ -925,8 +928,8 @@ var ALL_PRODUCTS = [];
 // Store closed
 if(!STORE_OPEN) document.getElementById('store-closed').style.display='block';
 
-// Splash screen — hide after 1.8s
-setTimeout(function(){document.getElementById('splash').classList.add('hide')},1800);
+// Splash screen — hide after 1.8s, play chime
+setTimeout(function(){document.getElementById('splash').classList.add('hide');playSound('chime')},1800);
 
 // Cookie banner
 if(!localStorage.getItem('pa-cookies')){document.getElementById('cookie-banner').classList.add('show')}
@@ -948,6 +951,7 @@ fetch('products.json').then(function(r){return r.json()}).then(function(products
     btn.className='cat-btn'+(c==='all'?' active':'');
     btn.textContent=catLabels[c]||c;
     btn.onclick=function(){
+      playSound('click');
       document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
       btn.classList.add('active');
       document.querySelectorAll('#products-grid .p-card').forEach(function(card){
@@ -1052,6 +1056,7 @@ function filterProducts(){
 
 // ========== CAROUSEL SCROLL ==========
 function scrollCarousel(dir){
+  playSound('slide');
   var track=document.getElementById('carousel-track');
   track.scrollBy({left:dir*280,behavior:'smooth'});
 }
@@ -1095,7 +1100,7 @@ if(form){form.addEventListener('submit',function(e){
   btn.disabled=true;btn.textContent='שולחת... ✨';
   fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
   .then(function(r){
-    if(r.ok){form.style.display='none';document.getElementById('thank-you').classList.add('show')}
+    if(r.ok){form.style.display='none';document.getElementById('thank-you').classList.add('show');playSound('fanfare')}
     else{btn.disabled=false;btn.textContent='שליחת הזמנה ✨';alert('שגיאה בשליחה. נסי שוב.')}
   }).catch(function(){btn.disabled=false;btn.textContent='שליחת הזמנה ✨';alert('שגיאת רשת.')});
 })}
@@ -1128,18 +1133,41 @@ function playUnboxing(emoji, productId){
   setTimeout(function(){overlay.classList.remove('show');preselectProduct(productId);},2800);
 }
 
-// ========== SOUND EFFECTS ==========
-var audioCtx;
+// ========== REAL MP3 SOUND EFFECTS ==========
+var soundMuted=localStorage.getItem('pa-mute')==='1';
+var soundCache={};
+var SOUNDS={
+  bling:'sounds/bling.mp3',    // wishlist add, points earned
+  click:'sounds/click.mp3',    // category filter, sort, general click
+  whoosh:'sounds/whoosh.mp3',  // unboxing, carousel scroll
+  chime:'sounds/chime.mp3',    // page load complete, quiz results
+  fanfare:'sounds/fanfare.mp3',// order submitted, bundle complete
+  slide:'sounds/slide.mp3',    // carousel, page transition
+  pop:'sounds/pop.mp3',        // quiz answer, story click, button press
+  coin:'sounds/coin.mp3',      // points earned
+  tap:'sounds/tap.mp3',        // hover, subtle interactions
+  notify:'sounds/notify.mp3',  // toast notification, chat reply
+  reveal:'sounds/reveal.mp3',  // quiz results, product page open
+  swoosh:'sounds/swoosh.mp3'   // close modal, back to top
+};
+// Preload all sounds
+Object.keys(SOUNDS).forEach(function(k){
+  var a=new Audio();a.preload='auto';a.src=SOUNDS[k];a.volume=0.3;soundCache[k]=a;
+});
 function playSound(type){
+  if(soundMuted)return;
   try{
-    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    var o=audioCtx.createOscillator();var g=audioCtx.createGain();
-    o.connect(g);g.connect(audioCtx.destination);
-    g.gain.value=0.08;
-    if(type==='bling'){o.frequency.value=880;o.type='sine';g.gain.setValueAtTime(0.08,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.3);o.start();o.stop(audioCtx.currentTime+0.3);}
-    else if(type==='whoosh'){o.frequency.value=400;o.type='sawtooth';g.gain.setValueAtTime(0.04,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(100,audioCtx.currentTime+0.2);g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.25);o.start();o.stop(audioCtx.currentTime+0.25);}
-    else if(type==='pop'){o.frequency.value=600;o.type='sine';g.gain.setValueAtTime(0.06,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.1);o.start();o.stop(audioCtx.currentTime+0.1);}
+    var a=soundCache[type];
+    if(!a)return;
+    a.currentTime=0;
+    a.play().catch(function(){});
   }catch(e){}
+}
+function toggleMute(){
+  soundMuted=!soundMuted;
+  localStorage.setItem('pa-mute',soundMuted?'1':'0');
+  document.getElementById('mute-btn').textContent=soundMuted?'🔇':'🔊';
+  if(!soundMuted)playSound('pop');
 }
 
 // ========== WISHLIST (localStorage) ==========
@@ -1161,6 +1189,7 @@ setTimeout(function(){
 
 // ========== SORTING ==========
 function sortProducts(type,btn){
+  playSound('click');
   document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active')});
   if(btn)btn.classList.add('active');
   var grid=document.getElementById('products-grid');
@@ -1253,6 +1282,7 @@ document.addEventListener('mousemove',function(e){
     var toast=document.createElement('div');toast.className='toast';
     toast.innerHTML='🛍️ <strong>'+n+'</strong> הזמינה '+p;
     container.appendChild(toast);
+    playSound('notify');
     setTimeout(function(){toast.remove()},4500);
   }
   setTimeout(showToast,8000);
@@ -1285,6 +1315,7 @@ var mainSections=['home','shop','how','reviews','order','about','faq'];
 var pageIds=['product-page','quiz-page','bundle-page','wishlist-page'];
 
 function openPage(page,data){
+  playSound('swoosh');
   // Hide main content
   mainSections.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none'});
   document.querySelectorAll('.countdown-section,.stories-wrap').forEach(function(e){e.closest('div').style.display='none'});
@@ -1372,7 +1403,7 @@ function renderQuizStep(){
       quizAnswers.push(opt);
       quizStep++;
       if(quizStep<quizQuestions.length){renderQuizStep();}
-      else{showQuizResults();}
+      else{playSound('reveal');showQuizResults();}
     };
     opts.appendChild(btn);
   });
@@ -1446,6 +1477,7 @@ function updateBundleUI(){
   document.getElementById('bundle-total').textContent='₪'+finalPrice;
   document.getElementById('bundle-savings').textContent=discount>0?'חסכת ₪'+discount+'! 🎉':'בחרי 3 לקבלת 20% הנחה';
   document.getElementById('bundle-order-btn').style.display=count===3?'block':'none';
+  if(count===3)playSound('fanfare');
 }
 
 // ========== WISHLIST PAGE ==========
@@ -1470,12 +1502,13 @@ function initWishlistPage(){
 var points=parseInt(localStorage.getItem('pa-points')||'0');
 function updatePointsBadge(){document.getElementById('points-num').textContent=points}
 function addPoints(n){
-  points+=n;localStorage.setItem('pa-points',points.toString());updatePointsBadge();
+  points+=n;localStorage.setItem('pa-points',points.toString());updatePointsBadge();playSound('coin');
   // Float animation
   var fl=document.createElement('div');fl.className='points-add';fl.textContent='+'+n;
   document.body.appendChild(fl);setTimeout(function(){fl.remove()},1200);
 }
 updatePointsBadge();
+if(soundMuted)document.getElementById('mute-btn').textContent='🔇';
 // Award points: 5 for visiting, 2 for viewing product, 10 for ordering
 if(!sessionStorage.getItem('pa-visit-pts')){addPoints(5);sessionStorage.setItem('pa-visit-pts','1')}
 // Patch openQV to award points
@@ -1497,7 +1530,7 @@ function toggleChat(){document.getElementById('chatbot-panel').classList.toggle(
 function sendChat(){
   var input=document.getElementById('chat-input');
   var msg=input.value.trim();if(!msg)return;
-  input.value='';
+  input.value='';playSound('swoosh');
   var msgs=document.getElementById('chat-messages');
   // User message
   var uDiv=document.createElement('div');uDiv.className='chat-msg user';uDiv.textContent=msg;msgs.appendChild(uDiv);
@@ -1506,7 +1539,7 @@ function sendChat(){
     var reply=chatReply(msg);
     var bDiv=document.createElement('div');bDiv.className='chat-msg bot';bDiv.innerHTML=reply;
     msgs.appendChild(bDiv);msgs.scrollTop=msgs.scrollHeight;
-    playSound('pop');
+    playSound('notify');
   },600);
   msgs.scrollTop=msgs.scrollHeight;
 }
