@@ -233,6 +233,83 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes neonPulse{0%,100%{box-shadow:0 0 20px var(--gp)}50%{box-shadow:0 0 40px var(--gp),0 0 60px rgba(160,0,255,.1)}}
 
+/* ========== CUSTOM NEON SCROLLBAR ========== */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--np),var(--npk));border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--npk),var(--np))}
+html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
+
+/* ========== MORPHING SVG BLOBS ========== */
+.blob-bg{position:absolute;pointer-events:none;z-index:0;opacity:.06}
+.blob-bg svg{width:400px;height:400px}
+.blob-bg path{animation:blobMorph 8s ease-in-out infinite alternate}
+@keyframes blobMorph{0%{d:path('M400,300Q350,500,200,450Q50,400,100,250Q150,100,300,150Q450,200,400,300Z')}100%{d:path('M350,350Q250,500,150,400Q50,300,150,200Q250,100,350,200Q450,300,350,350Z')}}
+
+/* ========== PARALLAX ========== */
+.parallax-layer{transition:transform .1s linear;will-change:transform}
+
+/* ========== NEON TYPING ========== */
+.type-effect{overflow:hidden;border-left:3px solid var(--np);white-space:nowrap;animation:typing 2s steps(20) 1s forwards,blink .6s step-end infinite alternate;width:0}
+@keyframes typing{from{width:0}to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+
+/* ========== CARD FLIP ========== */
+.p-card-inner{position:relative;transition:transform .6s;transform-style:preserve-3d}
+.p-card.flipped .p-card-inner{transform:rotateY(180deg)}
+.p-card-back{position:absolute;inset:0;backface-visibility:hidden;transform:rotateY(180deg);background:var(--bg2);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px}
+.p-card-back .back-name{font-size:1.1rem;font-weight:900}
+.p-card-back .back-desc{font-size:.82rem;color:var(--td);line-height:1.6}
+.p-card-back .back-price{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.flip-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--td);opacity:0;transition:opacity var(--t)}
+.p-card:hover .flip-hint{opacity:1}
+
+/* ========== IMAGE ZOOM ========== */
+.p-card-img{overflow:hidden}
+.p-card-img img{transition:transform .4s ease}
+.p-card:hover .p-card-img img{transform:scale(1.15)}
+
+/* ========== SKELETON LOADING ========== */
+.skeleton{background:var(--bg2);border-radius:var(--r);overflow:hidden;position:relative}
+.skeleton::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(160,0,255,.06),transparent);animation:skeletonShimmer 1.5s infinite}
+@keyframes skeletonShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.skel-card{height:340px;border-radius:var(--r)}
+
+/* ========== SORTING BUTTONS ========== */
+.sort-wrap{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.sort-btn{padding:6px 14px;border-radius:50px;font-size:.72rem;font-weight:600;color:var(--td);background:transparent;border:1px solid rgba(160,0,255,.1);transition:all var(--t)}
+.sort-btn:hover,.sort-btn.active{color:var(--tw);border-color:var(--npk);background:rgba(255,0,128,.08)}
+
+/* ========== VIEWERS COUNT ========== */
+.viewers-badge{font-size:.6rem;color:var(--nm);display:flex;align-items:center;gap:4px;margin-top:6px}
+.viewers-dot{width:6px;height:6px;border-radius:50%;background:var(--nm);animation:viewerPulse 1.5s infinite}
+@keyframes viewerPulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ========== ORIGINAL PRICE ========== */
+.p-original-price{font-size:.8rem;color:var(--td);text-decoration:line-through;margin-left:8px}
+
+/* ========== RECENTLY VIEWED ========== */
+#recently-viewed{position:fixed;bottom:0;left:0;right:0;background:rgba(18,18,31,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(160,0,255,.15);padding:10px 16px;display:none;z-index:997;overflow:hidden}
+#recently-viewed.show{display:block}
+.rv-title{font-size:.7rem;color:var(--td);margin-bottom:6px}
+.rv-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.rv-scroll::-webkit-scrollbar{display:none}
+.rv-item{width:50px;height:50px;border-radius:8px;overflow:hidden;flex-shrink:0;border:1px solid rgba(160,0,255,.2);cursor:pointer;transition:all var(--t)}
+.rv-item:hover{border-color:var(--np);box-shadow:0 0 10px var(--gp)}
+.rv-item img{width:100%;height:100%;object-fit:cover}
+.rv-close{position:absolute;top:6px;left:6px;font-size:.7rem;color:var(--td);cursor:pointer}
+
+/* ========== UNBOXING ANIMATION ========== */
+#unbox-overlay{position:fixed;inset:0;z-index:10002;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center}
+#unbox-overlay.show{display:flex}
+.unbox-box{width:160px;height:120px;position:relative;animation:boxShake .5s ease}
+.unbox-lid{width:170px;height:30px;background:linear-gradient(135deg,var(--np),var(--npk));border-radius:6px 6px 0 0;position:absolute;top:0;left:-5px;transition:transform .8s ease .3s;transform-origin:right top;z-index:2}
+.unbox-lid.open{transform:rotate(-120deg)}
+.unbox-body{width:160px;height:90px;background:var(--bg2);border:2px solid var(--np);border-radius:0 0 8px 8px;position:absolute;bottom:0;display:flex;align-items:center;justify-content:center}
+.unbox-product{font-size:3rem;opacity:0;transition:opacity .5s ease .8s,transform .5s ease .8s;transform:translateY(20px)}
+.unbox-product.show{opacity:1;transform:translateY(-10px)}
+@keyframes boxShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+
 /* ========== 3D CARD TILT ========== */
 .p-card{transform-style:preserve-3d;perspective:800px}
 
@@ -455,7 +532,22 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
   </div>
 
   <div class="cat-filters" id="cat-filters"></div>
-  <div class="products-grid" id="products-grid"></div>
+
+  <!-- Sorting -->
+  <div class="sort-wrap">
+    <button class="sort-btn active" onclick="sortProducts('default',this)">⭐ פופולרי</button>
+    <button class="sort-btn" onclick="sortProducts('price-asc',this)">מחיר ↑</button>
+    <button class="sort-btn" onclick="sortProducts('price-desc',this)">מחיר ↓</button>
+    <button class="sort-btn" onclick="sortProducts('new',this)">🆕 חדש</button>
+  </div>
+
+  <!-- Skeleton loading (shown while products load) -->
+  <div id="skeleton-grid" class="products-grid">
+    <div class="skeleton skel-card"></div><div class="skeleton skel-card"></div>
+    <div class="skeleton skel-card"></div><div class="skeleton skel-card"></div>
+  </div>
+
+  <div class="products-grid" id="products-grid" style="display:none"></div>
 </div>
 </section>
 
@@ -571,7 +663,20 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
   <a href="#order" class="sticky-btn">להזמנה ←</a>
 </div>
 
-<!-- Cursor trail dots (created by JS) -->
+<!-- Unboxing Animation Overlay -->
+<div id="unbox-overlay" onclick="this.classList.remove('show')">
+  <div class="unbox-box">
+    <div class="unbox-lid" id="unbox-lid"></div>
+    <div class="unbox-body"><span class="unbox-product" id="unbox-emoji"></span></div>
+  </div>
+</div>
+
+<!-- Recently Viewed -->
+<div id="recently-viewed">
+  <span class="rv-close" onclick="document.getElementById('recently-viewed').classList.remove('show')">✕</span>
+  <div class="rv-title">צפית לאחרונה:</div>
+  <div class="rv-scroll" id="rv-scroll"></div>
+</div>
 
 <!-- ========== FOOTER ========== -->
 <footer>
@@ -677,25 +782,34 @@ fetch('products.json').then(function(r){return r.json()}).then(function(products
     select.appendChild(opt);
   });
 
+  // Hide skeleton, show real grid
+  document.getElementById('skeleton-grid').style.display='none';
+  document.getElementById('products-grid').style.display='';
+
   observeReveal();
   animateCounters();
 }).catch(function(){
+  document.getElementById('skeleton-grid').style.display='none';
+  document.getElementById('products-grid').style.display='';
   document.getElementById('products-grid').innerHTML='<p style="text-align:center;color:var(--td)">טוען מוצרים...</p>';
 });
 
 function buildCard(p){
+  var op = p.originalPrice ? '<span class="p-original-price">₪'+p.originalPrice+'</span>' : '';
+  var viewers = p.viewers ? '<div class="viewers-badge"><span class="viewers-dot"></span>'+p.viewers+' צופים עכשיו</div>' : '';
   return '<div class="p-card-img" style="cursor:pointer" title="לחצי לצפייה מהירה">'+
     '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
     '<div class="emoji-fallback" style="display:none">'+p.emoji+'</div>'+
     (p.badge?'<div class="p-badge" style="background:'+(p.badgeColor||'var(--np)')+';box-shadow:0 0 12px '+(p.badgeColor||'var(--gp)')+'">'+p.badge+'</div>':'')+
-    '<button class="heart-btn" aria-label="מועדפים" onclick="event.stopPropagation();this.textContent=this.textContent===\'♡\'?\'♥\':\'♡\';this.style.color=this.textContent===\'♥\'?\'var(--npk)\':\'\'">♡</button>'+
+    '<button class="heart-btn" aria-label="מועדפים" onclick="event.stopPropagation();toggleWishlist(this,\''+p.id+'\')">♡</button>'+
   '</div>'+
   '<div class="p-body">'+
     '<h3 class="p-name">'+p.name+'</h3>'+
     '<p class="p-desc">'+p.desc+'</p>'+
+    viewers+
     '<div class="p-footer">'+
-      '<span class="p-price">₪'+p.price+'</span>'+
-      '<a href="#order" class="btn-order" onclick="preselectProduct(\''+p.id+'\')">להזמנה</a>'+
+      '<div><span class="p-price">₪'+p.price+'</span>'+op+'</div>'+
+      '<a href="javascript:void(0)" class="btn-order" onclick="event.stopPropagation();playUnboxing(\''+p.emoji+'\',\''+p.id+'\')">להזמנה</a>'+
     '</div>'+
   '</div>';
 }
@@ -792,6 +906,95 @@ function observeReveal(){
   document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
 }
 observeReveal();
+
+// ========== UNBOXING ANIMATION ==========
+function playUnboxing(emoji, productId){
+  var overlay=document.getElementById('unbox-overlay');
+  var lid=document.getElementById('unbox-lid');
+  var prod=document.getElementById('unbox-emoji');
+  lid.classList.remove('open');prod.classList.remove('show');
+  prod.textContent=emoji;
+  overlay.classList.add('show');
+  playSound('pop');
+  setTimeout(function(){lid.classList.add('open');playSound('whoosh')},400);
+  setTimeout(function(){prod.classList.add('show');playSound('bling')},1000);
+  setTimeout(function(){overlay.classList.remove('show');preselectProduct(productId);},2800);
+}
+
+// ========== SOUND EFFECTS ==========
+var audioCtx;
+function playSound(type){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    var o=audioCtx.createOscillator();var g=audioCtx.createGain();
+    o.connect(g);g.connect(audioCtx.destination);
+    g.gain.value=0.08;
+    if(type==='bling'){o.frequency.value=880;o.type='sine';g.gain.setValueAtTime(0.08,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.3);o.start();o.stop(audioCtx.currentTime+0.3);}
+    else if(type==='whoosh'){o.frequency.value=400;o.type='sawtooth';g.gain.setValueAtTime(0.04,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(100,audioCtx.currentTime+0.2);g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.25);o.start();o.stop(audioCtx.currentTime+0.25);}
+    else if(type==='pop'){o.frequency.value=600;o.type='sine';g.gain.setValueAtTime(0.06,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+0.1);o.start();o.stop(audioCtx.currentTime+0.1);}
+  }catch(e){}
+}
+
+// ========== WISHLIST (localStorage) ==========
+var wishlist=JSON.parse(localStorage.getItem('pa-wishlist')||'[]');
+function toggleWishlist(btn,id){
+  var idx=wishlist.indexOf(id);
+  if(idx===-1){wishlist.push(id);btn.textContent='♥';btn.style.color='var(--npk)';playSound('bling');}
+  else{wishlist.splice(idx,1);btn.textContent='♡';btn.style.color='';}
+  localStorage.setItem('pa-wishlist',JSON.stringify(wishlist));
+}
+// Restore wishlist state on load
+setTimeout(function(){
+  document.querySelectorAll('.heart-btn').forEach(function(btn){
+    var card=btn.closest('.p-card');if(!card)return;
+    var idx=parseInt(card.dataset.idx);
+    if(ALL_PRODUCTS[idx]&&wishlist.includes(ALL_PRODUCTS[idx].id)){btn.textContent='♥';btn.style.color='var(--npk)';}
+  });
+},500);
+
+// ========== SORTING ==========
+function sortProducts(type,btn){
+  document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active')});
+  if(btn)btn.classList.add('active');
+  var grid=document.getElementById('products-grid');
+  var cards=Array.from(grid.querySelectorAll('.p-card'));
+  cards.sort(function(a,b){
+    var ai=parseInt(a.dataset.idx),bi=parseInt(b.dataset.idx);
+    var ap=ALL_PRODUCTS[ai],bp=ALL_PRODUCTS[bi];
+    if(!ap||!bp)return 0;
+    if(type==='price-asc')return ap.price-bp.price;
+    if(type==='price-desc')return bp.price-ap.price;
+    if(type==='new')return bi-ai;
+    return (bp.popularity||0)-(ap.popularity||0);
+  });
+  cards.forEach(function(c){grid.appendChild(c)});
+}
+
+// ========== RECENTLY VIEWED ==========
+var recentlyViewed=JSON.parse(localStorage.getItem('pa-rv')||'[]');
+function addToRecentlyViewed(idx){
+  if(recentlyViewed.includes(idx))return;
+  recentlyViewed.unshift(idx);
+  if(recentlyViewed.length>10)recentlyViewed.pop();
+  localStorage.setItem('pa-rv',JSON.stringify(recentlyViewed));
+  renderRecentlyViewed();
+}
+function renderRecentlyViewed(){
+  if(recentlyViewed.length<2)return;
+  var scroll=document.getElementById('rv-scroll');scroll.innerHTML='';
+  recentlyViewed.forEach(function(idx){
+    var p=ALL_PRODUCTS[idx];if(!p)return;
+    var item=document.createElement('div');item.className='rv-item';
+    item.innerHTML='<img src="'+p.img+'" alt="'+p.name+'" onerror="this.parentElement.remove()">';
+    item.onclick=function(){openQV(idx)};
+    scroll.appendChild(item);
+  });
+  document.getElementById('recently-viewed').classList.add('show');
+}
+// Patch openQV to track recently viewed
+var _origOpenQV=openQV;
+openQV=function(idx){addToRecentlyViewed(idx);_origOpenQV(idx)};
+setTimeout(renderRecentlyViewed,1000);
 
 // ========== 3D CARD TILT ==========
 document.addEventListener('mousemove',function(e){
