@@ -1,1383 +1,476 @@
 <!--
   ╔══════════════════════════════════════════════════════╗
-  ║          PRINCESS ANNA — ADMIN GUIDE                ║
-  ║               (עברית / English)                      ║
+  ║         פרינסס אנה — מדריך ניהול                    ║
   ╚══════════════════════════════════════════════════════╝
-
-  TO ADD A NEW PRODUCT / להוסיף מוצר חדש:
-  Search for: PRODUCT CARD
-  Copy one card block and change emoji, name, price, description, badge
-
-  TO CHANGE PRICE / לשנות מחיר:
-  Search for the product name, change the ₪ number inside class="product-price"
-
-  TO ADD WHATSAPP NUMBER / להוסיף מספר וואטסאפ:
-  Search for: REPLACE_WITH_PHONE_NUMBER
-  Replace with: 972XXXXXXXXX (without + or spaces)
-
-  TO CONNECT FORMSPREE / לחבר טופס:
-  Search for: xnjobpwo
-  Replace with your Formspree form ID
-
-  TO CLOSE STORE TEMPORARILY / לסגור חנות זמנית:
-  Search for: STORE_OPEN = true
-  Change to: STORE_OPEN = false
-
-  TO ADD INSTAGRAM/TIKTOK LINKS:
-  Search for: REPLACE_INSTAGRAM / REPLACE_TIKTOK
-  Replace with your profile URLs
+  להוסיף מוצר: ערכי את products.json
+  לשנות מחיר: ערכי את price ב-products.json
+  וואטסאפ: חפשי REPLACE_WITH_PHONE_NUMBER
+  לסגור חנות: STORE_OPEN = false
+  אינסטגרם/טיקטוק: חפשי REPLACE_INSTAGRAM / REPLACE_TIKTOK
 -->
 <!DOCTYPE html>
-<html lang="he" dir="rtl" id="html-root">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Princess Anna | פרינסס אנה — תכשיטים ואקססוריז</title>
-  <meta name="description" content="Princess Anna's magical jewelry and accessories store. Unique sparkly pieces delivered to your door. / חנות התכשיטים והאקססוריז של פרינסס אנה">
-  <meta name="keywords" content="princess anna, תכשיטים, אקססוריז, תכשיטי ילדות, dropshipping jewelry">
-  <meta property="og:title" content="Princess Anna Store 👑">
-  <meta property="og:description" content="Magical jewelry & accessories ✨">
-  <meta name="theme-color" content="#FF69B4">
-  <!-- ANALYTICS: Replace GA_MEASUREMENT_ID with your Google Analytics ID -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
-  -->
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Heebo:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- Lottie Player -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.4/dist/lottie-player.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>פרינסס אנה | אקססוריז ותכשיטים</title>
+<meta name="description" content="החנות של פרינסס אנה — תכשיטים, אקססוריז ועוד. משלוח לכל הארץ.">
+<meta name="keywords" content="פרינסס אנה, תכשיטים, אקססוריז, בנות, תכשיטי ילדות">
+<meta property="og:title" content="פרינסס אנה 👑">
+<meta property="og:description" content="תכשיטים ואקססוריז ✨ משלוח לכל הארץ">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f;--bg2:#12121f;--np:#a000ff;--npk:#ff0080;--nm:#00ff88;--nc:#00e5ff;
+  --tw:#f0f0f5;--td:#6a6a8a;--gp:rgba(160,0,255,.3);--gpk:rgba(255,0,128,.3);
+  --r:14px;--t:.3s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--tw);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+.section-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;text-align:center;margin-bottom:8px}
+.section-glow{width:60px;height:3px;background:linear-gradient(90deg,var(--np),var(--npk));margin:8px auto 48px;border-radius:2px;box-shadow:0 0 12px var(--gp)}
 
-  <style>
-    /* ============================================================
-       CSS CUSTOM PROPERTIES
-    ============================================================ */
-    :root {
-      --pink-deep: #E91E8C;
-      --pink-main: #FF69B4;
-      --pink-light: #FFB6C1;
-      --pink-pale: #FFF0F5;
-      --white: #FFFFFF;
-      --gold: #FFD700;
-      --text-dark: #2D2D2D;
-      --text-soft: #888888;
-      --shadow-pink: 0 4px 24px rgba(233,30,140,0.15);
-      --shadow-soft: 0 2px 16px rgba(0,0,0,0.08);
-      --shadow-card: 0 8px 32px rgba(233,30,140,0.12);
-      --radius-sm: 12px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --transition: 0.3s ease;
-      --header-h: 70px;
-    }
+/* ========== HEADER ========== */
+header{position:sticky;top:0;z-index:1000;background:rgba(10,10,15,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(160,0,255,.12);height:64px;display:flex;align-items:center}
+.h-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-crown{width:36px;height:30px;filter:drop-shadow(0 0 8px rgba(160,0,255,.6))}
+.logo-text{display:flex;flex-direction:column;line-height:1.15}
+.logo-name{font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#fff,#e0d0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:.55rem;color:var(--np);letter-spacing:3px}
+.nav-menu{display:flex;gap:28px}
+.nav-menu a{font-size:.85rem;font-weight:600;color:var(--td);transition:color var(--t);position:relative}
+.nav-menu a:hover{color:var(--tw)}
+.nav-menu a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background:var(--np);transition:width var(--t);box-shadow:0 0 8px var(--gp)}
+.nav-menu a:hover::after{width:100%}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--tw);border-radius:2px;transition:all var(--t)}
+#menu-toggle{display:none}
 
-    /* ============================================================
-       RESET & BASE
-    ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Heebo', 'Arial', sans-serif;
-      color: var(--text-dark);
-      background: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    [lang="en"] body { font-family: 'Lato', sans-serif; }
-    [lang="en"] h1,
-    [lang="en"] h2,
-    [lang="en"] h3 { font-family: 'Playfair Display', serif; }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-    button { cursor: pointer; border: none; background: none; font: inherit; }
-    ul { list-style: none; }
+/* ========== HERO ========== */
+#home{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a0a0f,#1a0a2a,#0a0a0f);z-index:0}
+.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(160,0,255,.08),transparent 60%),radial-gradient(circle at 70% 60%,rgba(255,0,128,.06),transparent 50%)}
+/* Neon particles */
+.particle{position:absolute;border-radius:50%;pointer-events:none;animation:float var(--d,6s) var(--dl,0s) ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:.6}50%{transform:translateY(-40px) scale(1.2);opacity:1}}
+.hero-content{position:relative;z-index:1;max-width:600px;padding:0 20px}
+.hero-title{font-size:clamp(2rem,6vw,3.4rem);font-weight:900;line-height:1.2;margin-bottom:16px}
+.hero-title .glow{background:linear-gradient(135deg,var(--np),var(--npk),var(--nc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;color:var(--td);margin-bottom:36px}
+.btn-neon{display:inline-block;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;padding:14px 44px;border-radius:50px;font-size:1rem;font-weight:700;box-shadow:0 0 24px var(--gp),0 0 48px rgba(160,0,255,.15);transition:transform var(--t),box-shadow var(--t);position:relative;overflow:hidden}
+.btn-neon:hover{transform:translateY(-3px);box-shadow:0 0 36px var(--gp),0 0 72px rgba(160,0,255,.2)}
+.btn-neon::after{content:'';position:absolute;top:0;right:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2.5s infinite}
+@keyframes shimmer{0%{right:-100%}100%{right:100%}}
 
-    /* ============================================================
-       LAYOUT UTILITIES
-    ============================================================ */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    section { padding: 80px 0; }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 12px;
-      color: var(--text-dark);
-    }
-    [lang="en"] .section-title { font-family: 'Playfair Display', serif; }
-    .gold-line {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--pink-main));
-      margin: 12px auto 48px;
-      border-radius: 2px;
-    }
+/* ========== CATEGORY FILTERS ========== */
+.cat-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px}
+.cat-btn{padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:600;color:var(--td);background:var(--bg2);border:1px solid rgba(160,0,255,.15);transition:all var(--t)}
+.cat-btn:hover,.cat-btn.active{color:var(--tw);border-color:var(--np);box-shadow:0 0 16px var(--gp);background:rgba(160,0,255,.1)}
 
-    /* ============================================================
-       STORE CLOSED BANNER
-    ============================================================ */
-    #store-closed-banner {
-      background: linear-gradient(135deg, var(--pink-deep), #c2185b);
-      color: var(--white);
-      text-align: center;
-      padding: 14px 20px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-    }
+/* ========== PRODUCT GRID ========== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.p-card{background:var(--bg2);border-radius:var(--r);border:1px solid rgba(160,0,255,.1);overflow:hidden;transition:transform var(--t),box-shadow var(--t),border-color var(--t);position:relative}
+.p-card:hover{transform:translateY(-8px);box-shadow:0 0 32px var(--gp);border-color:rgba(160,0,255,.35)}
+.p-card-img{height:220px;background:linear-gradient(135deg,rgba(160,0,255,.08),rgba(255,0,128,.05));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p-card-img img{width:100%;height:100%;object-fit:cover}
+.p-card-img .emoji-fallback{font-size:72px;opacity:.8}
+.p-badge{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:1px;color:#fff}
+.heart-btn{position:absolute;top:12px;left:12px;font-size:1.3rem;color:rgba(255,0,128,.4);transition:all var(--t);z-index:2;padding:4px;line-height:1}
+.heart-btn:hover{color:var(--npk);filter:drop-shadow(0 0 8px rgba(255,0,128,.5));transform:scale(1.2)}
+.p-body{padding:18px}
+.p-name{font-size:.95rem;font-weight:700;margin-bottom:4px}
+.p-desc{font-size:.78rem;color:var(--td);margin-bottom:14px;line-height:1.5}
+.p-footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.p-price{font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-order{padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--np),var(--npk));transition:all var(--t);white-space:nowrap}
+.btn-order:hover{box-shadow:0 0 20px var(--gp);transform:translateY(-2px)}
 
-    /* ============================================================
-       STICKY HEADER
-    ============================================================ */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,105,180,0.15);
-      height: var(--header-h);
-      display: flex;
-      align-items: center;
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-    /* Logo */
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .logo-text-wrap { display: flex; flex-direction: column; line-height: 1.2; }
-    .logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--pink-deep);
-      letter-spacing: 0.5px;
-    }
-    .logo-tagline {
-      font-size: 0.6rem;
-      color: var(--gold);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-    /* Nav */
-    .nav-menu {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    .nav-menu a {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      transition: color var(--transition);
-      position: relative;
-    }
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      inset-inline-start: 0;
-      width: 0;
-      height: 2px;
-      background: var(--pink-deep);
-      transition: width var(--transition);
-    }
-    .nav-menu a:hover { color: var(--pink-deep); }
-    .nav-menu a:hover::after { width: 100%; }
-    /* Language toggle */
-    .lang-toggle {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--pink-pale);
-      border-radius: 20px;
-      padding: 4px 6px;
-      flex-shrink: 0;
-    }
-    .lang-btn {
-      padding: 4px 10px;
-      border-radius: 16px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      transition: all var(--transition);
-      color: var(--text-soft);
-    }
-    .lang-btn.active {
-      background: var(--pink-deep);
-      color: var(--white);
-    }
-    /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all var(--transition); }
-    #menu-toggle { display: none; }
-    .header-right { display: flex; align-items: center; gap: 12px; }
+/* ========== HOW IT WORKS ========== */
+#how{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.step{padding:32px 20px;background:var(--bg2);border-radius:var(--r);border:1px solid rgba(160,0,255,.1);transition:all var(--t)}
+.step:hover{border-color:rgba(160,0,255,.3);box-shadow:0 0 20px var(--gp)}
+.step-icon{font-size:2.4rem;margin-bottom:12px;display:block}
+.step-text{font-size:.85rem;font-weight:600}
 
-    /* ============================================================
-       HERO
-    ============================================================ */
-    #home {
-      position: relative;
-      min-height: calc(100vh - var(--header-h));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(160deg, var(--pink-pale) 0%, #fff5fb 50%, var(--white) 100%);
-      overflow: hidden;
-      padding: 80px 20px;
-    }
-    /* CSS sparkle particles */
-    .sparkle-particle {
-      position: absolute;
-      color: var(--gold);
-      opacity: 0;
-      animation: floatUp var(--dur, 4s) var(--delay, 0s) ease-in-out infinite;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 700px; }
-    .hero-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--pink-light), var(--pink-pale));
-      border: 1px solid var(--pink-light);
-      border-radius: 20px;
-      padding: 6px 18px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--pink-deep);
-      margin-bottom: 24px;
-    }
-    .hero-title {
-      font-size: clamp(2rem, 6vw, 3.6rem);
-      font-weight: 700;
-      line-height: 1.25;
-      color: var(--text-dark);
-      margin-bottom: 18px;
-    }
-    [lang="en"] .hero-title { font-family: 'Playfair Display', serif; }
-    [lang="he"] .hero-title { font-family: 'Heebo', sans-serif; font-weight: 700; }
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--text-soft);
-      margin-bottom: 40px;
-      max-width: 520px;
-      margin-inline: auto;
-      margin-bottom: 40px;
-    }
-    .btn-primary {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-main));
-      color: var(--white);
-      padding: 16px 48px;
-      border-radius: 50px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      box-shadow: var(--shadow-pink);
-      transition: transform var(--transition), box-shadow var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      inset-inline-start: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
-      animation: shimmer 2.5s infinite;
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(233,30,140,0.38); }
+/* ========== REVIEWS ========== */
+#reviews{background:var(--bg2)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.review-card{background:var(--bg);border-radius:var(--r);padding:24px;border:1px solid rgba(160,0,255,.1)}
+.review-stars{color:#ffe000;font-size:1rem;margin-bottom:8px;letter-spacing:2px}
+.review-text{font-size:.85rem;color:var(--td);margin-bottom:12px;line-height:1.6;font-style:italic}
+.review-name{font-size:.8rem;font-weight:700;color:var(--tw)}
+.review-badge{font-size:.65rem;color:var(--nm)}
 
-    /* ============================================================
-       SHOP SECTION
-    ============================================================ */
-    #shop { background: var(--white); }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-    }
-    /* PRODUCT CARD */
-    .product-card {
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      border: 1px solid rgba(255,182,193,0.3);
-      overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition);
-      position: relative;
-    }
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 52px rgba(233,30,140,0.24);
-    }
-    .product-card::before {
-      content: '✦';
-      position: absolute;
-      top: 12px;
-      inset-inline-end: 48px;
-      font-size: 1.2rem;
-      color: var(--gold);
-      opacity: 0;
-      transform: scale(0) rotate(-20deg);
-      transition: opacity 0.3s, transform 0.3s;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .product-card:hover::before { opacity: 1; transform: scale(1) rotate(15deg); }
-    .card-image-area {
-      background: linear-gradient(135deg, var(--pink-pale), #ffe4f0);
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .product-emoji { font-size: 80px; line-height: 1; user-select: none; }
-    .card-badge {
-      position: absolute;
-      top: 12px;
-      inset-inline-start: 12px;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    .badge-gold { background: var(--gold); color: #333; }
-    .badge-green { background: #4caf50; color: var(--white); }
-    .badge-purple { background: #9c27b0; color: var(--white); }
-    .badge-rose { background: #e91e63; color: var(--white); }
-    .heart-btn {
-      position: absolute;
-      top: 12px;
-      inset-inline-end: 12px;
-      font-size: 1.5rem;
-      color: var(--pink-light);
-      transition: color var(--transition), transform var(--transition);
-      padding: 4px;
-      line-height: 1;
-      z-index: 2;
-    }
-    .heart-btn:hover { color: var(--pink-deep); transform: scale(1.25); }
-    .card-body { padding: 20px; }
-    .product-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-dark);
-    }
-    [lang="en"] .product-name { font-family: 'Playfair Display', serif; font-size: 0.98rem; }
-    .product-desc {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 18px;
-      line-height: 1.5;
-    }
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .product-price {
-      font-size: 1.45rem;
-      font-weight: 700;
-      color: var(--pink-deep);
-    }
-    .btn-order {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-main));
-      color: var(--white);
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      transition: transform var(--transition), box-shadow var(--transition);
-      white-space: nowrap;
-    }
-    .btn-order:hover { transform: translateY(-2px); box-shadow: var(--shadow-pink); }
+/* ========== ORDER FORM ========== */
+#order{background:var(--bg)}
+.form-wrap{max-width:600px;margin:0 auto;background:var(--bg2);border-radius:var(--r);padding:40px 36px;border:1px solid rgba(160,0,255,.12);box-shadow:0 0 40px rgba(160,0,255,.06)}
+.f-row{margin-bottom:18px}
+.f-row label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;color:var(--td)}
+.f-row input,.f-row select,.f-row textarea{width:100%;padding:12px 16px;background:rgba(10,10,15,.6);border:1.5px solid rgba(160,0,255,.15);border-radius:10px;color:var(--tw);font-size:.9rem;font-family:inherit;outline:none;transition:border-color var(--t),box-shadow var(--t)}
+.f-row input:focus,.f-row select:focus,.f-row textarea:focus{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.f-row textarea{resize:vertical;min-height:80px}
+.f-row select{-webkit-appearance:none;appearance:none}
+.pay-box{background:rgba(160,0,255,.06);border:1px solid rgba(160,0,255,.15);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:.85rem;color:var(--np);font-weight:600}
+.btn-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;border-radius:50px;font-size:1.05rem;font-weight:700;position:relative;overflow:hidden;box-shadow:0 0 24px var(--gp);transition:all var(--t)}
+.btn-submit:hover{box-shadow:0 0 40px var(--gp);transform:translateY(-2px)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-submit::after{content:'';position:absolute;top:0;right:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2s infinite}
+#thank-you{display:none;text-align:center;padding:40px 24px;background:var(--bg);border-radius:var(--r);border:1px solid rgba(0,255,136,.2);box-shadow:0 0 20px rgba(0,255,136,.1)}
+#thank-you.show{display:block;animation:fadeUp .5s ease}
+.ty-text{font-size:.95rem;color:var(--tw);line-height:1.8}
 
-    /* ============================================================
-       HOW IT WORKS
-    ============================================================ */
-    #how-it-works {
-      background: linear-gradient(160deg, #fff5fb, var(--pink-pale));
-    }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 36px;
-    }
-    .step-card {
-      padding: 40px 24px 32px;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255,182,193,0.25);
-      position: relative;
-      text-align: center;
-      transition: transform var(--transition);
-    }
-    .step-card:hover { transform: translateY(-4px); }
-    .step-number {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 30px;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-main));
-      color: var(--white);
-      border-radius: 50%;
-      font-size: 0.82rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step-icon {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step-icon-fallback { font-size: 56px; line-height: 1; }
-    .step-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-dark);
-    }
-    .step-desc { font-size: 0.875rem; color: var(--text-soft); line-height: 1.6; }
+/* ========== ABOUT ========== */
+#about{background:var(--bg2)}
+.about-card{max-width:600px;margin:0 auto;text-align:center;padding:48px 36px;background:var(--bg);border-radius:var(--r);border:1px solid rgba(160,0,255,.1)}
+.about-crown{font-size:48px;margin-bottom:16px;display:block}
+.about-text{font-size:.9rem;color:var(--td);line-height:1.8}
 
-    /* ============================================================
-       ORDER FORM
-    ============================================================ */
-    #order { background: var(--white); }
-    .form-wrapper {
-      max-width: 640px;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: var(--radius-lg);
-      padding: 48px 40px;
-      box-shadow: var(--shadow-card);
-      border: 1px solid rgba(255,182,193,0.3);
-    }
-    .form-row { margin-bottom: 20px; }
-    .form-row label {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 7px;
-    }
-    .form-row input,
-    .form-row select,
-    .form-row textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--pink-light);
-      border-radius: var(--radius-sm);
-      font-size: 0.95rem;
-      font-family: inherit;
-      color: var(--text-dark);
-      background: var(--white);
-      transition: border-color var(--transition), box-shadow var(--transition);
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .form-row select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left 14px center;
-      padding-left: 36px;
-    }
-    [dir="ltr"] .form-row select {
-      background-position: right 14px center;
-      padding-left: 16px;
-      padding-right: 36px;
-    }
-    .form-row input:focus,
-    .form-row select:focus,
-    .form-row textarea:focus {
-      border-color: var(--pink-deep);
-      box-shadow: 0 0 0 3px rgba(233,30,140,0.1);
-    }
-    .form-row textarea { resize: vertical; min-height: 90px; }
-    .payment-box {
-      background: linear-gradient(135deg, var(--pink-pale), #ffe4f2);
-      border: 1px solid var(--pink-light);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      margin-bottom: 24px;
-      font-size: 0.9rem;
-      color: var(--pink-deep);
-      font-weight: 600;
-      line-height: 1.6;
-    }
-    .btn-submit {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-main));
-      color: var(--white);
-      border-radius: 50px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      box-shadow: var(--shadow-pink);
-      transition: transform var(--transition), box-shadow var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-submit::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      inset-inline-start: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.26), transparent);
-      animation: shimmer 2s infinite;
-    }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(233,30,140,0.38); }
-    .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-    /* Thank you message */
-    #thank-you {
-      display: none;
-      text-align: center;
-      padding: 40px 24px;
-      background: linear-gradient(135deg, var(--pink-pale), #ffe4f2);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--pink-light);
-    }
-    #thank-you.show {
-      display: block;
-      animation: fadeInUp 0.55s ease;
-    }
-    #thankyou-lottie-wrap {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 16px;
-      min-height: 80px;
-    }
-    .thankyou-text {
-      font-size: 1rem;
-      color: var(--text-dark);
-      line-height: 1.8;
-      font-weight: 500;
-    }
+/* ========== FOOTER ========== */
+footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48px 0 28px;text-align:center}
+.f-logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,#fff,#e0d0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.f-sub{font-size:.6rem;color:var(--np);letter-spacing:3px;margin-bottom:24px}
+.social-links{display:flex;justify-content:center;gap:14px;margin-bottom:20px}
+.social-btn{width:42px;height:42px;background:var(--bg2);border:1px solid rgba(160,0,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--td);transition:all var(--t)}
+.social-btn:hover{border-color:var(--np);color:var(--tw);box-shadow:0 0 16px var(--gp)}
+.f-info{font-size:.78rem;color:var(--td);margin-bottom:8px}
+.f-policy{font-size:.7rem;color:rgba(240,240,245,.25);margin-bottom:20px;max-width:500px;margin-inline:auto;margin-bottom:20px}
+.f-copy{font-size:.68rem;color:rgba(240,240,245,.2)}
+/* Policy accordion */
+.policy-section{max-width:600px;margin:0 auto 24px}
+.policy-toggle{width:100%;padding:12px 18px;background:var(--bg2);border:1px solid rgba(160,0,255,.1);border-radius:10px;color:var(--td);font-size:.8rem;font-weight:600;text-align:right;display:flex;justify-content:space-between;align-items:center;transition:all var(--t)}
+.policy-toggle:hover{border-color:var(--np);color:var(--tw)}
+.policy-content{max-height:0;overflow:hidden;transition:max-height .4s ease;background:var(--bg2);border-radius:0 0 10px 10px;padding:0 18px;font-size:.75rem;color:var(--td);line-height:1.8}
+.policy-content.open{max-height:400px;padding:16px 18px}
 
-    /* ============================================================
-       ABOUT
-    ============================================================ */
-    #about {
-      background: linear-gradient(160deg, var(--pink-pale), #fff5fb);
-    }
-    .about-card {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: var(--radius-lg);
-      padding: 56px 48px;
-      box-shadow: var(--shadow-card);
-      border: 1px solid rgba(255,182,193,0.25);
-    }
-    .about-crown { font-size: 60px; margin-bottom: 20px; display: block; }
-    .about-text {
-      font-size: 1rem;
-      color: var(--text-dark);
-      line-height: 1.9;
-    }
+/* ========== WHATSAPP ========== */
+#wa-btn{position:fixed;bottom:24px;left:24px;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:transform var(--t);animation:waPulse 2.5s ease-in-out infinite}
+#wa-btn:hover{transform:scale(1.1);animation:none}
+#wa-btn svg{width:28px;height:28px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7),0 0 0 10px rgba(37,211,102,.08)}}
 
-    /* ============================================================
-       FOOTER
-    ============================================================ */
-    footer {
-      background: linear-gradient(135deg, #1a0010, #2d0020);
-      color: rgba(255,255,255,0.8);
-      padding: 56px 0 32px;
-      text-align: center;
-    }
-    .footer-logo-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--pink-main);
-      margin-bottom: 4px;
-    }
-    .footer-tagline { font-size: 0.68rem; color: var(--gold); letter-spacing: 1.5px; margin-bottom: 28px; }
-    .social-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
-    .social-btn {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      transition: background var(--transition), transform var(--transition);
-      color: rgba(255,255,255,0.85);
-    }
-    .social-btn:hover { background: var(--pink-deep); transform: translateY(-3px); }
-    .footer-info { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
-    .footer-policy { font-size: 0.75rem; color: rgba(255,255,255,0.38); margin-bottom: 24px; max-width: 600px; margin-inline: auto; margin-bottom: 24px; }
-    .footer-copy { font-size: 0.73rem; color: rgba(255,255,255,0.3); }
+/* ========== BACK TO TOP ========== */
+#btt{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:50%;display:none;align-items:center;justify-content:center;z-index:999;color:var(--np);font-size:1.2rem;transition:all var(--t)}
+#btt.show{display:flex}
+#btt:hover{border-color:var(--np);box-shadow:0 0 16px var(--gp)}
 
-    /* ============================================================
-       WHATSAPP FLOATING BUTTON
-    ============================================================ */
-    #whatsapp-btn {
-      position: fixed;
-      bottom: 28px;
-      inset-inline-end: 28px;
-      width: 60px; height: 60px;
-      background: #25d366;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-      z-index: 999;
-      transition: transform var(--transition);
-      animation: waPulse 2.5s ease-in-out infinite;
-    }
-    #whatsapp-btn:hover { transform: scale(1.12); animation: none; box-shadow: 0 6px 28px rgba(37,211,102,0.65); }
-    #whatsapp-btn svg { width: 30px; height: 30px; fill: var(--white); }
-    .wa-tooltip {
-      position: absolute;
-      inset-inline-end: 72px;
-      bottom: 50%;
-      transform: translateY(50%);
-      background: var(--text-dark);
-      color: var(--white);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 7px 14px;
-      border-radius: 10px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition);
-    }
-    .wa-tooltip::after {
-      content: '';
-      position: absolute;
-      inset-inline-start: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      border: 5px solid transparent;
-      border-inline-start-color: var(--text-dark);
-    }
-    #whatsapp-btn:hover .wa-tooltip { opacity: 1; }
+/* ========== COOKIE BANNER ========== */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid rgba(160,0,255,.15);padding:14px 20px;display:none;justify-content:space-between;align-items:center;z-index:9999;gap:12px}
+#cookie-banner.show{display:flex}
+.cookie-text{font-size:.75rem;color:var(--td)}
+.cookie-btn{padding:8px 20px;border-radius:50px;font-size:.75rem;font-weight:700;background:var(--np);color:#fff;white-space:nowrap;transition:all var(--t)}
+.cookie-btn:hover{box-shadow:0 0 16px var(--gp)}
 
-    /* ============================================================
-       CROWN SVG ANIMATION
-    ============================================================ */
-    .crown-svg-wrap {
-      animation: crownGlow 3s ease-in-out infinite;
-      display: flex;
-      align-items: center;
-    }
-    .crown-lottie-wrap {
-      width: 44px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+/* ========== STORE CLOSED ========== */
+#store-closed{background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;text-align:center;padding:14px 20px;font-size:1rem;font-weight:700;position:sticky;top:0;z-index:9999}
 
-    /* ============================================================
-       ANIMATIONS (@keyframes)
-    ============================================================ */
-    @keyframes shimmer {
-      0%   { inset-inline-start: -100%; }
-      100% { inset-inline-start: 100%; }
-    }
-    @keyframes floatUp {
-      0%   { opacity: 0; transform: translateY(0) scale(0.8); }
-      20%  { opacity: 0.9; }
-      80%  { opacity: 0.5; }
-      100% { opacity: 0; transform: translateY(-130px) scale(1.1); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes waPulse {
-      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
-      50%      { box-shadow: 0 4px 36px rgba(37,211,102,0.8), 0 0 0 12px rgba(37,211,102,0.08); }
-    }
-    @keyframes crownGlow {
-      0%,100% { filter: drop-shadow(0 0 3px rgba(255,215,0,0.35)); }
-      50%     { filter: drop-shadow(0 0 14px rgba(255,215,0,1)); }
-    }
-    @keyframes confettiDrop {
-      0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(90px) rotate(720deg); opacity: 0; }
-    }
+/* ========== SCROLL ANIMATIONS ========== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-    /* ============================================================
-       MOBILE RESPONSIVE
-    ============================================================ */
-    @media (max-width: 900px) {
-      .steps-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
-    }
-    @media (max-width: 768px) {
-      :root { --header-h: 62px; }
-      .nav-menu { display: none; }
-      .hamburger { display: flex; }
-      #menu-toggle:checked ~ .nav-menu {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 62px;
-        left: 0; right: 0;
-        background: rgba(255,255,255,0.98);
-        backdrop-filter: blur(14px);
-        padding: 20px;
-        gap: 16px;
-        border-bottom: 1px solid var(--pink-light);
-        z-index: 999;
-        box-shadow: 0 8px 32px rgba(233,30,140,0.1);
-      }
-      #menu-toggle:checked ~ .nav-menu a { font-size: 1rem; padding: 8px 0; }
-      .form-wrapper { padding: 32px 20px; }
-      .about-card { padding: 40px 24px; }
-      section { padding: 60px 0; }
-      .products-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
-      .hero-title { font-size: 2rem; }
-      .btn-primary { padding: 14px 36px; }
-    }
-    @media (min-width: 480px) and (max-width: 768px) {
-      .products-grid { grid-template-columns: repeat(2, 1fr); max-width: none; }
-    }
-  </style>
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes neonPulse{0%,100%{box-shadow:0 0 20px var(--gp)}50%{box-shadow:0 0 40px var(--gp),0 0 60px rgba(160,0,255,.1)}}
+
+/* ========== MOBILE ========== */
+@media(max-width:900px){.steps{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+@media(max-width:768px){
+  header{height:58px}
+  .nav-menu{display:none}
+  .hamburger{display:flex}
+  #menu-toggle:checked~.nav-menu{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(10,10,15,.97);backdrop-filter:blur(18px);padding:20px;gap:16px;border-bottom:1px solid rgba(160,0,255,.15);z-index:999}
+  .products-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}
+  section{padding:56px 0}
+  .form-wrap{padding:28px 20px}
+  .about-card{padding:36px 20px}
+  .p-card-img{height:180px}
+}
+@media(min-width:480px) and (max-width:768px){.products-grid{grid-template-columns:repeat(2,1fr);max-width:none}}
+</style>
 </head>
 <body>
 
-  <!-- ======================================================
-       STORE CLOSED BANNER
-  ====================================================== -->
-  <div id="store-closed-banner" style="display:none">
-    <span data-he="👑 אנה בהפסקה! חוזרת בקרוב 🌸" data-en="👑 Anna is on a break! Back soon. 🌸">👑 אנה בהפסקה! חוזרת בקרוב 🌸</span>
-  </div>
+<!-- Store Closed Banner -->
+<div id="store-closed" style="display:none">👑 אנה בהפסקה! חוזרת בקרוב 🌸</div>
 
-  <!-- ======================================================
-       STICKY HEADER
-  ====================================================== -->
-  <header>
-    <div class="container header-inner">
-      <!-- Logo -->
-      <a href="#home" class="logo-wrap" aria-label="Princess Anna - Home">
-        <div class="crown-lottie-wrap">
-          <!-- Lottie crown (progressive enhancement) -->
-          <lottie-player
-            src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-            background="transparent"
-            speed="0.6"
-            loop
-            autoplay
-            style="width:44px;height:38px;"
-            aria-hidden="true"
-            id="crown-lottie">
-          </lottie-player>
-          <!-- SVG crown fallback — shown if Lottie fails -->
-          <div class="crown-svg-wrap" id="crown-svg-fallback" style="display:none">
-            <svg width="42" height="34" viewBox="0 0 42 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M3 27 L3 31 L39 31 L39 27 Z" fill="#FFD700" stroke="#E6C200" stroke-width="0.5"/>
-              <path d="M3 27 L9 9 L21 21 L33 5 L39 27 Z" fill="#FFD700" stroke="#E6C200" stroke-width="1"/>
-              <circle cx="3"  cy="9"  r="2.5" fill="#E91E8C"/>
-              <circle cx="21" cy="21" r="2.5" fill="#E91E8C"/>
-              <circle cx="39" cy="9"  r="2.5" fill="#E91E8C"/>
-              <circle cx="33" cy="5"  r="2"   fill="#9c27b0"/>
-              <circle cx="9"  cy="9"  r="2"   fill="#9c27b0"/>
-              <circle cx="21" cy="5"  r="1.5" fill="#FFD700" stroke="#E6C200" stroke-width="0.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="logo-text-wrap">
-          <span class="logo-name">Princess Anna</span>
-          <span class="logo-tagline">✦ Jewelry &amp; Accessories ✦</span>
-        </div>
-      </a>
-
-      <!-- Nav -->
-      <input type="checkbox" id="menu-toggle" aria-hidden="true">
-      <ul class="nav-menu" role="navigation" aria-label="Main navigation">
-        <li><a href="#home"         data-en="Home"  data-he="בית">בית</a></li>
-        <li><a href="#shop"         data-en="Shop"  data-he="חנות">חנות</a></li>
-        <li><a href="#about"        data-en="About" data-he="אודות">אודות</a></li>
-        <li><a href="#order"        data-en="Order" data-he="הזמנה">הזמנה</a></li>
-      </ul>
-
-      <!-- Right: lang + hamburger -->
-      <div class="header-right">
-        <div class="lang-toggle" role="group" aria-label="Language switcher">
-          <button class="lang-btn active" id="lang-he-btn" onclick="setLanguage('he')" aria-label="עברית">🇮🇱 עב</button>
-          <button class="lang-btn" id="lang-en-btn" onclick="setLanguage('en')" aria-label="English">🇬🇧 EN</button>
-        </div>
-        <label class="hamburger" for="menu-toggle" aria-label="Toggle navigation menu">
-          <span></span><span></span><span></span>
-        </label>
-      </div>
-    </div>
-  </header>
-
-  <!-- ======================================================
-       HERO
-  ====================================================== -->
-  <section id="home">
-    <!-- CSS sparkle particles (always visible) -->
-    <span class="sparkle-particle" style="top:12%;left:7%;font-size:1.4rem;--dur:5s;--delay:0s">✦</span>
-    <span class="sparkle-particle" style="top:22%;left:17%;font-size:1rem;--dur:6.5s;--delay:1.2s">✧</span>
-    <span class="sparkle-particle" style="top:58%;left:4%;font-size:1.6rem;--dur:4.5s;--delay:0.4s">★</span>
-    <span class="sparkle-particle" style="top:72%;left:21%;font-size:0.9rem;--dur:7s;--delay:2s">✦</span>
-    <span class="sparkle-particle" style="top:8%;right:9%;font-size:1.5rem;--dur:5.5s;--delay:1.5s">✧</span>
-    <span class="sparkle-particle" style="top:32%;right:4%;font-size:1.1rem;--dur:4.2s;--delay:0.7s">★</span>
-    <span class="sparkle-particle" style="top:52%;right:14%;font-size:1.3rem;--dur:6.8s;--delay:3s">✦</span>
-    <span class="sparkle-particle" style="top:82%;right:7%;font-size:0.9rem;--dur:5.2s;--delay:0.2s">✧</span>
-    <span class="sparkle-particle" style="top:44%;left:49%;font-size:1.2rem;--dur:7.2s;--delay:1s">✨</span>
-    <span class="sparkle-particle" style="top:18%;left:39%;font-size:0.85rem;--dur:4.9s;--delay:2.5s">✦</span>
-    <span class="sparkle-particle" style="top:78%;left:34%;font-size:1.4rem;--dur:6.1s;--delay:0.1s">★</span>
-    <span class="sparkle-particle" style="top:4%;left:54%;font-size:1rem;--dur:5.3s;--delay:3.6s">✧</span>
-    <span class="sparkle-particle" style="top:89%;left:59%;font-size:1.2rem;--dur:4.3s;--delay:1.7s">✦</span>
-    <span class="sparkle-particle" style="top:36%;right:29%;font-size:0.95rem;--dur:7.6s;--delay:0.6s">★</span>
-    <span class="sparkle-particle" style="top:66%;right:39%;font-size:1.1rem;--dur:5.9s;--delay:4s">✨</span>
-
-    <div class="hero-content">
-      <div class="hero-badge" data-en="🌍 Worldwide Shipping" data-he="🌍 משלוח לכל הארץ">🌍 משלוח לכל הארץ</div>
-      <h1 class="hero-title" data-en="Welcome to Princess Anna's Store 👑" data-he="ברוכים הבאים לחנות של פרינסס אנה 👑">ברוכים הבאים לחנות של פרינסס אנה 👑</h1>
-      <p class="hero-sub" data-en="Unique jewelry &amp; accessories, delivered to your door" data-he="תכשיטים ואקססוריז מיוחדים, עד הבית שלך">תכשיטים ואקססוריז מיוחדים, עד הבית שלך</p>
-      <a href="#shop" class="btn-primary" data-en="Shop Now ✨" data-he="לקנייה ✨">לקנייה ✨</a>
-    </div>
-  </section>
-
-  <!-- ======================================================
-       SHOP SECTION
-  ====================================================== -->
-  <section id="shop">
-    <div class="container">
-      <h2 class="section-title" data-en="Our Collection ✨" data-he="הקולקציה שלנו ✨">הקולקציה שלנו ✨</h2>
-      <div class="gold-line"></div>
-      <div class="products-grid">
-
-        <!-- PRODUCT CARD 1 -->
-        <div class="product-card">
-          <div class="card-image-area">
-            <span class="product-emoji">⭐</span>
-            <span class="card-badge badge-gold" data-en="BESTSELLER" data-he="הנמכר ביותר">הנמכר ביותר</span>
-            <button class="heart-btn" aria-label="Add to wishlist" onclick="this.textContent=this.textContent==='♡'?'♥':'♡';this.style.color=this.textContent==='♥'?'var(--pink-deep)':'var(--pink-light)'">♡</button>
-          </div>
-          <div class="card-body">
-            <h3 class="product-name" data-en="Crystal Star Necklace" data-he="שרשרת כוכב קריסטל">שרשרת כוכב קריסטל</h3>
-            <p class="product-desc" data-en="Delicate chain with sparkling crystal star pendant" data-he="שרשרת עדינה עם תליון כוכב קריסטל מנצנץ">שרשרת עדינה עם תליון כוכב קריסטל מנצנץ</p>
-            <div class="product-footer">
-              <span class="product-price">₪55</span>
-              <a href="#order" class="btn-order" data-en="Order Now" data-he="להזמנה" onclick="preselectProduct('crystal-star-necklace')">להזמנה</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRODUCT CARD 2 -->
-        <div class="product-card">
-          <div class="card-image-area">
-            <span class="product-emoji">🦋</span>
-            <span class="card-badge badge-green" data-en="NEW" data-he="חדש">חדש</span>
-            <button class="heart-btn" aria-label="Add to wishlist" onclick="this.textContent=this.textContent==='♡'?'♥':'♡';this.style.color=this.textContent==='♥'?'var(--pink-deep)':'var(--pink-light)'">♡</button>
-          </div>
-          <div class="card-body">
-            <h3 class="product-name" data-en="Pink Butterfly Bracelet" data-he="צמיד פרפר ורוד">צמיד פרפר ורוד</h3>
-            <p class="product-desc" data-en="Adjustable bracelet with butterfly charm and pink gems" data-he="צמיד מתכוונן עם פרפר ואבני ורוד">צמיד מתכוונן עם פרפר ואבני ורוד</p>
-            <div class="product-footer">
-              <span class="product-price">₪45</span>
-              <a href="#order" class="btn-order" data-en="Order Now" data-he="להזמנה" onclick="preselectProduct('pink-butterfly-bracelet')">להזמנה</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRODUCT CARD 3 -->
-        <div class="product-card">
-          <div class="card-image-area">
-            <span class="product-emoji">🎀</span>
-            <button class="heart-btn" aria-label="Add to wishlist" onclick="this.textContent=this.textContent==='♡'?'♥':'♡';this.style.color=this.textContent==='♥'?'var(--pink-deep)':'var(--pink-light)'">♡</button>
-          </div>
-          <div class="card-body">
-            <h3 class="product-name" data-en="Sparkle Hair Bow" data-he="קשת שיער מנצנצת">קשת שיער מנצנצת</h3>
-            <p class="product-desc" data-en="Large satin bow with glitter details" data-he="קשת סאטן גדולה עם פרטי גליטר">קשת סאטן גדולה עם פרטי גליטר</p>
-            <div class="product-footer">
-              <span class="product-price">₪38</span>
-              <a href="#order" class="btn-order" data-en="Order Now" data-he="להזמנה" onclick="preselectProduct('sparkle-hair-bow')">להזמנה</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRODUCT CARD 4 -->
-        <div class="product-card">
-          <div class="card-image-area">
-            <span class="product-emoji">✨</span>
-            <span class="card-badge badge-purple" data-en="NO PIERCING" data-he="ללא ניקוב">ללא ניקוב</span>
-            <button class="heart-btn" aria-label="Add to wishlist" onclick="this.textContent=this.textContent==='♡'?'♥':'♡';this.style.color=this.textContent==='♥'?'var(--pink-deep)':'var(--pink-light)'">♡</button>
-          </div>
-          <div class="card-body">
-            <h3 class="product-name" data-en="Clip-On Star Earrings" data-he="עגילי כוכב קליפס">עגילי כוכב קליפס</h3>
-            <p class="product-desc" data-en="Comfortable clip-on earrings with crystal stars — no piercing needed" data-he="עגילי קליפס עם כוכבי קריסטל — ללא ניקוב">עגילי קליפס עם כוכבי קריסטל — ללא ניקוב</p>
-            <div class="product-footer">
-              <span class="product-price">₪42</span>
-              <a href="#order" class="btn-order" data-en="Order Now" data-he="להזמנה" onclick="preselectProduct('clip-on-star-earrings')">להזמנה</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRODUCT CARD 5 -->
-        <div class="product-card">
-          <div class="card-image-area">
-            <span class="product-emoji">👜</span>
-            <span class="card-badge badge-rose" data-en="LIMITED" data-he="מוגבל">מוגבל</span>
-            <button class="heart-btn" aria-label="Add to wishlist" onclick="this.textContent=this.textContent==='♡'?'♥':'♡';this.style.color=this.textContent==='♥'?'var(--pink-deep)':'var(--pink-light)'">♡</button>
-          </div>
-          <div class="card-body">
-            <h3 class="product-name" data-en="Mini Glitter Handbag" data-he="תיק מיני גליטר">תיק מיני גליטר</h3>
-            <p class="product-desc" data-en="Tiny sparkle shoulder bag, perfect for special occasions" data-he="תיק כתף קטן ומנצנץ, מושלם לאירועים">תיק כתף קטן ומנצנץ, מושלם לאירועים</p>
-            <div class="product-footer">
-              <span class="product-price">₪89</span>
-              <a href="#order" class="btn-order" data-en="Order Now" data-he="להזמנה" onclick="preselectProduct('mini-glitter-handbag')">להזמנה</a>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /products-grid -->
-    </div><!-- /container -->
-  </section>
-
-  <!-- ======================================================
-       HOW IT WORKS
-  ====================================================== -->
-  <section id="how-it-works">
-    <div class="container">
-      <h2 class="section-title" data-en="How It Works" data-he="איך זה עובד">איך זה עובד</h2>
-      <div class="gold-line"></div>
-      <div class="steps-grid">
-
-        <div class="step-card">
-          <span class="step-number">1</span>
-          <div class="step-icon">
-            <lottie-player
-              src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-              background="transparent" speed="1" loop autoplay
-              style="width:100px;height:100px;" aria-hidden="true"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-            </lottie-player>
-            <span class="step-icon-fallback" style="display:none">🛍️</span>
-          </div>
-          <h3 class="step-title" data-en="Choose your favorite item" data-he="בחרי את המוצר שאהבתם">בחרי את המוצר שאהבתם</h3>
-          <p class="step-desc" data-en="Browse our magical collection and pick what you love" data-he="עיינו בקולקציה הקסומה ובחרו מה שאוהבים">עיינו בקולקציה הקסומה ובחרו מה שאוהבים</p>
-        </div>
-
-        <div class="step-card">
-          <span class="step-number">2</span>
-          <div class="step-icon">
-            <lottie-player
-              src="https://assets3.lottiefiles.com/packages/lf20_RItkEz.json"
-              background="transparent" speed="1" loop autoplay
-              style="width:100px;height:100px;" aria-hidden="true"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-            </lottie-player>
-            <span class="step-icon-fallback" style="display:none">📝</span>
-          </div>
-          <h3 class="step-title" data-en="Fill the order form" data-he="מלאי טופס הזמנה">מלאי טופס הזמנה</h3>
-          <p class="step-desc" data-en="Fill in your details and we'll take care of the rest" data-he="מלאו את הפרטים ואנחנו נדאג לשאר">מלאו את הפרטים ואנחנו נדאג לשאר</p>
-        </div>
-
-        <div class="step-card">
-          <span class="step-number">3</span>
-          <div class="step-icon">
-            <lottie-player
-              src="https://assets4.lottiefiles.com/packages/lf20_gb5bmwlm.json"
-              background="transparent" speed="1" loop autoplay
-              style="width:100px;height:100px;" aria-hidden="true"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-            </lottie-player>
-            <span class="step-icon-fallback" style="display:none">📦</span>
-          </div>
-          <h3 class="step-title" data-en="Receive at home in 10–20 days" data-he="קבלי עד הבית תוך 10–20 יום">קבלי עד הבית תוך 10–20 יום</h3>
-          <p class="step-desc" data-en="Your magical item arrives at your door" data-he="הפריט הקסום שלך מגיע עד הבית">הפריט הקסום שלך מגיע עד הבית</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================
-       ORDER FORM
-  ====================================================== -->
-  <section id="order">
-    <div class="container">
-      <h2 class="section-title" data-en="Place Your Order 👑" data-he="הזמינו עכשיו 👑">הזמינו עכשיו 👑</h2>
-      <div class="gold-line"></div>
-      <div class="form-wrapper">
-
-        <!-- Thank-you (hidden until submit) -->
-        <div id="thank-you">
-          <div id="thankyou-lottie-wrap">
-            <lottie-player
-              id="confetti-lottie"
-              src="https://assets9.lottiefiles.com/packages/lf20_obhph3t0.json"
-              background="transparent"
-              speed="1"
-              style="width:180px;height:180px;"
-              aria-hidden="true">
-            </lottie-player>
-          </div>
-          <p class="thankyou-text" id="thankyou-text"
-            data-en="👑 Thank you! Anna received your order and will contact you within 24 hours to confirm payment via Bit or Paybox. Get ready for something magical! ✨"
-            data-he="👑 תודה רבה! אנה קיבלה את ההזמנה שלך ותיצור איתך קשר תוך 24 שעות לאישור תשלום דרך ביט או פייבוקס. תתכוננו למשהו קסום! ✨">
-            👑 תודה רבה! אנה קיבלה את ההזמנה שלך ותיצור איתך קשר תוך 24 שעות לאישור תשלום דרך ביט או פייבוקס. תתכוננו למשהו קסום! ✨
-          </p>
-        </div>
-
-        <form id="order-form"
-              action="https://formspree.io/f/xnjobpwo"
-              method="POST">
-
-          <div class="form-row">
-            <label data-en="Full Name *" data-he="שם מלא *">שם מלא *</label>
-            <input type="text" name="full_name" required
-                   placeholder="השם המלא שלך"
-                   data-placeholder-en="Your full name"
-                   data-placeholder-he="השם המלא שלך">
-          </div>
-
-          <div class="form-row">
-            <label data-en="Phone *" data-he="טלפון *">טלפון *</label>
-            <input type="tel" name="phone" required
-                   placeholder="מספר הטלפון שלך"
-                   data-placeholder-en="Your phone number"
-                   data-placeholder-he="מספר הטלפון שלך">
-          </div>
-
-          <div class="form-row">
-            <label data-en="Email *" data-he="אימייל *">אימייל *</label>
-            <input type="email" name="email" required
-                   placeholder="your@email.com"
-                   data-placeholder-en="your@email.com"
-                   data-placeholder-he="your@email.com">
-          </div>
-
-          <div class="form-row">
-            <label data-en="City *" data-he="עיר *">עיר *</label>
-            <input type="text" name="city" required
-                   placeholder="העיר שלך"
-                   data-placeholder-en="Your city"
-                   data-placeholder-he="העיר שלך">
-          </div>
-
-          <div class="form-row">
-            <label data-en="Full Address *" data-he="כתובת מלאה *">כתובת מלאה *</label>
-            <input type="text" name="address" required
-                   placeholder="רחוב, מספר, קומה/דירה"
-                   data-placeholder-en="Street, number, floor/apt"
-                   data-placeholder-he="רחוב, מספר, קומה/דירה">
-          </div>
-
-          <div class="form-row">
-            <label data-en="Product *" data-he="מוצר *">מוצר *</label>
-            <select name="product" required id="product-select">
-              <option value="" data-en="— Select a product —" data-he="— בחרי מוצר —">— בחרי מוצר —</option>
-              <option value="crystal-star-necklace"   data-en="Crystal Star Necklace — ₪55"  data-he="שרשרת כוכב קריסטל — ₪55">שרשרת כוכב קריסטל — ₪55</option>
-              <option value="pink-butterfly-bracelet" data-en="Pink Butterfly Bracelet — ₪45" data-he="צמיד פרפר ורוד — ₪45">צמיד פרפר ורוד — ₪45</option>
-              <option value="sparkle-hair-bow"        data-en="Sparkle Hair Bow — ₪38"        data-he="קשת שיער מנצנצת — ₪38">קשת שיער מנצנצת — ₪38</option>
-              <option value="clip-on-star-earrings"   data-en="Clip-On Star Earrings — ₪42"  data-he="עגילי כוכב קליפס — ₪42">עגילי כוכב קליפס — ₪42</option>
-              <option value="mini-glitter-handbag"    data-en="Mini Glitter Handbag — ₪89"   data-he="תיק מיני גליטר — ₪89">תיק מיני גליטר — ₪89</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label data-en="Quantity" data-he="כמות">כמות</label>
-            <input type="number" name="quantity" min="1" max="10" value="1">
-          </div>
-
-          <div class="form-row">
-            <label data-en="Notes (optional)" data-he="הערות (אופציונלי)">הערות (אופציונלי)</label>
-            <textarea name="notes"
-                      placeholder="בקשות מיוחדות?"
-                      data-placeholder-en="Any special requests?"
-                      data-placeholder-he="בקשות מיוחדות?"></textarea>
-          </div>
-
-          <div class="form-row">
-            <label data-en="How did you hear about us?" data-he="איך שמעתם עלינו?">איך שמעתם עלינו?</label>
-            <select name="referral">
-              <option value="instagram" data-en="Instagram"  data-he="אינסטגרם">אינסטגרם</option>
-              <option value="tiktok"    data-en="TikTok"     data-he="טיקטוק">טיקטוק</option>
-              <option value="whatsapp"  data-en="WhatsApp"   data-he="וואטסאפ">וואטסאפ</option>
-              <option value="friend"    data-en="Friend"     data-he="חבר/ה">חבר/ה</option>
-              <option value="other"     data-en="Other"      data-he="אחר">אחר</option>
-            </select>
-          </div>
-
-          <div class="payment-box">
-            <span data-en="💳 Payment is made after order confirmation via Bit or Paybox"
-                  data-he="💳 התשלום מתבצע לאחר אישור ההזמנה דרך ביט או פייבוקס">💳 התשלום מתבצע לאחר אישור ההזמנה דרך ביט או פייבוקס</span>
-          </div>
-
-          <button type="submit" class="btn-submit" id="submit-btn"
-                  data-en="Send Order ✨" data-he="שליחת הזמנה ✨">שליחת הזמנה ✨</button>
-        </form>
-
-      </div><!-- /form-wrapper -->
-    </div><!-- /container -->
-  </section>
-
-  <!-- ======================================================
-       ABOUT
-  ====================================================== -->
-  <section id="about">
-    <div class="container">
-      <div class="about-card">
-        <span class="about-crown">👑</span>
-        <h2 class="section-title" style="margin-bottom:20px"
-            data-en="About Princess Anna" data-he="על פרינסס אנה">על פרינסס אנה</h2>
-        <p class="about-text"
-           data-en="Hi! I'm Anna, and I'm 8 years old. I love beautiful things — sparkly jewelry, colorful accessories, and everything that makes you feel like a princess. I carefully pick every item in my store so you get only the most magical pieces. Thank you for supporting my little shop! 👑"
-           data-he="היי! אני אנה, ובת 8. אני אוהבת דברים יפים — תכשיטים מנצנצים, אקססוריז צבעוניים, וכל מה שגורם לך להרגיש כמו נסיכה. אני בוחרת בקפידה כל מוצר בחנות שלי כדי שתקבלי רק את הפריטים הכי קסומים. תודה שאתם תומכים בחנות הקטנה שלי! 👑">
-          היי! אני אנה, ובת 8. אני אוהבת דברים יפים — תכשיטים מנצנצים, אקססוריז צבעוניים, וכל מה שגורם לך להרגיש כמו נסיכה. אני בוחרת בקפידה כל מוצר בחנות שלי כדי שתקבלי רק את הפריטים הכי קסומים. תודה שאתם תומכים בחנות הקטנה שלי! 👑
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================
-       FOOTER
-  ====================================================== -->
-  <footer>
-    <div class="container">
-      <div class="footer-logo-name">Princess Anna</div>
-      <div class="footer-tagline">✦ JEWELRY &amp; ACCESSORIES ✦</div>
-      <div class="social-links">
-        <a href="REPLACE_INSTAGRAM" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-        <a href="REPLACE_TIKTOK" class="social-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
-          </svg>
-        </a>
-      </div>
-      <p class="footer-info"
-         data-en="🌍 Worldwide Shipping &nbsp;|&nbsp; 💳 Bit &amp; Paybox &nbsp;|&nbsp; 📦 10–20 Days Delivery"
-         data-he="🌍 משלוח לכל העולם &nbsp;|&nbsp; 💳 תשלום בביט ופייבוקס &nbsp;|&nbsp; 📦 10–20 ימי עסקים">
-        🌍 משלוח לכל העולם &nbsp;|&nbsp; 💳 תשלום בביט ופייבוקס &nbsp;|&nbsp; 📦 10–20 ימי עסקים
-      </p>
-      <p class="footer-policy"
-         data-en="Your information is used only to process your order and will never be shared."
-         data-he="המידע שלך משמש רק לעיבוד ההזמנה ולא יועבר לאף גורם אחר.">
-        המידע שלך משמש רק לעיבוד ההזמנה ולא יועבר לאף גורם אחר.
-      </p>
-      <p class="footer-copy">© 2025 Princess Anna Store — All rights reserved</p>
-    </div>
-  </footer>
-
-  <!-- ======================================================
-       WHATSAPP FLOATING BUTTON
-  ====================================================== -->
-  <a id="whatsapp-btn" href="https://wa.me/REPLACE_WITH_PHONE_NUMBER" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+<!-- ========== HEADER ========== -->
+<header>
+<div class="container h-inner">
+  <a href="#home" class="logo-wrap">
+    <svg class="logo-crown" viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a000ff"/><stop offset="50%" stop-color="#ff0080"/><stop offset="100%" stop-color="#00ff88"/></linearGradient></defs>
+      <path d="M4 32 L4 36 Q4 38 6 38 L42 38 Q44 38 44 36 L44 32 Z" fill="url(#lg)" opacity=".85"/>
+      <path d="M4 32 L12 12 L24 24 L36 6 L44 32" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="12" r="3" fill="#ff0080" filter="url(#glow)"/>
+      <circle cx="24" cy="24" r="3" fill="#a000ff"/>
+      <circle cx="36" cy="6" r="3.5" fill="#00ff88"/>
+      <circle cx="4" cy="32" r="2.5" fill="#a000ff"/>
+      <circle cx="44" cy="32" r="2.5" fill="#ff0080"/>
     </svg>
-    <span class="wa-tooltip" data-en="Chat with Anna!" data-he="שלחו הודעה לאנה!">שלחו הודעה לאנה!</span>
+    <div class="logo-text">
+      <span class="logo-name">פרינסס אנה</span>
+      <span class="logo-sub">✦ אקססוריז ✦</span>
+    </div>
   </a>
+  <input type="checkbox" id="menu-toggle" aria-hidden="true">
+  <ul class="nav-menu">
+    <li><a href="#home">בית</a></li>
+    <li><a href="#shop">חנות</a></li>
+    <li><a href="#about">עלינו</a></li>
+    <li><a href="#order">הזמנה</a></li>
+  </ul>
+  <label class="hamburger" for="menu-toggle" aria-label="תפריט"><span></span><span></span><span></span></label>
+</div>
+</header>
 
-  <!-- ======================================================
-       JAVASCRIPT
-  ====================================================== -->
-  <script>
-    // ============================================================
-    // STORE CONFIGURATION — change to false to show closed banner
-    // ============================================================
-    var STORE_OPEN = true;
+<!-- ========== HERO ========== -->
+<section id="home">
+  <div class="hero-bg">
+    <div class="particle" style="width:6px;height:6px;background:var(--np);top:15%;right:10%;--d:5s;--dl:0s"></div>
+    <div class="particle" style="width:4px;height:4px;background:var(--npk);top:25%;right:75%;--d:7s;--dl:1s"></div>
+    <div class="particle" style="width:8px;height:8px;background:var(--nm);top:60%;right:20%;--d:6s;--dl:.5s"></div>
+    <div class="particle" style="width:5px;height:5px;background:var(--nc);top:40%;right:55%;--d:8s;--dl:2s"></div>
+    <div class="particle" style="width:3px;height:3px;background:var(--np);top:70%;right:80%;--d:5.5s;--dl:1.5s"></div>
+    <div class="particle" style="width:7px;height:7px;background:var(--npk);top:80%;right:40%;--d:9s;--dl:3s"></div>
+    <div class="particle" style="width:4px;height:4px;background:var(--nm);top:10%;right:45%;--d:6.5s;--dl:.8s"></div>
+    <div class="particle" style="width:6px;height:6px;background:var(--nc);top:50%;right:90%;--d:7.5s;--dl:2.5s"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">✨ <span class="glow">הקולקציה החדשה</span> כאן</h1>
+    <p class="hero-sub">תכשיטים, אקססוריז ועוד — עד הבית שלך</p>
+    <a href="#shop" class="btn-neon">לחנות →</a>
+  </div>
+</section>
 
-    // ============================================================
-    // LANGUAGE SWITCHER
-    // ============================================================
-    function setLanguage(lang) {
-      var root = document.getElementById('html-root');
-      root.lang = lang;
-      root.dir = lang === 'he' ? 'rtl' : 'ltr';
+<!-- ========== SHOP ========== -->
+<section id="shop">
+<div class="container">
+  <h2 class="section-title">🔥 החנות</h2>
+  <div class="section-glow"></div>
+  <div class="cat-filters" id="cat-filters"></div>
+  <div class="products-grid" id="products-grid"></div>
+</div>
+</section>
 
-      // Swap all [data-en] / [data-he] text content
-      document.querySelectorAll('[data-en][data-he]').forEach(function(el) {
-        // Don't touch elements whose text content should NOT be overwritten (containers with children)
-        if (el.children.length === 0) {
-          el.textContent = el.dataset[lang];
-        }
+<!-- ========== HOW IT WORKS ========== -->
+<section id="how" class="reveal">
+<div class="container">
+  <h2 class="section-title">איך זה עובד</h2>
+  <div class="section-glow"></div>
+  <div class="steps">
+    <div class="step"><span class="step-icon">🛍️</span><div class="step-text">בחרי מוצר</div></div>
+    <div class="step"><span class="step-icon">📝</span><div class="step-text">מלאי הזמנה</div></div>
+    <div class="step"><span class="step-icon">📦</span><div class="step-text">מקבלים הביתה</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ========== REVIEWS ========== -->
+<section id="reviews" class="reveal">
+<div class="container">
+  <h2 class="section-title">⭐ מה הלקוחות אומרות</h2>
+  <div class="section-glow"></div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"הזמנתי שרשרת כוכב לבת שלי, היא פשוט מתה על זה! איכות מעולה ומשלוח מהיר"</p>
+      <div class="review-name">מיכל כ.</div>
+      <div class="review-badge">✓ לקוחה מאומתת</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"סט התכשיטים הכי יפה שראיתי! הבת שלי לא מורידה את זה. ממליצה בחום"</p>
+      <div class="review-name">שירה ל.</div>
+      <div class="review-badge">✓ לקוחה מאומתת</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"אנה הכי חמודה! שירות אישי ומוצרים באיכות גבוהה. כבר הזמנתי פעמיים"</p>
+      <div class="review-name">נועה מ.</div>
+      <div class="review-badge">✓ לקוחה מאומתת</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========== ORDER FORM ========== -->
+<section id="order">
+<div class="container">
+  <h2 class="section-title">👑 הזמינו עכשיו</h2>
+  <div class="section-glow"></div>
+  <div class="form-wrap">
+    <div id="thank-you">
+      <p class="ty-text">👑 תודה רבה! אנה קיבלה את ההזמנה שלך ותיצור איתך קשר תוך 24 שעות לאישור תשלום דרך ביט או פייבוקס. תתכוננו למשהו קסום! ✨</p>
+    </div>
+    <form id="order-form" action="https://formspree.io/f/xnjobpwo" method="POST">
+      <div class="f-row"><label>שם מלא *</label><input type="text" name="full_name" required placeholder="השם המלא שלך"></div>
+      <div class="f-row"><label>טלפון *</label><input type="tel" name="phone" required placeholder="מספר הטלפון שלך"></div>
+      <div class="f-row"><label>אימייל *</label><input type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="f-row"><label>עיר *</label><input type="text" name="city" required placeholder="העיר שלך"></div>
+      <div class="f-row"><label>כתובת מלאה *</label><input type="text" name="address" required placeholder="רחוב, מספר, קומה/דירה"></div>
+      <div class="f-row"><label>מוצר *</label><select name="product" required id="product-select"><option value="">— בחרי מוצר —</option></select></div>
+      <div class="f-row"><label>כמות</label><input type="number" name="quantity" min="1" max="10" value="1"></div>
+      <div class="f-row"><label>הערות</label><textarea name="notes" placeholder="בקשות מיוחדות?"></textarea></div>
+      <div class="pay-box">💳 התשלום מתבצע לאחר אישור ההזמנה דרך ביט או פייבוקס</div>
+      <button type="submit" class="btn-submit" id="submit-btn">שליחת הזמנה ✨</button>
+    </form>
+  </div>
+</div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="reveal">
+<div class="container">
+  <div class="about-card">
+    <span class="about-crown">👑</span>
+    <h2 class="section-title" style="margin-bottom:16px">על פרינסס אנה</h2>
+    <p class="about-text">היי! אני אנה, ובת 8. אני אוהבת דברים יפים — תכשיטים מנצנצים, אקססוריז צבעוניים, וכל מה שגורם לך להרגיש כמו נסיכה. אני בוחרת בקפידה כל מוצר בחנות שלי כדי שתקבלי רק את הפריטים הכי קסומים. תודה שאתם תומכים בחנות הקטנה שלי! 👑</p>
+  </div>
+</div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+<div class="container">
+  <div class="f-logo">פרינסס אנה</div>
+  <div class="f-sub">✦ אקססוריז ✦</div>
+  <div class="social-links">
+    <a href="REPLACE_INSTAGRAM" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="REPLACE_TIKTOK" class="social-btn" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+  </div>
+  <!-- Policy accordion -->
+  <div class="policy-section">
+    <button class="policy-toggle" onclick="this.nextElementSibling.classList.toggle('open')">מדיניות משלוחים והחזרות <span>▼</span></button>
+    <div class="policy-content">משלוח לכל רחבי הארץ תוך 10-20 ימי עסקים. תשלום באמצעות ביט או פייבוקס לאחר אישור ההזמנה. החזרות תוך 14 יום מקבלת המוצר. המידע שלך משמש רק לעיבוד ההזמנה ולא יועבר לאף גורם אחר.</div>
+  </div>
+  <p class="f-info">🌍 משלוח לכל הארץ &nbsp;|&nbsp; 💳 ביט ופייבוקס &nbsp;|&nbsp; 📦 10-20 ימים</p>
+  <p class="f-copy">© 2025 פרינסס אנה — כל הזכויות שמורות</p>
+</div>
+</footer>
+
+<!-- ========== WHATSAPP ========== -->
+<a id="wa-btn" href="https://wa.me/REPLACE_WITH_PHONE_NUMBER" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Back to Top -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner">
+  <span class="cookie-text">האתר משתמש בעוגיות לשיפור חוויית השימוש</span>
+  <button class="cookie-btn" onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('pa-cookies','1')">אישור</button>
+</div>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+var STORE_OPEN = true;
+
+// Store closed
+if(!STORE_OPEN) document.getElementById('store-closed').style.display='block';
+
+// Cookie banner
+if(!localStorage.getItem('pa-cookies')){document.getElementById('cookie-banner').classList.add('show')}
+
+// Load products
+fetch('products.json').then(function(r){return r.json()}).then(function(products){
+  var grid=document.getElementById('products-grid');
+  var select=document.getElementById('product-select');
+  var cats=new Set(['all']);
+  products.forEach(function(p){cats.add(p.category)});
+
+  // Category labels
+  var catLabels={all:'✨ הכל',jewelry:'💍 תכשיטים',hair:'💇 שיער',bags:'👜 תיקים',beauty:'💄 יופי',keychains:'🔑 מחזיקים',dressup:'🎀 תחפושות',stationery:'📚 כתיבה',fun:'😎 כיף'};
+  var filtersEl=document.getElementById('cat-filters');
+  cats.forEach(function(c){
+    var btn=document.createElement('button');
+    btn.className='cat-btn'+(c==='all'?' active':'');
+    btn.textContent=catLabels[c]||c;
+    btn.onclick=function(){
+      document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      document.querySelectorAll('.p-card').forEach(function(card){
+        card.style.display=(c==='all'||card.dataset.cat===c)?'':'none';
       });
+    };
+    filtersEl.appendChild(btn);
+  });
 
-      // Swap placeholders
-      document.querySelectorAll('[data-placeholder-en][data-placeholder-he]').forEach(function(el) {
-        el.placeholder = lang === 'he' ? el.dataset.placeholderHe : el.dataset.placeholderEn;
-      });
+  // Render products
+  products.forEach(function(p){
+    var card=document.createElement('div');
+    card.className='p-card reveal';
+    card.dataset.cat=p.category;
+    card.innerHTML=
+      '<div class="p-card-img">'+
+        '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
+        '<div class="emoji-fallback" style="display:none">'+p.emoji+'</div>'+
+        (p.badge?'<div class="p-badge" style="background:'+(p.badgeColor||'var(--np)')+';box-shadow:0 0 12px '+(p.badgeColor||'var(--gp)')+'">'+p.badge+'</div>':'')+
+        '<button class="heart-btn" aria-label="מועדפים" onclick="event.stopPropagation();this.textContent=this.textContent===\'♡\'?\'♥\':\'♡\';this.style.color=this.textContent===\'♥\'?\'var(--npk)\':\'\'">♡</button>'+
+      '</div>'+
+      '<div class="p-body">'+
+        '<h3 class="p-name">'+p.name+'</h3>'+
+        '<p class="p-desc">'+p.desc+'</p>'+
+        '<div class="p-footer">'+
+          '<span class="p-price">₪'+p.price+'</span>'+
+          '<a href="#order" class="btn-order" onclick="preselectProduct(\''+p.id+'\')">להזמנה</a>'+
+        '</div>'+
+      '</div>';
+    grid.appendChild(card);
 
-      // Swap <option> text
-      document.querySelectorAll('option[data-en][data-he]').forEach(function(el) {
-        el.textContent = el.dataset[lang];
-      });
+    // Add to select
+    var opt=document.createElement('option');
+    opt.value=p.id;
+    opt.textContent=p.name+' — ₪'+p.price;
+    select.appendChild(opt);
+  });
 
-      // Active lang button
-      document.getElementById('lang-he-btn').classList.toggle('active', lang === 'he');
-      document.getElementById('lang-en-btn').classList.toggle('active', lang === 'en');
+  // Trigger scroll reveal for dynamically added cards
+  observeReveal();
+}).catch(function(){
+  document.getElementById('products-grid').innerHTML='<p style="text-align:center;color:var(--td)">טוען מוצרים...</p>';
+});
 
-      // Persist
-      localStorage.setItem('princess-anna-lang', lang);
-    }
+function preselectProduct(v){document.getElementById('product-select').value=v}
 
-    // ============================================================
-    // PRESELECT PRODUCT — called when clicking "Order Now" on a card
-    // ============================================================
-    function preselectProduct(value) {
-      var sel = document.getElementById('product-select');
-      if (sel) sel.value = value;
-    }
+// Form submission
+var form=document.getElementById('order-form');
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='שולחת... ✨';
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+  .then(function(r){
+    if(r.ok){form.style.display='none';document.getElementById('thank-you').classList.add('show')}
+    else{btn.disabled=false;btn.textContent='שליחת הזמנה ✨';alert('שגיאה בשליחה. נסי שוב.')}
+  }).catch(function(){btn.disabled=false;btn.textContent='שליחת הזמנה ✨';alert('שגיאת רשת.')});
+})}
 
-    // ============================================================
-    // FORM SUBMISSION
-    // ============================================================
-    var orderForm = document.getElementById('order-form');
-    if (orderForm) {
-      orderForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var lang = document.getElementById('html-root').lang || 'he';
-        var btn = document.getElementById('submit-btn');
-        btn.disabled = true;
-        btn.textContent = lang === 'he' ? 'שולחת... ✨' : 'Sending... ✨';
+// Back to top
+window.addEventListener('scroll',function(){
+  document.getElementById('btt').classList.toggle('show',window.scrollY>600);
+});
 
-        fetch(orderForm.action, {
-          method: 'POST',
-          body: new FormData(orderForm),
-          headers: { 'Accept': 'application/json' }
-        })
-        .then(function(res) {
-          if (res.ok) {
-            showThankYou(lang);
-          } else {
-            btn.disabled = false;
-            btn.textContent = lang === 'he' ? 'שליחת הזמנה ✨' : 'Send Order ✨';
-            alert(lang === 'he' ? 'שגיאה בשליחה. נסי שוב.' : 'Submission error. Please try again.');
-          }
-        })
-        .catch(function() {
-          btn.disabled = false;
-          btn.textContent = lang === 'he' ? 'שליחת הזמנה ✨' : 'Send Order ✨';
-          alert(lang === 'he' ? 'שגיאת רשת. בדקי חיבור לאינטרנט.' : 'Network error. Check your connection.');
-        });
-      });
-    }
-
-    function showThankYou(lang) {
-      orderForm.style.display = 'none';
-      var ty = document.getElementById('thank-you');
-      ty.classList.add('show');
-
-      // Set text
-      var tyText = document.getElementById('thankyou-text');
-      tyText.textContent = tyText.dataset[lang] || tyText.textContent;
-
-      // Play Lottie confetti
-      var confetti = document.getElementById('confetti-lottie');
-      if (confetti && typeof confetti.play === 'function') {
-        confetti.play();
-      } else {
-        // CSS confetti fallback
-        spawnCSSConfetti(document.getElementById('thankyou-lottie-wrap'));
-      }
-    }
-
-    // ============================================================
-    // CSS CONFETTI FALLBACK
-    // ============================================================
-    function spawnCSSConfetti(container) {
-      if (!container) return;
-      var colors = ['#E91E8C','#FFD700','#FF69B4','#9c27b0','#4caf50','#FF6B6B','#00BCD4'];
-      container.style.cssText += 'position:relative;overflow:hidden;height:100px;';
-      for (var i = 0; i < 24; i++) {
-        var piece = document.createElement('div');
-        var isCircle = Math.random() > 0.5;
-        piece.style.cssText = [
-          'position:absolute',
-          'left:' + (Math.random() * 95) + '%',
-          'top:0',
-          'width:' + (6 + Math.random() * 8) + 'px',
-          'height:' + (6 + Math.random() * 8) + 'px',
-          'background:' + colors[Math.floor(Math.random() * colors.length)],
-          'border-radius:' + (isCircle ? '50%' : '2px'),
-          'animation:confettiDrop ' + (0.9 + Math.random() * 0.9) + 's ease-out ' + (Math.random() * 0.7) + 's forwards'
-        ].join(';');
-        container.appendChild(piece);
-      }
-    }
-
-    // ============================================================
-    // STORE CLOSED BANNER
-    // ============================================================
-    if (!STORE_OPEN) {
-      document.getElementById('store-closed-banner').style.display = 'block';
-    }
-
-    // ============================================================
-    // CROWN LOTTIE FALLBACK — show SVG if Lottie fails to load
-    // ============================================================
-    (function() {
-      var crownLottie = document.getElementById('crown-lottie');
-      var crownSvg = document.getElementById('crown-svg-fallback');
-      if (crownLottie) {
-        // Check after 3s if Lottie rendered anything
-        setTimeout(function() {
-          var shadow = crownLottie.shadowRoot;
-          var rendered = shadow && shadow.querySelector('svg, canvas');
-          if (!rendered && crownSvg) {
-            crownLottie.style.display = 'none';
-            crownSvg.style.display = 'flex';
-          }
-        }, 3000);
-      }
-    })();
-
-    // ============================================================
-    // INIT
-    // ============================================================
-    (function init() {
-      var savedLang = localStorage.getItem('princess-anna-lang') || 'he';
-      setLanguage(savedLang);
-    })();
-  </script>
-
+// Scroll reveal (Intersection Observer)
+function observeReveal(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+}
+observeReveal();
+</script>
 </body>
 </html>
