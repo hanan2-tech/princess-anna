@@ -373,10 +373,73 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:.82rem;color:var(--td);line-height:1.7;padding:0 20px;background:var(--bg)}
 .faq-a.open{max-height:300px;padding:16px 20px}
 
+/* ========== INDIVIDUAL PRODUCT PAGE ========== */
+#product-page{display:none;padding-top:80px}
+#product-page.show{display:block}
+.pp-back{font-size:.85rem;color:var(--np);margin-bottom:20px;display:inline-block;cursor:pointer}
+.pp-back:hover{text-decoration:underline}
+.pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto}
+.pp-gallery{position:relative;border-radius:var(--r);overflow:hidden;background:var(--bg2);aspect-ratio:1}
+.pp-gallery img{width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+.pp-gallery .pp-zoom-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:.65rem;color:var(--td);background:rgba(0,0,0,.5);padding:4px 12px;border-radius:20px}
+.pp-info{display:flex;flex-direction:column;gap:16px}
+.pp-title{font-size:1.6rem;font-weight:900}
+.pp-price-row{display:flex;align-items:baseline;gap:12px}
+.pp-main-price{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pp-old-price{font-size:1.1rem;color:var(--td);text-decoration:line-through}
+.pp-discount{background:var(--npk);color:#fff;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px}
+.pp-desc{font-size:.9rem;color:var(--td);line-height:1.8}
+.pp-details{font-size:.8rem;color:var(--td);line-height:1.8}
+.pp-details span{display:block;padding:6px 0;border-bottom:1px solid rgba(160,0,255,.08)}
+.pp-order-btn{padding:16px 40px;border-radius:50px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;font-size:1.05rem;font-weight:700;box-shadow:0 0 24px var(--gp);transition:all var(--t);text-align:center;display:block}
+.pp-order-btn:hover{box-shadow:0 0 40px var(--gp);transform:translateY(-2px)}
+.pp-share{display:flex;gap:8px;margin-top:8px}
+.pp-share button{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:1px solid rgba(160,0,255,.15);color:var(--td);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all var(--t)}
+.pp-share button:hover{border-color:var(--np);color:var(--tw);box-shadow:0 0 12px var(--gp)}
+.pp-related{margin-top:48px}
+.pp-related-title{font-size:1.1rem;font-weight:700;margin-bottom:20px}
+.pp-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.pp-related-grid .p-card{min-width:0}
+@media(max-width:768px){.pp-grid{grid-template-columns:1fr;gap:20px}}
+
+/* ========== QUIZ PAGE ========== */
+#quiz-page{display:none;padding-top:80px}
+#quiz-page.show{display:block}
+.quiz-card{max-width:500px;margin:0 auto;background:var(--bg2);border-radius:var(--r);padding:40px 36px;border:1px solid rgba(160,0,255,.15);text-align:center}
+.quiz-q{font-size:1.1rem;font-weight:700;margin-bottom:24px}
+.quiz-progress{height:4px;background:var(--bg);border-radius:2px;margin-bottom:24px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--np),var(--npk));border-radius:2px;transition:width .4s ease}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-opt{padding:14px 20px;border-radius:12px;background:var(--bg);border:1.5px solid rgba(160,0,255,.12);text-align:right;font-size:.9rem;font-weight:600;transition:all var(--t);cursor:pointer}
+.quiz-opt:hover{border-color:var(--np);box-shadow:0 0 16px var(--gp);background:rgba(160,0,255,.06)}
+.quiz-results{display:none}
+.quiz-results.show{display:block}
+
+/* ========== BUNDLE BUILDER ========== */
+#bundle-page{display:none;padding-top:80px}
+#bundle-page.show{display:block}
+.bundle-header{text-align:center;margin-bottom:32px}
+.bundle-price-bar{display:flex;justify-content:center;align-items:center;gap:16px;background:var(--bg2);border:1px solid rgba(160,0,255,.15);border-radius:var(--r);padding:16px 24px;margin-bottom:32px;max-width:500px;margin-inline:auto}
+.bundle-total{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.bundle-savings{font-size:.85rem;color:var(--nm);font-weight:700}
+.bundle-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:600px;margin:0 auto 32px}
+.bundle-slot{border:2px dashed rgba(160,0,255,.2);border-radius:var(--r);height:120px;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--td);cursor:pointer;transition:all var(--t);position:relative;overflow:hidden}
+.bundle-slot:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.bundle-slot.filled{border-style:solid;border-color:var(--np)}
+.bundle-slot.filled img{width:100%;height:100%;object-fit:cover}
+.bundle-slot .remove-slot{position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:rgba(255,0,128,.8);color:#fff;font-size:.8rem;display:none;align-items:center;justify-content:center;cursor:pointer}
+.bundle-slot.filled .remove-slot{display:flex}
+.bundle-product-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}
+.bundle-pick-item{width:100%;aspect-ratio:1;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all var(--t);position:relative}
+.bundle-pick-item:hover,.bundle-pick-item.selected{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.bundle-pick-item img{width:100%;height:100%;object-fit:cover}
+.bundle-pick-item .pick-price{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.7);color:var(--npk);font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:10px}
+
 /* ========== WISHLIST PAGE ========== */
-#wishlist-section{display:none}
-#wishlist-section.show{display:block}
-.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+#wishlist-page{display:none;padding-top:80px}
+#wishlist-page.show{display:block}
+.wishlist-empty{text-align:center;padding:60px 20px;color:var(--td)}
+.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
 
 /* ========== MOBILE ========== */
 @media(max-width:900px){.steps{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
@@ -422,6 +485,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
       <p class="qv-desc" id="qv-desc"></p>
       <span class="qv-price" id="qv-price"></span>
       <a href="#order" class="qv-btn" id="qv-order-btn" onclick="closeQV()">להזמנה ✨</a>
+      <a href="javascript:void(0)" style="display:block;text-align:center;margin-top:10px;font-size:.78rem;color:var(--np)" id="qv-fullpage-link">צפייה בעמוד המוצר המלא →</a>
       <a class="qv-ali-link" id="qv-ali-link" target="_blank" rel="noopener">צפייה במוצר המקורי ←</a>
     </div>
   </div>
@@ -452,6 +516,9 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
     <li><a href="#shop">חנות</a></li>
     <li><a href="#about">עלינו</a></li>
     <li><a href="#order">הזמנה</a></li>
+    <li><a href="javascript:void(0)" onclick="openPage('quiz')">🧪 קוויז</a></li>
+    <li><a href="javascript:void(0)" onclick="openPage('bundle')">🎁 בני סט</a></li>
+    <li><a href="javascript:void(0)" onclick="openPage('wishlist')">💜</a></li>
   </ul>
   <label class="hamburger" for="menu-toggle" aria-label="תפריט"><span></span><span></span><span></span></label>
 </div>
@@ -663,6 +730,88 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
   <a href="#order" class="sticky-btn">להזמנה ←</a>
 </div>
 
+<!-- ========== INDIVIDUAL PRODUCT PAGE ========== -->
+<section id="product-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <div class="pp-grid">
+    <div class="pp-gallery"><img id="pp-img" src="" alt=""><div class="pp-zoom-hint">🔍 לחצי להגדלה</div></div>
+    <div class="pp-info">
+      <h2 class="pp-title" id="pp-title"></h2>
+      <div class="pp-price-row">
+        <span class="pp-main-price" id="pp-price"></span>
+        <span class="pp-old-price" id="pp-old-price"></span>
+        <span class="pp-discount" id="pp-discount"></span>
+      </div>
+      <p class="pp-desc" id="pp-desc"></p>
+      <div class="pp-details" id="pp-details">
+        <span>📦 משלוח: 10-20 ימי עסקים</span>
+        <span>💳 תשלום: ביט / פייבוקס</span>
+        <span>↩️ החזרה: עד 14 יום</span>
+      </div>
+      <a href="#order" class="pp-order-btn" id="pp-order-btn" onclick="closePage()">הזמינו עכשיו ✨</a>
+      <div class="pp-share">
+        <button onclick="shareCurrentProduct('whatsapp')" title="שתפי בוואטסאפ">📱</button>
+        <button onclick="shareCurrentProduct('copy')" title="העתיקי לינק">🔗</button>
+      </div>
+    </div>
+  </div>
+  <div class="pp-related">
+    <h3 class="pp-related-title">💜 אולי תאהבי גם:</h3>
+    <div class="pp-related-grid" id="pp-related"></div>
+  </div>
+</section>
+
+<!-- ========== QUIZ PAGE ========== -->
+<section id="quiz-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <h2 class="section-title" style="margin-bottom:8px">✨ מה מתאים לך?</h2>
+  <p style="text-align:center;color:var(--td);font-size:.88rem;margin-bottom:32px">עני על 5 שאלות ונמצא לך את המוצר המושלם!</p>
+  <div class="quiz-card" id="quiz-card">
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress" style="width:20%"></div></div>
+    <div class="quiz-q" id="quiz-q"></div>
+    <div class="quiz-options" id="quiz-opts"></div>
+  </div>
+  <div class="quiz-results" id="quiz-results">
+    <h3 class="section-title" style="margin-bottom:24px">🎯 המוצרים שמתאימים לך:</h3>
+    <div class="products-grid" id="quiz-results-grid"></div>
+  </div>
+</section>
+
+<!-- ========== BUNDLE BUILDER ========== -->
+<section id="bundle-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <div class="bundle-header">
+    <h2 class="section-title">🎁 בני סט משלך!</h2>
+    <p style="color:var(--td);font-size:.88rem;margin-top:8px">בחרי 3 מוצרים וקבלי 20% הנחה על הסט!</p>
+  </div>
+  <div class="bundle-price-bar">
+    <span style="color:var(--td);font-size:.85rem">סה"כ:</span>
+    <span class="bundle-total" id="bundle-total">₪0</span>
+    <span class="bundle-savings" id="bundle-savings"></span>
+  </div>
+  <div class="bundle-slots" id="bundle-slots">
+    <div class="bundle-slot" onclick="openBundlePicker(0)">+ בחרי מוצר</div>
+    <div class="bundle-slot" onclick="openBundlePicker(1)">+ בחרי מוצר</div>
+    <div class="bundle-slot" onclick="openBundlePicker(2)">+ בחרי מוצר</div>
+  </div>
+  <a href="#order" class="pp-order-btn" id="bundle-order-btn" style="max-width:400px;margin:0 auto;display:none" onclick="closePage()">להזמנת הסט ✨</a>
+  <h3 style="text-align:center;margin:32px 0 16px;font-size:1rem;color:var(--td)">בחרי מוצרים:</h3>
+  <div class="bundle-product-picker" id="bundle-picker"></div>
+</section>
+
+<!-- ========== WISHLIST PAGE ========== -->
+<section id="wishlist-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <h2 class="section-title">💜 המועדפים שלי</h2>
+  <div class="section-glow"></div>
+  <div class="wishlist-empty" id="wishlist-empty">
+    <p style="font-size:2rem;margin-bottom:12px">💜</p>
+    <p>עדיין לא הוספת מוצרים למועדפים</p>
+    <p style="font-size:.8rem;margin-top:8px">לחצי על ♡ בכרטיס מוצר כדי להוסיף</p>
+  </div>
+  <div class="wishlist-grid" id="wishlist-grid"></div>
+</section>
+
 <!-- Unboxing Animation Overlay -->
 <div id="unbox-overlay" onclick="this.classList.remove('show')">
   <div class="unbox-box">
@@ -826,6 +975,7 @@ function openQV(idx){
   var aliLink=document.getElementById('qv-ali-link');
   if(p.aliId){aliLink.href='https://he.aliexpress.com/item/'+p.aliId+'.html';aliLink.style.display='block';}
   else{aliLink.style.display='none';}
+  document.getElementById('qv-fullpage-link').onclick=function(){closeQV();openPage('product',idx)};
   document.getElementById('qv-overlay').classList.add('show');
   document.body.style.overflow='hidden';
 }
@@ -1071,6 +1221,192 @@ function shareProduct(p){
   var url='https://hanan2-tech.github.io/princess-anna/#shop';
   var text='בואי לראות את '+p.name+' בחנות של פרינסס אנה! 👑 ₪'+p.price;
   window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url),'_blank');
+}
+
+// ========== PAGE ROUTING ==========
+var mainSections=['home','shop','how','reviews','order','about','faq'];
+var pageIds=['product-page','quiz-page','bundle-page','wishlist-page'];
+
+function openPage(page,data){
+  // Hide main content
+  mainSections.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none'});
+  document.querySelectorAll('.countdown-section,.stories-wrap').forEach(function(e){e.closest('div').style.display='none'});
+  // Hide all pages
+  pageIds.forEach(function(p){document.getElementById(p).classList.remove('show')});
+  // Show target page
+  document.getElementById(page+'-page').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Init page
+  if(page==='product'&&data!==undefined)initProductPage(data);
+  if(page==='quiz')initQuiz();
+  if(page==='bundle')initBundle();
+  if(page==='wishlist')initWishlistPage();
+}
+
+function closePage(){
+  pageIds.forEach(function(p){document.getElementById(p).classList.remove('show')});
+  mainSections.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display=''});
+  document.querySelectorAll('.countdown-section,.stories-wrap').forEach(function(e){var d=e.closest('div');if(d)d.style.display=''});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ========== INDIVIDUAL PRODUCT PAGE ==========
+var currentProductIdx=null;
+function initProductPage(idx){
+  currentProductIdx=idx;
+  var p=ALL_PRODUCTS[idx];if(!p)return;
+  document.getElementById('pp-img').src=p.img;
+  document.getElementById('pp-img').alt=p.name;
+  document.getElementById('pp-title').textContent=p.name;
+  document.getElementById('pp-price').textContent='₪'+p.price;
+  document.getElementById('pp-old-price').textContent=p.originalPrice?'₪'+p.originalPrice:'';
+  var disc=p.originalPrice?Math.round((1-p.price/p.originalPrice)*100):0;
+  document.getElementById('pp-discount').textContent=disc>0?disc+'% הנחה':'';
+  document.getElementById('pp-discount').style.display=disc>0?'':'none';
+  document.getElementById('pp-desc').textContent=p.desc;
+  document.getElementById('pp-order-btn').onclick=function(){closePage();preselectProduct(p.id)};
+  // Related products (same category, exclude current)
+  var related=ALL_PRODUCTS.filter(function(r,i){return r.category===p.category&&i!==idx}).slice(0,4);
+  var rGrid=document.getElementById('pp-related');rGrid.innerHTML='';
+  related.forEach(function(r,ri){
+    var rIdx=ALL_PRODUCTS.indexOf(r);
+    var card=document.createElement('div');card.className='p-card';
+    card.innerHTML=buildCard(r);
+    card.querySelector('.p-card-img').onclick=function(){openPage('product',rIdx)};
+    rGrid.appendChild(card);
+  });
+  addToRecentlyViewed(idx);
+}
+// Open product page from card click
+function openProductPage(idx){openPage('product',idx)}
+function shareCurrentProduct(type){
+  var p=ALL_PRODUCTS[currentProductIdx];if(!p)return;
+  var url=location.origin+location.pathname;
+  var text='בואי לראות: '+p.name+' ₪'+p.price+' בפרינסס אנה! 👑';
+  if(type==='whatsapp')window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url));
+  else{navigator.clipboard.writeText(url).then(function(){alert('הלינק הועתק! 🔗')}).catch(function(){});}
+}
+
+// ========== QUIZ ==========
+var quizStep=0;var quizAnswers=[];
+var quizQuestions=[
+  {q:'מה את הכי אוהבת ללבוש?',opts:[{t:'💍 תכשיטים',cat:'jewelry'},{t:'💇 אביזרי שיער',cat:'hair'},{t:'👜 תיקים',cat:'bags'},{t:'💄 איפור ויופי',cat:'beauty'}]},
+  {q:'מה הצבע האהוב עליך?',opts:[{t:'💜 סגול',tag:'purple'},{t:'💗 ורוד',tag:'pink'},{t:'✨ זהב/כסף',tag:'gold'},{t:'🌈 צבעוני',tag:'rainbow'}]},
+  {q:'לאיזה אירוע?',opts:[{t:'🏫 יומיומי',tag:'daily'},{t:'🎉 מסיבה',tag:'party'},{t:'🎂 יום הולדת',tag:'birthday'},{t:'🎁 מתנה',tag:'gift'}]},
+  {q:'מה המחיר שנוח לך?',opts:[{t:'עד ₪40',max:40},{t:'₪40-₪60',max:60},{t:'₪60-₪80',max:80},{t:'כל מחיר',max:999}]},
+  {q:'מה יותר חשוב לך?',opts:[{t:'⭐ הנמכרים ביותר',sort:'popular'},{t:'🆕 הכי חדש',sort:'new'},{t:'💰 הכי משתלם',sort:'value'},{t:'✨ הכי מיוחד',sort:'unique'}]}
+];
+function initQuiz(){
+  quizStep=0;quizAnswers=[];
+  document.getElementById('quiz-results').classList.remove('show');
+  document.getElementById('quiz-card').style.display='';
+  renderQuizStep();
+}
+function renderQuizStep(){
+  var q=quizQuestions[quizStep];
+  document.getElementById('quiz-progress').style.width=((quizStep+1)/quizQuestions.length*100)+'%';
+  document.getElementById('quiz-q').textContent=q.q;
+  var opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  q.opts.forEach(function(opt,i){
+    var btn=document.createElement('button');btn.className='quiz-opt';
+    btn.textContent=opt.t;
+    btn.onclick=function(){
+      playSound('pop');
+      quizAnswers.push(opt);
+      quizStep++;
+      if(quizStep<quizQuestions.length){renderQuizStep();}
+      else{showQuizResults();}
+    };
+    opts.appendChild(btn);
+  });
+}
+function showQuizResults(){
+  document.getElementById('quiz-card').style.display='none';
+  var results=ALL_PRODUCTS.slice();
+  // Filter by category if chosen
+  var catAnswer=quizAnswers[0];
+  if(catAnswer&&catAnswer.cat){results=results.filter(function(p){return p.category===catAnswer.cat})}
+  // Filter by price
+  var priceAnswer=quizAnswers[3];
+  if(priceAnswer&&priceAnswer.max){results=results.filter(function(p){return p.price<=priceAnswer.max})}
+  // Take top 6
+  results=results.slice(0,6);
+  var grid=document.getElementById('quiz-results-grid');grid.innerHTML='';
+  results.forEach(function(p){
+    var idx=ALL_PRODUCTS.indexOf(p);
+    var card=document.createElement('div');card.className='p-card reveal';
+    card.innerHTML=buildCard(p);
+    card.querySelector('.p-card-img').onclick=function(){openPage('product',idx)};
+    grid.appendChild(card);
+  });
+  document.getElementById('quiz-results').classList.add('show');
+  observeReveal();
+}
+
+// ========== BUNDLE BUILDER ==========
+var bundleSlots=[null,null,null];
+function initBundle(){
+  bundleSlots=[null,null,null];
+  updateBundleUI();
+  var picker=document.getElementById('bundle-picker');picker.innerHTML='';
+  ALL_PRODUCTS.forEach(function(p,idx){
+    var item=document.createElement('div');item.className='bundle-pick-item';
+    item.innerHTML='<img src="'+p.img+'" alt="'+p.name+'" onerror="this.parentElement.style.display=\'none\'"><div class="pick-price">₪'+p.price+'</div>';
+    item.onclick=function(){addToBundle(idx)};
+    picker.appendChild(item);
+  });
+}
+function addToBundle(idx){
+  var emptySlot=bundleSlots.indexOf(null);
+  if(emptySlot===-1){alert('כל המשבצות מלאות! הסירי מוצר קודם.');return;}
+  bundleSlots[emptySlot]=idx;
+  playSound('bling');
+  updateBundleUI();
+}
+function removeFromBundle(slot){
+  bundleSlots[slot]=null;
+  updateBundleUI();
+}
+function updateBundleUI(){
+  var slotsEl=document.getElementById('bundle-slots');
+  slotsEl.innerHTML='';
+  var total=0;var count=0;
+  bundleSlots.forEach(function(idx,i){
+    var slot=document.createElement('div');
+    slot.className='bundle-slot'+(idx!==null?' filled':'');
+    if(idx!==null){
+      var p=ALL_PRODUCTS[idx];
+      total+=p.price;count++;
+      slot.innerHTML='<img src="'+p.img+'" alt="'+p.name+'"><div class="remove-slot" onclick="event.stopPropagation();removeFromBundle('+i+')">✕</div>';
+    }else{
+      slot.textContent='+ בחרי מוצר';
+      slot.onclick=function(){};
+    }
+    slotsEl.appendChild(slot);
+  });
+  var discount=count===3?Math.round(total*0.2):0;
+  var finalPrice=total-discount;
+  document.getElementById('bundle-total').textContent='₪'+finalPrice;
+  document.getElementById('bundle-savings').textContent=discount>0?'חסכת ₪'+discount+'! 🎉':'בחרי 3 לקבלת 20% הנחה';
+  document.getElementById('bundle-order-btn').style.display=count===3?'block':'none';
+}
+
+// ========== WISHLIST PAGE ==========
+function initWishlistPage(){
+  var grid=document.getElementById('wishlist-grid');grid.innerHTML='';
+  var empty=document.getElementById('wishlist-empty');
+  var wl=JSON.parse(localStorage.getItem('pa-wishlist')||'[]');
+  if(wl.length===0){empty.style.display='';return;}
+  empty.style.display='none';
+  wl.forEach(function(id){
+    var idx=ALL_PRODUCTS.findIndex(function(p){return p.id===id});
+    if(idx===-1)return;
+    var p=ALL_PRODUCTS[idx];
+    var card=document.createElement('div');card.className='p-card';
+    card.innerHTML=buildCard(p);
+    card.querySelector('.p-card-img').onclick=function(){openPage('product',idx)};
+    grid.appendChild(card);
+  });
 }
 
 // ========== PWA SERVICE WORKER ==========
