@@ -441,6 +441,32 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
 .wishlist-empty{text-align:center;padding:60px 20px;color:var(--td)}
 .wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
 
+/* ========== GAMIFICATION ========== */
+.points-badge{position:fixed;top:72px;left:16px;background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:50px;padding:6px 14px;font-size:.72rem;font-weight:700;color:var(--np);z-index:998;display:flex;align-items:center;gap:6px;box-shadow:0 0 12px rgba(160,0,255,.1);transition:all var(--t)}
+.points-badge:hover{box-shadow:0 0 20px var(--gp)}
+.points-num{color:var(--npk);font-weight:900}
+.points-add{position:fixed;top:72px;left:16px;color:var(--nm);font-size:1rem;font-weight:900;z-index:999;pointer-events:none;animation:pointsFloat 1s ease forwards;opacity:0}
+@keyframes pointsFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-30px)}}
+
+/* ========== REFERRAL ========== */
+.referral-section{background:linear-gradient(135deg,rgba(160,0,255,.08),rgba(255,0,128,.06));border:1px solid rgba(160,0,255,.12);border-radius:var(--r);padding:28px;text-align:center;max-width:500px;margin:32px auto}
+.referral-link{background:var(--bg);border:1px solid rgba(160,0,255,.2);border-radius:10px;padding:10px 16px;font-size:.78rem;color:var(--np);word-break:break-all;margin:12px 0;cursor:pointer;transition:all var(--t)}
+.referral-link:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+
+/* ========== CHATBOT ========== */
+#chatbot-btn{position:fixed;bottom:90px;left:24px;width:48px;height:48px;background:linear-gradient(135deg,var(--np),var(--npk));border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:998;box-shadow:0 0 20px var(--gp);transition:all var(--t);font-size:1.2rem;cursor:pointer}
+#chatbot-btn:hover{transform:scale(1.1);box-shadow:0 0 32px var(--gp)}
+#chatbot-panel{position:fixed;bottom:150px;left:24px;width:320px;max-height:400px;background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:var(--r);display:none;flex-direction:column;z-index:998;box-shadow:0 0 40px rgba(0,0,0,.5);overflow:hidden}
+#chatbot-panel.show{display:flex}
+.chat-header{background:linear-gradient(135deg,var(--np),var(--npk));padding:12px 16px;font-size:.85rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;max-height:260px}
+.chat-msg{padding:8px 12px;border-radius:10px;font-size:.8rem;line-height:1.5;max-width:85%}
+.chat-msg.bot{background:rgba(160,0,255,.1);border:1px solid rgba(160,0,255,.1);align-self:flex-start;color:var(--tw)}
+.chat-msg.user{background:var(--np);color:#fff;align-self:flex-end}
+.chat-input-wrap{display:flex;border-top:1px solid rgba(160,0,255,.1);padding:8px}
+.chat-input-wrap input{flex:1;background:var(--bg);border:1px solid rgba(160,0,255,.15);border-radius:50px;padding:8px 14px;color:var(--tw);font-size:.82rem;font-family:inherit;outline:none}
+.chat-input-wrap button{width:36px;height:36px;border-radius:50%;background:var(--np);color:#fff;margin-right:6px;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all var(--t)}
+
 /* ========== MOBILE ========== */
 @media(max-width:900px){.steps{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
 @media(max-width:768px){
@@ -695,6 +721,16 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
 </div>
 </section>
 
+<!-- ========== REFERRAL ========== -->
+<div class="container reveal">
+  <div class="referral-section">
+    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px">🎁 הזמיני חברה וקבלי 15% הנחה!</h3>
+    <p style="font-size:.82rem;color:var(--td)">שתפי את הלינק האישי שלך. כשחברה מזמינה — שתיכן מקבלות הנחה!</p>
+    <div class="referral-link" id="referral-link" onclick="copyReferral()"></div>
+    <button class="btn-order" onclick="copyReferral()" style="margin-top:8px">העתיקי לינק 🔗</button>
+  </div>
+</div>
+
 <!-- ========== FAQ ========== -->
 <section id="faq" class="reveal">
 <div class="container">
@@ -817,6 +853,22 @@ html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
   <div class="unbox-box">
     <div class="unbox-lid" id="unbox-lid"></div>
     <div class="unbox-body"><span class="unbox-product" id="unbox-emoji"></span></div>
+  </div>
+</div>
+
+<!-- Points Badge -->
+<div class="points-badge" id="points-badge" title="הנקודות שלך">⭐ <span class="points-num" id="points-num">0</span> נקודות</div>
+
+<!-- Chatbot -->
+<div id="chatbot-btn" onclick="toggleChat()" title="צ'אט עם אנה">💬</div>
+<div id="chatbot-panel">
+  <div class="chat-header"><span>💬 צ'אט עם אנה</span><span onclick="toggleChat()" style="cursor:pointer">✕</span></div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">היי! 👑 אני אנה! איך אפשר לעזור?<br><br>נסי לשאול:<br>• "מה הנמכר ביותר?"<br>• "יש משהו עד 40 שקל?"<br>• "מה מתאים למתנה?"</div>
+  </div>
+  <div class="chat-input-wrap">
+    <button onclick="sendChat()">→</button>
+    <input type="text" id="chat-input" placeholder="כתבי הודעה..." onkeydown="if(event.key==='Enter')sendChat()">
   </div>
 </div>
 
@@ -1407,6 +1459,62 @@ function initWishlistPage(){
     card.querySelector('.p-card-img').onclick=function(){openPage('product',idx)};
     grid.appendChild(card);
   });
+}
+
+// ========== GAMIFICATION / POINTS ==========
+var points=parseInt(localStorage.getItem('pa-points')||'0');
+function updatePointsBadge(){document.getElementById('points-num').textContent=points}
+function addPoints(n){
+  points+=n;localStorage.setItem('pa-points',points.toString());updatePointsBadge();
+  // Float animation
+  var fl=document.createElement('div');fl.className='points-add';fl.textContent='+'+n;
+  document.body.appendChild(fl);setTimeout(function(){fl.remove()},1200);
+}
+updatePointsBadge();
+// Award points: 5 for visiting, 2 for viewing product, 10 for ordering
+if(!sessionStorage.getItem('pa-visit-pts')){addPoints(5);sessionStorage.setItem('pa-visit-pts','1')}
+// Patch openQV to award points
+var __origQV2=openQV;
+openQV=function(idx){addPoints(2);__origQV2(idx)};
+
+// ========== REFERRAL ==========
+var refCode='ANNA'+Math.random().toString(36).substr(2,6).toUpperCase();
+if(localStorage.getItem('pa-ref'))refCode=localStorage.getItem('pa-ref');
+else localStorage.setItem('pa-ref',refCode);
+document.getElementById('referral-link').textContent=location.origin+location.pathname+'?ref='+refCode;
+function copyReferral(){
+  var link=document.getElementById('referral-link').textContent;
+  navigator.clipboard.writeText(link).then(function(){alert('הלינק הועתק! שתפי עם חברות 🎁');addPoints(5)}).catch(function(){});
+}
+
+// ========== CHATBOT ==========
+function toggleChat(){document.getElementById('chatbot-panel').classList.toggle('show')}
+function sendChat(){
+  var input=document.getElementById('chat-input');
+  var msg=input.value.trim();if(!msg)return;
+  input.value='';
+  var msgs=document.getElementById('chat-messages');
+  // User message
+  var uDiv=document.createElement('div');uDiv.className='chat-msg user';uDiv.textContent=msg;msgs.appendChild(uDiv);
+  // Bot reply (simple pattern matching)
+  setTimeout(function(){
+    var reply=chatReply(msg);
+    var bDiv=document.createElement('div');bDiv.className='chat-msg bot';bDiv.innerHTML=reply;
+    msgs.appendChild(bDiv);msgs.scrollTop=msgs.scrollHeight;
+    playSound('pop');
+  },600);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+function chatReply(msg){
+  var m=msg.toLowerCase();
+  if(m.includes('נמכר')||m.includes('פופולר')||m.includes('מומלץ'))return '⭐ הנמכרים ביותר שלנו: שרשרת כוכב קריסטל (₪55) וצמיד פרפר (₪55)! <br><a href="#shop" onclick="closePage();toggleChat()" style="color:var(--np)">לחנות →</a>';
+  if(m.includes('40')||m.includes('זול')||m.includes('משתלם'))return '💰 יש לנו מלא עד ₪40! סיכות שיער מ-₪25, מחזיקי מפתחות מ-₪25, ועגילי קליפס מ-₪35 <br><a href="#shop" onclick="closePage();toggleChat()" style="color:var(--np)">לחנות →</a>';
+  if(m.includes('מתנה')||m.includes('יום הולדת'))return '🎁 מתנה מושלמת: סט תכשיטים (₪79) או ערכת יצירת גלוס (₪65)! או נסי את הקוויז שלנו 🧪<br><a href="javascript:void(0)" onclick="toggleChat();openPage(\'quiz\')" style="color:var(--np)">לקוויז →</a>';
+  if(m.includes('משלוח'))return '📦 המשלוח מגיע תוך 10-20 ימי עסקים לכל כתובת בארץ. המשלוח כלול במחיר!';
+  if(m.includes('תשלום')||m.includes('ביט'))return '💳 התשלום דרך ביט או פייבוקס. אני אצור איתך קשר תוך 24 שעות אחרי ההזמנה לאישור!';
+  if(m.includes('החזר'))return '↩️ אפשר להחזיר כל מוצר תוך 14 יום. פשוט שלחי הודעה בוואטסאפ!';
+  if(m.includes('סט')||m.includes('bundle'))return '🎁 נסי את בונה הסטים שלנו! בחרי 3 מוצרים וקבלי 20% הנחה! <br><a href="javascript:void(0)" onclick="toggleChat();openPage(\'bundle\')" style="color:var(--np)">לבונה סטים →</a>';
+  return '👑 תודה על ההודעה! אשמח לעזור. נסי לשאול על מוצרים, מחירים, משלוחים, או מתנות! <br>או שלחי הודעה בוואטסאפ ואחזור אליך אישית 💜';
 }
 
 // ========== PWA SERVICE WORKER ==========
