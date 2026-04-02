@@ -20,6 +20,7 @@
 <meta property="og:description" content="תכשיטים ואקססוריז ✨ משלוח לכל הארץ">
 <meta name="theme-color" content="#0a0a0f">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"פרינסס אנה","description":"חנות תכשיטים ואקססוריז לבנות","url":"https://hanan2-tech.github.io/princess-anna","image":"https://hanan2-tech.github.io/princess-anna/favicon.svg","priceRange":"₪25-₪89","address":{"@type":"PostalAddress","addressCountry":"IL"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -232,6 +233,74 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes neonPulse{0%,100%{box-shadow:0 0 20px var(--gp)}50%{box-shadow:0 0 40px var(--gp),0 0 60px rgba(160,0,255,.1)}}
 
+/* ========== 3D CARD TILT ========== */
+.p-card{transform-style:preserve-3d;perspective:800px}
+
+/* ========== CURSOR TRAIL ========== */
+.cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:99998;transition:opacity .3s;opacity:0}
+
+/* ========== ANIMATED GRADIENT BG ========== */
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* ========== TOAST NOTIFICATIONS ========== */
+#toast-container{position:fixed;bottom:90px;left:24px;z-index:9998;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:10px;padding:12px 18px;font-size:.78rem;color:var(--tw);box-shadow:0 0 20px rgba(0,0,0,.4);animation:toastIn .4s ease,toastOut .4s ease 4s forwards;max-width:300px}
+@keyframes toastIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(-30px)}}
+
+/* ========== COUNTDOWN TIMER ========== */
+.countdown-section{background:linear-gradient(135deg,rgba(160,0,255,.12),rgba(255,0,128,.08));border-top:1px solid rgba(160,0,255,.15);border-bottom:1px solid rgba(160,0,255,.15);padding:32px 0;text-align:center}
+.countdown-title{font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--npk)}
+.countdown-timer{display:flex;justify-content:center;gap:16px}
+.cd-unit{text-align:center}
+.cd-num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--np),var(--npk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.cd-label{font-size:.65rem;color:var(--td)}
+
+/* ========== STORIES ========== */
+.stories-wrap{display:flex;gap:16px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.stories-wrap::-webkit-scrollbar{display:none}
+.story-circle{flex-shrink:0;width:72px;text-align:center;cursor:pointer}
+.story-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--np),var(--npk),var(--nm));display:flex;align-items:center;justify-content:center;transition:transform var(--t)}
+.story-ring:hover{transform:scale(1.08)}
+.story-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg)}
+.story-ring .story-emoji{font-size:1.8rem;background:var(--bg);width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid var(--bg)}
+.story-label{font-size:.6rem;color:var(--td);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ========== STICKY ORDER BTN ========== */
+#sticky-order{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,15,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(160,0,255,.2);padding:10px 20px;display:none;justify-content:center;align-items:center;gap:16px;z-index:998}
+#sticky-order.show{display:flex}
+.sticky-text{font-size:.82rem;font-weight:700}
+.sticky-btn{padding:10px 28px;border-radius:50px;font-size:.85rem;font-weight:700;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;box-shadow:0 0 16px var(--gp);transition:all var(--t)}
+
+/* ========== SHARE BUTTONS ========== */
+.share-btns{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.share-btn{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid rgba(160,0,255,.2);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all var(--t)}
+.share-btn:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+
+/* ========== NEWSLETTER POPUP ========== */
+#newsletter-popup{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+#newsletter-popup.show{display:flex}
+.nl-card{background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:var(--r);padding:36px;text-align:center;max-width:380px;width:100%;animation:fadeUp .3s ease}
+.nl-card h3{font-size:1.2rem;margin-bottom:8px}
+.nl-card p{font-size:.82rem;color:var(--td);margin-bottom:20px}
+.nl-card input{width:100%;padding:12px 16px;background:rgba(10,10,15,.6);border:1.5px solid rgba(160,0,255,.15);border-radius:50px;color:var(--tw);font-size:.88rem;font-family:inherit;outline:none;margin-bottom:12px;text-align:center}
+.nl-card input:focus{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.nl-card .nl-btn{width:100%;padding:12px;border-radius:50px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;font-size:.9rem;font-weight:700;box-shadow:0 0 16px var(--gp)}
+.nl-close{position:absolute;top:12px;left:12px;color:var(--td);font-size:1.1rem;cursor:pointer}
+
+/* ========== FAQ ACCORDION ========== */
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{border:1px solid rgba(160,0,255,.1);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.faq-q{width:100%;padding:16px 20px;background:var(--bg2);color:var(--tw);font-size:.88rem;font-weight:600;text-align:right;display:flex;justify-content:space-between;align-items:center;transition:all var(--t)}
+.faq-q:hover{background:rgba(160,0,255,.06)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:.82rem;color:var(--td);line-height:1.7;padding:0 20px;background:var(--bg)}
+.faq-a.open{max-height:300px;padding:16px 20px}
+
+/* ========== WISHLIST PAGE ========== */
+#wishlist-section{display:none}
+#wishlist-section.show{display:block}
+.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+
 /* ========== MOBILE ========== */
 @media(max-width:900px){.steps{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
 @media(max-width:768px){
@@ -313,9 +382,9 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 
 <!-- ========== HERO ========== -->
 <section id="home">
-  <!-- Video background from Pexels (free) -->
-  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;z-index:0" poster="">
-    <source src="https://videos.pexels.com/video-files/4620563/4620563-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  <!-- Video background from Mixkit (free, no copyright) -->
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;z-index:0">
+    <source src="https://assets.mixkit.co/videos/32284/32284-720.mp4" type="video/mp4">
   </video>
   <div class="hero-bg" style="background:transparent">
     <div class="particle" style="width:6px;height:6px;background:var(--np);top:15%;right:10%;--d:5s;--dl:0s"></div>
@@ -333,6 +402,30 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
     <a href="#shop" class="btn-neon">לחנות →</a>
   </div>
 </section>
+
+<!-- ========== STORIES ========== -->
+<div class="container" style="padding-top:24px">
+  <div class="stories-wrap" id="stories-wrap">
+    <div class="story-circle" onclick="document.querySelector('.cat-btn[data-cat=jewelry]')?.click()||location.hash='#shop'"><div class="story-ring"><div class="story-emoji">💍</div></div><div class="story-label">תכשיטים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">💇</div></div><div class="story-label">שיער</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">👜</div></div><div class="story-label">תיקים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">💄</div></div><div class="story-label">יופי</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">🔑</div></div><div class="story-label">מחזיקים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">😎</div></div><div class="story-label">משקפיים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">🔥</div></div><div class="story-label">חדשים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">⭐</div></div><div class="story-label">נמכרים</div></div>
+  </div>
+</div>
+
+<!-- ========== COUNTDOWN ========== -->
+<div class="countdown-section">
+  <div class="countdown-title">🔥 מבצע מיוחד — נגמר בעוד:</div>
+  <div class="countdown-timer" id="countdown">
+    <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-label">שעות</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-label">דקות</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-label">שניות</span></div>
+  </div>
+</div>
 
 <!-- ========== SHOP ========== -->
 <section id="shop">
@@ -442,6 +535,43 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
   </div>
 </div>
 </section>
+
+<!-- ========== FAQ ========== -->
+<section id="faq" class="reveal">
+<div class="container">
+  <h2 class="section-title">❓ שאלות נפוצות</h2>
+  <div class="section-glow"></div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">כמה זמן לוקח המשלוח? <span>▼</span></button><div class="faq-a">המשלוח מגיע תוך 10-20 ימי עסקים לכל כתובת בארץ. תקבלו עדכון ברגע שהחבילה בדרך!</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">איך משלמים? <span>▼</span></button><div class="faq-a">התשלום מתבצע בביט או פייבוקס לאחר אישור ההזמנה. אנה תיצור איתך קשר תוך 24 שעות.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">אפשר להחזיר מוצר? <span>▼</span></button><div class="faq-a">כן! ניתן להחזיר מוצר תוך 14 יום מקבלתו. צרי קשר באמצעות וואטסאפ ונסדר הכל.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">המוצרים בטוחים לילדות? <span>▼</span></button><div class="faq-a">בהחלט! כל המוצרים נבחרים בקפידה ומתאימים לבנות. עגילי הקליפס לא דורשים ניקוב, והגלוסים בטוחים לשימוש.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">יש משלוח חינם? <span>▼</span></button><div class="faq-a">המשלוח כלול במחיר המוצר! אין תשלום נוסף.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ========== NEWSLETTER POPUP ========== -->
+<div id="newsletter-popup" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="nl-card" style="position:relative">
+    <span class="nl-close" onclick="document.getElementById('newsletter-popup').classList.remove('show');localStorage.setItem('pa-nl','1')">✕</span>
+    <h3>🎁 קבלי 10% הנחה!</h3>
+    <p>השאירי אימייל ותקבלי קוד הנחה + עדכונים על מוצרים חדשים</p>
+    <input type="email" id="nl-email" placeholder="האימייל שלך...">
+    <button class="nl-btn" onclick="var e=document.getElementById('nl-email').value;if(e){localStorage.setItem('pa-nl','1');document.getElementById('newsletter-popup').classList.remove('show');alert('תודה! קוד ההנחה: ANNA10 ✨')}">הרשמי ✨</button>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Sticky Order Button -->
+<div id="sticky-order">
+  <span class="sticky-text">👑 מצאת משהו? </span>
+  <a href="#order" class="sticky-btn">להזמנה ←</a>
+</div>
+
+<!-- Cursor trail dots (created by JS) -->
 
 <!-- ========== FOOTER ========== -->
 <footer>
@@ -662,6 +792,86 @@ function observeReveal(){
   document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
 }
 observeReveal();
+
+// ========== 3D CARD TILT ==========
+document.addEventListener('mousemove',function(e){
+  document.querySelectorAll('.p-card').forEach(function(card){
+    var r=card.getBoundingClientRect();
+    if(e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom){
+      var x=(e.clientX-r.left)/r.width-.5;
+      var y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform='perspective(800px) rotateY('+x*8+'deg) rotateX('+-y*8+'deg) translateY(-8px)';
+    }else{card.style.transform='';}
+  });
+});
+
+// ========== CURSOR TRAIL ==========
+(function(){
+  var colors=['#a000ff','#ff0080','#00ff88','#00e5ff'];
+  document.addEventListener('mousemove',function(e){
+    var dot=document.createElement('div');dot.className='cursor-dot';
+    dot.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;background:'+colors[Math.floor(Math.random()*4)]+';opacity:.7;';
+    document.body.appendChild(dot);
+    setTimeout(function(){dot.style.opacity='0'},200);
+    setTimeout(function(){dot.remove()},500);
+  });
+})();
+
+// ========== COUNTDOWN TIMER ==========
+(function(){
+  // Set end time: 23h 59m 59s from now (resets daily)
+  var end=new Date();end.setHours(23,59,59,999);
+  function tick(){
+    var now=new Date();var diff=end-now;
+    if(diff<=0){end.setDate(end.getDate()+1);diff=end-now;}
+    var h=Math.floor(diff/3600000);var m=Math.floor((diff%3600000)/60000);var s=Math.floor((diff%60000)/1000);
+    document.getElementById('cd-h').textContent=h<10?'0'+h:h;
+    document.getElementById('cd-m').textContent=m<10?'0'+m:m;
+    document.getElementById('cd-s').textContent=s<10?'0'+s:s;
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// ========== TOAST SOCIAL PROOF ==========
+(function(){
+  var names=['מיכל מירושלים','שירה מתל אביב','נועה מחיפה','דנה מרעננה','יעל מפתח תקווה','מאיה מנתניה','רונית מבאר שבע','ליאת מהרצליה','עדי מאשדוד','טל מכפר סבא'];
+  var products=['שרשרת כוכב קריסטל','צמיד פרפר','עגילי קליפס','תיק לב','סט גלוסים','משקפי לב'];
+  var container=document.getElementById('toast-container');
+  function showToast(){
+    var n=names[Math.floor(Math.random()*names.length)];
+    var p=products[Math.floor(Math.random()*products.length)];
+    var toast=document.createElement('div');toast.className='toast';
+    toast.innerHTML='🛍️ <strong>'+n+'</strong> הזמינה '+p;
+    container.appendChild(toast);
+    setTimeout(function(){toast.remove()},4500);
+  }
+  setTimeout(showToast,8000);
+  setInterval(showToast,15000+Math.random()*10000);
+})();
+
+// ========== STICKY ORDER BUTTON ==========
+window.addEventListener('scroll',function(){
+  var shop=document.getElementById('shop');
+  var order=document.getElementById('order');
+  if(!shop||!order)return;
+  var inShop=window.scrollY>shop.offsetTop-200&&window.scrollY<order.offsetTop-300;
+  document.getElementById('sticky-order').classList.toggle('show',inShop);
+});
+
+// ========== NEWSLETTER POPUP ==========
+if(!localStorage.getItem('pa-nl')){
+  setTimeout(function(){document.getElementById('newsletter-popup').classList.add('show')},25000);
+}
+
+// ========== SHARE BUTTONS IN QUICK VIEW ==========
+function shareProduct(p){
+  var url='https://hanan2-tech.github.io/princess-anna/#shop';
+  var text='בואי לראות את '+p.name+' בחנות של פרינסס אנה! 👑 ₪'+p.price;
+  window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url),'_blank');
+}
+
+// ========== PWA SERVICE WORKER ==========
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
 </script>
 </body>
 </html>
