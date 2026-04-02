@@ -20,6 +20,7 @@
 <meta property="og:description" content="תכשיטים ואקססוריז ✨ משלוח לכל הארץ">
 <meta name="theme-color" content="#0a0a0f">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"פרינסס אנה","description":"חנות תכשיטים ואקססוריז לבנות","url":"https://hanan2-tech.github.io/princess-anna","image":"https://hanan2-tech.github.io/princess-anna/favicon.svg","priceRange":"₪25-₪89","address":{"@type":"PostalAddress","addressCountry":"IL"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -176,6 +177,53 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 /* ========== STORE CLOSED ========== */
 #store-closed{background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;text-align:center;padding:14px 20px;font-size:1rem;font-weight:700;position:sticky;top:0;z-index:9999}
 
+/* ========== SPLASH SCREEN ========== */
+#splash{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease}
+#splash.hide{opacity:0;pointer-events:none}
+#splash svg{width:80px;height:66px;filter:drop-shadow(0 0 20px rgba(160,0,255,.6));animation:splashPulse 1.2s ease-in-out infinite}
+#splash .splash-name{font-size:1.4rem;font-weight:900;margin-top:16px;background:linear-gradient(135deg,#fff,#e0d0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#splash .splash-bar{width:120px;height:3px;background:var(--bg2);border-radius:2px;margin-top:20px;overflow:hidden}
+#splash .splash-bar-fill{height:100%;background:linear-gradient(90deg,var(--np),var(--npk));border-radius:2px;animation:splashLoad 1.5s ease forwards}
+@keyframes splashPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes splashLoad{0%{width:0}100%{width:100%}}
+
+/* ========== SEARCH BAR ========== */
+.search-wrap{max-width:500px;margin:0 auto 32px;position:relative}
+.search-wrap input{width:100%;padding:12px 20px 12px 44px;background:var(--bg2);border:1.5px solid rgba(160,0,255,.15);border-radius:50px;color:var(--tw);font-size:.9rem;font-family:inherit;outline:none;transition:border-color var(--t),box-shadow var(--t)}
+.search-wrap input:focus{border-color:var(--np);box-shadow:0 0 16px var(--gp)}
+.search-wrap input::placeholder{color:var(--td)}
+.search-wrap .search-icon{position:absolute;top:50%;left:16px;transform:translateY(-50%);color:var(--td);font-size:1rem;pointer-events:none}
+
+/* ========== QUICK VIEW MODAL ========== */
+#qv-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+#qv-overlay.show{display:flex}
+.qv-card{background:var(--bg2);border-radius:var(--r);border:1px solid rgba(160,0,255,.2);max-width:480px;width:100%;max-height:90vh;overflow-y:auto;animation:fadeUp .3s ease;position:relative}
+.qv-close{position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:50%;background:rgba(10,10,15,.7);color:var(--tw);font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:2;transition:all var(--t)}
+.qv-close:hover{background:var(--np)}
+.qv-img{width:100%;height:320px;object-fit:cover;border-radius:var(--r) var(--r) 0 0}
+.qv-body{padding:24px}
+.qv-name{font-size:1.3rem;font-weight:900;margin-bottom:8px}
+.qv-desc{font-size:.88rem;color:var(--td);margin-bottom:16px;line-height:1.6}
+.qv-price{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;display:block}
+.qv-btn{width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;font-size:1rem;font-weight:700;box-shadow:0 0 20px var(--gp);transition:all var(--t)}
+.qv-btn:hover{box-shadow:0 0 36px var(--gp);transform:translateY(-2px)}
+.qv-ali-link{display:block;text-align:center;margin-top:12px;font-size:.72rem;color:var(--td);text-decoration:underline}
+
+/* ========== FEATURED CAROUSEL ========== */
+.carousel-wrap{position:relative;overflow:hidden;margin-bottom:48px}
+.carousel-track{display:flex;gap:20px;transition:transform .5s ease;padding:10px 0}
+.carousel-track .p-card{min-width:260px;flex-shrink:0}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(10,10,15,.8);border:1px solid rgba(160,0,255,.3);color:var(--tw);font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:2;transition:all var(--t)}
+.carousel-btn:hover{background:var(--np);box-shadow:0 0 16px var(--gp)}
+.carousel-btn.prev{right:8px}
+.carousel-btn.next{left:8px}
+
+/* ========== STATS / COUNTERS ========== */
+.stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:40px 0}
+.stat{text-align:center}
+.stat-num{font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,var(--np),var(--npk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.78rem;color:var(--td);margin-top:4px}
+
 /* ========== SCROLL ANIMATIONS ========== */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -202,8 +250,36 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 </head>
 <body>
 
+<!-- ========== SPLASH SCREEN ========== -->
+<div id="splash">
+  <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="slg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a000ff"/><stop offset="50%" stop-color="#ff0080"/><stop offset="100%" stop-color="#00ff88"/></linearGradient></defs>
+    <path d="M4 32 L4 36 Q4 38 6 38 L42 38 Q44 38 44 36 L44 32 Z" fill="url(#slg)" opacity=".85"/>
+    <path d="M4 32 L12 12 L24 24 L36 6 L44 32" fill="none" stroke="url(#slg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="3" fill="#ff0080"/><circle cx="24" cy="24" r="3" fill="#a000ff"/>
+    <circle cx="36" cy="6" r="3.5" fill="#00ff88"/><circle cx="4" cy="32" r="2.5" fill="#a000ff"/><circle cx="44" cy="32" r="2.5" fill="#ff0080"/>
+  </svg>
+  <div class="splash-name">פרינסס אנה</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+
 <!-- Store Closed Banner -->
 <div id="store-closed" style="display:none">👑 אנה בהפסקה! חוזרת בקרוב 🌸</div>
+
+<!-- ========== QUICK VIEW MODAL ========== -->
+<div id="qv-overlay" onclick="if(event.target===this)closeQV()">
+  <div class="qv-card">
+    <button class="qv-close" onclick="closeQV()">✕</button>
+    <img class="qv-img" id="qv-img" src="" alt="">
+    <div class="qv-body">
+      <h3 class="qv-name" id="qv-name"></h3>
+      <p class="qv-desc" id="qv-desc"></p>
+      <span class="qv-price" id="qv-price"></span>
+      <a href="#order" class="qv-btn" id="qv-order-btn" onclick="closeQV()">להזמנה ✨</a>
+      <a class="qv-ali-link" id="qv-ali-link" target="_blank" rel="noopener">צפייה במוצר המקורי ←</a>
+    </div>
+  </div>
+</div>
 
 <!-- ========== HEADER ========== -->
 <header>
@@ -237,7 +313,11 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 
 <!-- ========== HERO ========== -->
 <section id="home">
-  <div class="hero-bg">
+  <!-- Video background from Pexels (free) -->
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;z-index:0" poster="">
+    <source src="https://videos.pexels.com/video-files/4620563/4620563-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg" style="background:transparent">
     <div class="particle" style="width:6px;height:6px;background:var(--np);top:15%;right:10%;--d:5s;--dl:0s"></div>
     <div class="particle" style="width:4px;height:4px;background:var(--npk);top:25%;right:75%;--d:7s;--dl:1s"></div>
     <div class="particle" style="width:8px;height:8px;background:var(--nm);top:60%;right:20%;--d:6s;--dl:.5s"></div>
@@ -259,6 +339,28 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 <div class="container">
   <h2 class="section-title">🔥 החנות</h2>
   <div class="section-glow"></div>
+
+  <!-- Featured carousel -->
+  <h3 style="text-align:center;font-size:1rem;color:var(--np);margin-bottom:16px;font-weight:700">⭐ מומלצים</h3>
+  <div class="carousel-wrap">
+    <button class="carousel-btn prev" onclick="scrollCarousel(1)">→</button>
+    <div class="carousel-track" id="carousel-track"></div>
+    <button class="carousel-btn next" onclick="scrollCarousel(-1)">←</button>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="חפשי מוצר..." oninput="filterProducts()">
+  </div>
+
+  <!-- Stats / counters -->
+  <div class="stats reveal">
+    <div class="stat"><div class="stat-num" data-target="35">0</div><div class="stat-label">מוצרים</div></div>
+    <div class="stat"><div class="stat-num" data-target="150">0</div><div class="stat-label">לקוחות מרוצים</div></div>
+    <div class="stat"><div class="stat-num" data-target="50">0</div><div class="stat-label">ערים</div></div>
+  </div>
+
   <div class="cat-filters" id="cat-filters"></div>
   <div class="products-grid" id="products-grid"></div>
 </div>
@@ -377,17 +479,23 @@ footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48p
 <!-- ========== JAVASCRIPT ========== -->
 <script>
 var STORE_OPEN = true;
+var ALL_PRODUCTS = [];
 
 // Store closed
 if(!STORE_OPEN) document.getElementById('store-closed').style.display='block';
+
+// Splash screen — hide after 1.8s
+setTimeout(function(){document.getElementById('splash').classList.add('hide')},1800);
 
 // Cookie banner
 if(!localStorage.getItem('pa-cookies')){document.getElementById('cookie-banner').classList.add('show')}
 
 // Load products
 fetch('products.json').then(function(r){return r.json()}).then(function(products){
+  ALL_PRODUCTS=products;
   var grid=document.getElementById('products-grid');
   var select=document.getElementById('product-select');
+  var carousel=document.getElementById('carousel-track');
   var cats=new Set(['all']);
   products.forEach(function(p){cats.add(p.category)});
 
@@ -401,7 +509,7 @@ fetch('products.json').then(function(r){return r.json()}).then(function(products
     btn.onclick=function(){
       document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
       btn.classList.add('active');
-      document.querySelectorAll('.p-card').forEach(function(card){
+      document.querySelectorAll('#products-grid .p-card').forEach(function(card){
         card.style.display=(c==='all'||card.dataset.cat===c)?'':'none';
       });
     };
@@ -409,41 +517,124 @@ fetch('products.json').then(function(r){return r.json()}).then(function(products
   });
 
   // Render products
-  products.forEach(function(p){
+  products.forEach(function(p,idx){
+    var cardHTML=buildCard(p);
+
+    // Add to grid
     var card=document.createElement('div');
     card.className='p-card reveal';
     card.dataset.cat=p.category;
-    card.innerHTML=
-      '<div class="p-card-img">'+
-        '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
-        '<div class="emoji-fallback" style="display:none">'+p.emoji+'</div>'+
-        (p.badge?'<div class="p-badge" style="background:'+(p.badgeColor||'var(--np)')+';box-shadow:0 0 12px '+(p.badgeColor||'var(--gp)')+'">'+p.badge+'</div>':'')+
-        '<button class="heart-btn" aria-label="מועדפים" onclick="event.stopPropagation();this.textContent=this.textContent===\'♡\'?\'♥\':\'♡\';this.style.color=this.textContent===\'♥\'?\'var(--npk)\':\'\'">♡</button>'+
-      '</div>'+
-      '<div class="p-body">'+
-        '<h3 class="p-name">'+p.name+'</h3>'+
-        '<p class="p-desc">'+p.desc+'</p>'+
-        '<div class="p-footer">'+
-          '<span class="p-price">₪'+p.price+'</span>'+
-          '<a href="#order" class="btn-order" onclick="preselectProduct(\''+p.id+'\')">להזמנה</a>'+
-        '</div>'+
-      '</div>';
+    card.dataset.name=p.name;
+    card.dataset.idx=idx;
+    card.innerHTML=cardHTML;
+    card.querySelector('.p-card-img').addEventListener('click',function(){openQV(idx)});
     grid.appendChild(card);
 
-    // Add to select
+    // Featured carousel (items with badge)
+    if(p.badge && carousel){
+      var cCard=document.createElement('div');
+      cCard.className='p-card';
+      cCard.dataset.idx=idx;
+      cCard.innerHTML=cardHTML;
+      cCard.querySelector('.p-card-img').addEventListener('click',function(){openQV(idx)});
+      carousel.appendChild(cCard);
+    }
+
+    // Add to select dropdown
     var opt=document.createElement('option');
     opt.value=p.id;
     opt.textContent=p.name+' — ₪'+p.price;
     select.appendChild(opt);
   });
 
-  // Trigger scroll reveal for dynamically added cards
   observeReveal();
+  animateCounters();
 }).catch(function(){
   document.getElementById('products-grid').innerHTML='<p style="text-align:center;color:var(--td)">טוען מוצרים...</p>';
 });
 
-function preselectProduct(v){document.getElementById('product-select').value=v}
+function buildCard(p){
+  return '<div class="p-card-img" style="cursor:pointer" title="לחצי לצפייה מהירה">'+
+    '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
+    '<div class="emoji-fallback" style="display:none">'+p.emoji+'</div>'+
+    (p.badge?'<div class="p-badge" style="background:'+(p.badgeColor||'var(--np)')+';box-shadow:0 0 12px '+(p.badgeColor||'var(--gp)')+'">'+p.badge+'</div>':'')+
+    '<button class="heart-btn" aria-label="מועדפים" onclick="event.stopPropagation();this.textContent=this.textContent===\'♡\'?\'♥\':\'♡\';this.style.color=this.textContent===\'♥\'?\'var(--npk)\':\'\'">♡</button>'+
+  '</div>'+
+  '<div class="p-body">'+
+    '<h3 class="p-name">'+p.name+'</h3>'+
+    '<p class="p-desc">'+p.desc+'</p>'+
+    '<div class="p-footer">'+
+      '<span class="p-price">₪'+p.price+'</span>'+
+      '<a href="#order" class="btn-order" onclick="preselectProduct(\''+p.id+'\')">להזמנה</a>'+
+    '</div>'+
+  '</div>';
+}
+
+// ========== QUICK VIEW ==========
+function openQV(idx){
+  var p=ALL_PRODUCTS[idx];if(!p)return;
+  document.getElementById('qv-img').src=p.img;
+  document.getElementById('qv-img').alt=p.name;
+  document.getElementById('qv-name').textContent=p.name;
+  document.getElementById('qv-desc').textContent=p.desc;
+  document.getElementById('qv-price').textContent='₪'+p.price;
+  document.getElementById('qv-order-btn').onclick=function(){closeQV();preselectProduct(p.id);};
+  var aliLink=document.getElementById('qv-ali-link');
+  if(p.aliId){aliLink.href='https://he.aliexpress.com/item/'+p.aliId+'.html';aliLink.style.display='block';}
+  else{aliLink.style.display='none';}
+  document.getElementById('qv-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeQV(){
+  document.getElementById('qv-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeQV()});
+
+// ========== SEARCH ==========
+function filterProducts(){
+  var q=document.getElementById('search-input').value.trim().toLowerCase();
+  document.querySelectorAll('#products-grid .p-card').forEach(function(card){
+    card.style.display=(!q||card.dataset.name.toLowerCase().includes(q))?'':'none';
+  });
+}
+
+// ========== CAROUSEL SCROLL ==========
+function scrollCarousel(dir){
+  var track=document.getElementById('carousel-track');
+  track.scrollBy({left:dir*280,behavior:'smooth'});
+}
+// Make carousel scrollable
+(function(){
+  var t=document.getElementById('carousel-track');
+  if(t){t.style.overflowX='auto';t.style.scrollSnapType='x mandatory';t.style.scrollbarWidth='none';
+    var s=document.createElement('style');s.textContent='.carousel-track::-webkit-scrollbar{display:none}';document.head.appendChild(s);
+  }
+})();
+
+// ========== ANIMATED COUNTERS ==========
+function animateCounters(){
+  var counters=document.querySelectorAll('.stat-num');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el=e.target;var target=parseInt(el.dataset.target);var current=0;
+        var step=Math.ceil(target/40);
+        var timer=setInterval(function(){
+          current+=step;if(current>=target){current=target;clearInterval(timer);}
+          el.textContent=current+'+';
+        },30);
+        obs.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(function(c){obs.observe(c)});
+}
+
+function preselectProduct(v){
+  document.getElementById('product-select').value=v;
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
 
 // Form submission
 var form=document.getElementById('order-form');
