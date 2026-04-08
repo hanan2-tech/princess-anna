@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hanan2-tech.github.io/princess-anna/sitemap.xml

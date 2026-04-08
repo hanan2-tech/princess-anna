@@ -1,0 +1,1562 @@
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║         פרינסס אנה — מדריך ניהול                    ║
+  ╚══════════════════════════════════════════════════════╝
+  להוסיף מוצר: ערכי את products.json
+  לשנות מחיר: ערכי את price ב-products.json
+  וואטסאפ: חפשי REPLACE_WITH_PHONE_NUMBER
+  לסגור חנות: STORE_OPEN = false
+  אינסטגרם/טיקטוק: חפשי REPLACE_INSTAGRAM / REPLACE_TIKTOK
+-->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>פרינסס אנה | אקססוריז ותכשיטים</title>
+<meta name="description" content="החנות של פרינסס אנה — תכשיטים, אקססוריז ועוד. משלוח לכל הארץ.">
+<meta name="keywords" content="פרינסס אנה, תכשיטים, אקססוריז, בנות, תכשיטי ילדות">
+<meta property="og:title" content="פרינסס אנה 👑">
+<meta property="og:description" content="תכשיטים ואקססוריז ✨ משלוח לכל הארץ">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"פרינסס אנה","description":"חנות תכשיטים ואקססוריז לבנות","url":"https://hanan2-tech.github.io/princess-anna","image":"https://hanan2-tech.github.io/princess-anna/favicon.svg","priceRange":"₪25-₪89","address":{"@type":"PostalAddress","addressCountry":"IL"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f;--bg2:#12121f;--np:#a000ff;--npk:#ff0080;--nm:#00ff88;--nc:#00e5ff;
+  --tw:#f0f0f5;--td:#6a6a8a;--gp:rgba(160,0,255,.3);--gpk:rgba(255,0,128,.3);
+  --r:14px;--t:.3s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--tw);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+.section-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;text-align:center;margin-bottom:8px}
+.section-glow{width:60px;height:3px;background:linear-gradient(90deg,var(--np),var(--npk));margin:8px auto 48px;border-radius:2px;box-shadow:0 0 12px var(--gp)}
+
+/* ========== HEADER ========== */
+header{position:sticky;top:0;z-index:1000;background:rgba(10,10,15,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(160,0,255,.12);height:64px;display:flex;align-items:center}
+.h-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-crown{width:36px;height:30px;filter:drop-shadow(0 0 8px rgba(160,0,255,.6))}
+.logo-text{display:flex;flex-direction:column;line-height:1.15}
+.logo-name{font-size:1.15rem;font-weight:900;background:linear-gradient(135deg,#fff,#e0d0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:.55rem;color:var(--np);letter-spacing:3px}
+.nav-menu{display:flex;gap:28px}
+.nav-menu a{font-size:.85rem;font-weight:600;color:var(--td);transition:color var(--t);position:relative}
+.nav-menu a:hover{color:var(--tw)}
+.nav-menu a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background:var(--np);transition:width var(--t);box-shadow:0 0 8px var(--gp)}
+.nav-menu a:hover::after{width:100%}
+#mute-btn{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:1px solid rgba(160,0,255,.15);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all var(--t);flex-shrink:0}
+#mute-btn:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--tw);border-radius:2px;transition:all var(--t)}
+#menu-toggle{display:none}
+
+/* ========== HERO ========== */
+#home{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:0;margin:0}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a0a0f,#1a0a2a,#0a0a0f);z-index:0}
+.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(160,0,255,.08),transparent 60%),radial-gradient(circle at 70% 60%,rgba(255,0,128,.06),transparent 50%)}
+/* Neon particles */
+.particle{position:absolute;border-radius:50%;pointer-events:none;animation:float var(--d,6s) var(--dl,0s) ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);opacity:.6}50%{transform:translateY(-40px) scale(1.2);opacity:1}}
+.hero-content{position:relative;z-index:1;max-width:600px;padding:0 20px}
+.hero-title{font-size:clamp(2rem,6vw,3.4rem);font-weight:900;line-height:1.2;margin-bottom:16px}
+.hero-title .glow{background:linear-gradient(135deg,var(--np),var(--npk),var(--nc));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;color:var(--td);margin-bottom:36px}
+.btn-neon{display:inline-block;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;padding:14px 44px;border-radius:50px;font-size:1rem;font-weight:700;box-shadow:0 0 24px var(--gp),0 0 48px rgba(160,0,255,.15);transition:transform var(--t),box-shadow var(--t);position:relative;overflow:hidden}
+.btn-neon:hover{transform:translateY(-3px);box-shadow:0 0 36px var(--gp),0 0 72px rgba(160,0,255,.2)}
+.btn-neon::after{content:'';position:absolute;top:0;right:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2.5s infinite}
+@keyframes shimmer{0%{right:-100%}100%{right:100%}}
+
+/* ========== CATEGORY FILTERS ========== */
+.cat-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px}
+.cat-btn{padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:600;color:var(--td);background:var(--bg2);border:1px solid rgba(160,0,255,.15);transition:all var(--t)}
+.cat-btn:hover,.cat-btn.active{color:var(--tw);border-color:var(--np);box-shadow:0 0 16px var(--gp);background:rgba(160,0,255,.1)}
+
+/* ========== PRODUCT GRID ========== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0}
+.p-card{background:var(--bg2);border:none;overflow:hidden;transition:transform var(--t),box-shadow var(--t);position:relative;border-radius:0}
+.p-card:hover{transform:scale(1.02);box-shadow:0 0 48px var(--gp);z-index:5}
+.p-card-img{height:320px;background:linear-gradient(135deg,rgba(160,0,255,.08),rgba(255,0,128,.05));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.p-card:hover .p-card-img img{transform:scale(1.12)}
+.p-card-img .emoji-fallback{font-size:90px;opacity:.8}
+.p-badge{position:absolute;top:16px;right:16px;padding:6px 14px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:1px;color:#fff;backdrop-filter:blur(8px)}
+.heart-btn{position:absolute;top:16px;left:16px;font-size:1.5rem;color:rgba(255,0,128,.5);transition:all var(--t);z-index:2;padding:6px;line-height:1;background:rgba(0,0,0,.3);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.heart-btn:hover{color:var(--npk);filter:drop-shadow(0 0 10px rgba(255,0,128,.6));transform:scale(1.15);background:rgba(0,0,0,.5)}
+.p-body{padding:18px 20px}
+.p-name{font-size:1rem;font-weight:700;margin-bottom:4px}
+.p-desc{font-size:.78rem;color:var(--td);margin-bottom:14px;line-height:1.5}
+.p-footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.p-price{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-order{padding:10px 22px;border-radius:50px;font-size:.82rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--np),var(--npk));transition:all var(--t);white-space:nowrap}
+.btn-order:hover{box-shadow:0 0 24px var(--gp);transform:translateY(-2px)}
+
+/* ========== HOW IT WORKS ========== */
+#how{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center}
+.step{padding:32px 20px;background:var(--bg2);border-radius:var(--r);border:1px solid rgba(160,0,255,.1);transition:all var(--t)}
+.step:hover{border-color:rgba(160,0,255,.3);box-shadow:0 0 20px var(--gp)}
+.step-icon{font-size:2.4rem;margin-bottom:12px;display:block}
+.step-text{font-size:.85rem;font-weight:600}
+
+/* ========== REVIEWS ========== */
+#reviews{background:var(--bg2)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.review-card{background:var(--bg);border-radius:var(--r);padding:24px;border:1px solid rgba(160,0,255,.1)}
+.review-stars{color:#ffe000;font-size:1rem;margin-bottom:8px;letter-spacing:2px}
+.review-text{font-size:.85rem;color:var(--td);margin-bottom:12px;line-height:1.6;font-style:italic}
+.review-name{font-size:.8rem;font-weight:700;color:var(--tw)}
+.review-badge{font-size:.65rem;color:var(--nm)}
+
+/* ========== ORDER FORM ========== */
+#order{background:var(--bg)}
+.form-wrap{max-width:600px;margin:0 auto;background:var(--bg2);border-radius:var(--r);padding:40px 36px;border:1px solid rgba(160,0,255,.12);box-shadow:0 0 40px rgba(160,0,255,.06)}
+.f-row{margin-bottom:18px}
+.f-row label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;color:var(--td)}
+.f-row input,.f-row select,.f-row textarea{width:100%;padding:12px 16px;background:rgba(10,10,15,.6);border:1.5px solid rgba(160,0,255,.15);border-radius:10px;color:var(--tw);font-size:.9rem;font-family:inherit;outline:none;transition:border-color var(--t),box-shadow var(--t)}
+.f-row input:focus,.f-row select:focus,.f-row textarea:focus{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.f-row textarea{resize:vertical;min-height:80px}
+.f-row select{-webkit-appearance:none;appearance:none}
+.pay-box{background:rgba(160,0,255,.06);border:1px solid rgba(160,0,255,.15);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:.85rem;color:var(--np);font-weight:600}
+.btn-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;border-radius:50px;font-size:1.05rem;font-weight:700;position:relative;overflow:hidden;box-shadow:0 0 24px var(--gp);transition:all var(--t)}
+.btn-submit:hover{box-shadow:0 0 40px var(--gp);transform:translateY(-2px)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-submit::after{content:'';position:absolute;top:0;right:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2s infinite}
+#thank-you{display:none;text-align:center;padding:40px 24px;background:var(--bg);border-radius:var(--r);border:1px solid rgba(0,255,136,.2);box-shadow:0 0 20px rgba(0,255,136,.1)}
+#thank-you.show{display:block;animation:fadeUp .5s ease}
+.ty-text{font-size:.95rem;color:var(--tw);line-height:1.8}
+
+/* ========== ABOUT ========== */
+#about{background:var(--bg2)}
+.about-card{max-width:600px;margin:0 auto;text-align:center;padding:48px 36px;background:var(--bg);border-radius:var(--r);border:1px solid rgba(160,0,255,.1)}
+.about-crown{font-size:48px;margin-bottom:16px;display:block}
+.about-text{font-size:.9rem;color:var(--td);line-height:1.8}
+
+/* ========== FOOTER ========== */
+footer{background:var(--bg);border-top:1px solid rgba(160,0,255,.08);padding:48px 0 28px;text-align:center}
+.f-logo{font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,#fff,#e0d0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.f-sub{font-size:.6rem;color:var(--np);letter-spacing:3px;margin-bottom:24px}
+.social-links{display:flex;justify-content:center;gap:14px;margin-bottom:20px}
+.social-btn{width:42px;height:42px;background:var(--bg2);border:1px solid rgba(160,0,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--td);transition:all var(--t)}
+.social-btn:hover{border-color:var(--np);color:var(--tw);box-shadow:0 0 16px var(--gp)}
+.f-info{font-size:.78rem;color:var(--td);margin-bottom:8px}
+.f-policy{font-size:.7rem;color:rgba(240,240,245,.25);margin-bottom:20px;max-width:500px;margin-inline:auto;margin-bottom:20px}
+.f-copy{font-size:.68rem;color:rgba(240,240,245,.2)}
+/* Policy accordion */
+.policy-section{max-width:600px;margin:0 auto 24px}
+.policy-toggle{width:100%;padding:12px 18px;background:var(--bg2);border:1px solid rgba(160,0,255,.1);border-radius:10px;color:var(--td);font-size:.8rem;font-weight:600;text-align:right;display:flex;justify-content:space-between;align-items:center;transition:all var(--t)}
+.policy-toggle:hover{border-color:var(--np);color:var(--tw)}
+.policy-content{max-height:0;overflow:hidden;transition:max-height .4s ease;background:var(--bg2);border-radius:0 0 10px 10px;padding:0 18px;font-size:.75rem;color:var(--td);line-height:1.8}
+.policy-content.open{max-height:400px;padding:16px 18px}
+
+/* ========== WHATSAPP ========== */
+#wa-btn{position:fixed;bottom:24px;left:24px;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;transition:transform var(--t);animation:waPulse 2.5s ease-in-out infinite}
+#wa-btn:hover{transform:scale(1.1);animation:none}
+#wa-btn svg{width:28px;height:28px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7),0 0 0 10px rgba(37,211,102,.08)}}
+
+/* ========== BACK TO TOP ========== */
+#btt{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:50%;display:none;align-items:center;justify-content:center;z-index:999;color:var(--np);font-size:1.2rem;transition:all var(--t)}
+#btt.show{display:flex}
+#btt:hover{border-color:var(--np);box-shadow:0 0 16px var(--gp)}
+
+/* ========== COOKIE BANNER ========== */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid rgba(160,0,255,.15);padding:14px 20px;display:none;justify-content:space-between;align-items:center;z-index:9999;gap:12px}
+#cookie-banner.show{display:flex}
+.cookie-text{font-size:.75rem;color:var(--td)}
+.cookie-btn{padding:8px 20px;border-radius:50px;font-size:.75rem;font-weight:700;background:var(--np);color:#fff;white-space:nowrap;transition:all var(--t)}
+.cookie-btn:hover{box-shadow:0 0 16px var(--gp)}
+
+/* ========== STORE CLOSED ========== */
+#store-closed{background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;text-align:center;padding:14px 20px;font-size:1rem;font-weight:700;position:sticky;top:0;z-index:9999}
+
+/* ========== SPLASH SCREEN ========== */
+#splash{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease}
+#splash.hide{opacity:0;pointer-events:none}
+#splash svg{width:80px;height:66px;filter:drop-shadow(0 0 20px rgba(160,0,255,.6));animation:splashPulse 1.2s ease-in-out infinite}
+#splash .splash-name{font-size:1.4rem;font-weight:900;margin-top:16px;background:linear-gradient(135deg,#fff,#e0d0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#splash .splash-bar{width:120px;height:3px;background:var(--bg2);border-radius:2px;margin-top:20px;overflow:hidden}
+#splash .splash-bar-fill{height:100%;background:linear-gradient(90deg,var(--np),var(--npk));border-radius:2px;animation:splashLoad 1.5s ease forwards}
+@keyframes splashPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes splashLoad{0%{width:0}100%{width:100%}}
+
+/* ========== SEARCH BAR ========== */
+.search-wrap{max-width:500px;margin:0 auto 32px;position:relative}
+.search-wrap input{width:100%;padding:12px 20px 12px 44px;background:var(--bg2);border:1.5px solid rgba(160,0,255,.15);border-radius:50px;color:var(--tw);font-size:.9rem;font-family:inherit;outline:none;transition:border-color var(--t),box-shadow var(--t)}
+.search-wrap input:focus{border-color:var(--np);box-shadow:0 0 16px var(--gp)}
+.search-wrap input::placeholder{color:var(--td)}
+.search-wrap .search-icon{position:absolute;top:50%;left:16px;transform:translateY(-50%);color:var(--td);font-size:1rem;pointer-events:none}
+
+/* ========== QUICK VIEW MODAL ========== */
+#qv-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+#qv-overlay.show{display:flex}
+.qv-card{background:var(--bg2);border-radius:0;border:none;max-width:520px;width:100%;max-height:95vh;overflow-y:auto;animation:fadeUp .3s ease;position:relative}
+@media(min-width:769px){.qv-card{border-radius:var(--r);border:1px solid rgba(160,0,255,.2)}}
+.qv-close{position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:50%;background:rgba(10,10,15,.7);color:var(--tw);font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:2;transition:all var(--t)}
+.qv-close:hover{background:var(--np)}
+.qv-img{width:100%;height:380px;object-fit:cover;border-radius:0}
+@media(min-width:769px){.qv-img{border-radius:var(--r) var(--r) 0 0}}
+.qv-body{padding:24px}
+.qv-name{font-size:1.3rem;font-weight:900;margin-bottom:8px}
+.qv-desc{font-size:.88rem;color:var(--td);margin-bottom:16px;line-height:1.6}
+.qv-price{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;display:block}
+.qv-btn{width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;font-size:1rem;font-weight:700;box-shadow:0 0 20px var(--gp);transition:all var(--t)}
+.qv-btn:hover{box-shadow:0 0 36px var(--gp);transform:translateY(-2px)}
+.qv-ali-link{display:block;text-align:center;margin-top:12px;font-size:.72rem;color:var(--td);text-decoration:underline}
+
+/* ========== FEATURED CAROUSEL ========== */
+.carousel-wrap{position:relative;overflow:hidden;margin-bottom:48px;margin-left:-20px;margin-right:-20px}
+.carousel-track{display:flex;gap:0;transition:transform .5s ease;padding:0}
+.carousel-track .p-card{min-width:300px;flex-shrink:0;border-radius:0}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(10,10,15,.8);border:1px solid rgba(160,0,255,.3);color:var(--tw);font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:2;transition:all var(--t)}
+.carousel-btn:hover{background:var(--np);box-shadow:0 0 16px var(--gp)}
+.carousel-btn.prev{right:8px}
+.carousel-btn.next{left:8px}
+
+/* ========== STATS / COUNTERS ========== */
+.stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:40px 0}
+.stat{text-align:center}
+.stat-num{font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,var(--np),var(--npk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.78rem;color:var(--td);margin-top:4px}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes neonPulse{0%,100%{box-shadow:0 0 20px var(--gp)}50%{box-shadow:0 0 40px var(--gp),0 0 60px rgba(160,0,255,.1)}}
+
+/* ========== CUSTOM NEON SCROLLBAR ========== */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--np),var(--npk));border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--npk),var(--np))}
+html{scrollbar-width:thin;scrollbar-color:var(--np) var(--bg)}
+
+/* ========== MORPHING SVG BLOBS ========== */
+.blob-bg{position:absolute;pointer-events:none;z-index:0;opacity:.06}
+.blob-bg svg{width:400px;height:400px}
+.blob-bg path{animation:blobMorph 8s ease-in-out infinite alternate}
+@keyframes blobMorph{0%{d:path('M400,300Q350,500,200,450Q50,400,100,250Q150,100,300,150Q450,200,400,300Z')}100%{d:path('M350,350Q250,500,150,400Q50,300,150,200Q250,100,350,200Q450,300,350,350Z')}}
+
+/* ========== PARALLAX ========== */
+.parallax-layer{transition:transform .1s linear;will-change:transform}
+
+/* ========== NEON TYPING ========== */
+.type-effect{overflow:hidden;border-left:3px solid var(--np);white-space:nowrap;animation:typing 2s steps(20) 1s forwards,blink .6s step-end infinite alternate;width:0}
+@keyframes typing{from{width:0}to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+
+/* ========== CARD FLIP ========== */
+.p-card-inner{position:relative;transition:transform .6s;transform-style:preserve-3d}
+.p-card.flipped .p-card-inner{transform:rotateY(180deg)}
+.p-card-back{position:absolute;inset:0;backface-visibility:hidden;transform:rotateY(180deg);background:var(--bg2);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px}
+.p-card-back .back-name{font-size:1.1rem;font-weight:900}
+.p-card-back .back-desc{font-size:.82rem;color:var(--td);line-height:1.6}
+.p-card-back .back-price{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.flip-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--td);opacity:0;transition:opacity var(--t)}
+.p-card:hover .flip-hint{opacity:1}
+
+/* ========== IMAGE ZOOM ========== */
+.p-card-img{overflow:hidden}
+.p-card-img img{transition:transform .4s ease}
+.p-card:hover .p-card-img img{transform:scale(1.15)}
+
+/* ========== SKELETON LOADING ========== */
+.skeleton{background:var(--bg2);border-radius:var(--r);overflow:hidden;position:relative}
+.skeleton::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(160,0,255,.06),transparent);animation:skeletonShimmer 1.5s infinite}
+@keyframes skeletonShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.skel-card{height:340px;border-radius:var(--r)}
+
+/* ========== SORTING BUTTONS ========== */
+.sort-wrap{display:flex;justify-content:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.sort-btn{padding:6px 14px;border-radius:50px;font-size:.72rem;font-weight:600;color:var(--td);background:transparent;border:1px solid rgba(160,0,255,.1);transition:all var(--t)}
+.sort-btn:hover,.sort-btn.active{color:var(--tw);border-color:var(--npk);background:rgba(255,0,128,.08)}
+
+/* ========== VIEWERS COUNT ========== */
+.viewers-badge{font-size:.6rem;color:var(--nm);display:flex;align-items:center;gap:4px;margin-top:6px}
+.viewers-dot{width:6px;height:6px;border-radius:50%;background:var(--nm);animation:viewerPulse 1.5s infinite}
+@keyframes viewerPulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ========== ORIGINAL PRICE ========== */
+.p-original-price{font-size:.8rem;color:var(--td);text-decoration:line-through;margin-left:8px}
+
+/* ========== RECENTLY VIEWED ========== */
+#recently-viewed{position:fixed;bottom:0;left:0;right:0;background:rgba(18,18,31,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(160,0,255,.15);padding:10px 16px;display:none;z-index:997;overflow:hidden}
+#recently-viewed.show{display:block}
+.rv-title{font-size:.7rem;color:var(--td);margin-bottom:6px}
+.rv-scroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.rv-scroll::-webkit-scrollbar{display:none}
+.rv-item{width:50px;height:50px;border-radius:8px;overflow:hidden;flex-shrink:0;border:1px solid rgba(160,0,255,.2);cursor:pointer;transition:all var(--t)}
+.rv-item:hover{border-color:var(--np);box-shadow:0 0 10px var(--gp)}
+.rv-item img{width:100%;height:100%;object-fit:cover}
+.rv-close{position:absolute;top:6px;left:6px;font-size:.7rem;color:var(--td);cursor:pointer}
+
+/* ========== UNBOXING ANIMATION ========== */
+#unbox-overlay{position:fixed;inset:0;z-index:10002;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center}
+#unbox-overlay.show{display:flex}
+.unbox-box{width:160px;height:120px;position:relative;animation:boxShake .5s ease}
+.unbox-lid{width:170px;height:30px;background:linear-gradient(135deg,var(--np),var(--npk));border-radius:6px 6px 0 0;position:absolute;top:0;left:-5px;transition:transform .8s ease .3s;transform-origin:right top;z-index:2}
+.unbox-lid.open{transform:rotate(-120deg)}
+.unbox-body{width:160px;height:90px;background:var(--bg2);border:2px solid var(--np);border-radius:0 0 8px 8px;position:absolute;bottom:0;display:flex;align-items:center;justify-content:center}
+.unbox-product{font-size:3rem;opacity:0;transition:opacity .5s ease .8s,transform .5s ease .8s;transform:translateY(20px)}
+.unbox-product.show{opacity:1;transform:translateY(-10px)}
+@keyframes boxShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+
+/* ========== 3D CARD TILT ========== */
+.p-card{transform-style:preserve-3d;perspective:800px}
+
+/* ========== CURSOR TRAIL ========== */
+.cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:99998;transition:opacity .3s;opacity:0}
+
+/* ========== ANIMATED GRADIENT BG ========== */
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* ========== TOAST NOTIFICATIONS ========== */
+#toast-container{position:fixed;bottom:90px;left:24px;z-index:9998;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:10px;padding:12px 18px;font-size:.78rem;color:var(--tw);box-shadow:0 0 20px rgba(0,0,0,.4);animation:toastIn .4s ease,toastOut .4s ease 4s forwards;max-width:300px}
+@keyframes toastIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(-30px)}}
+
+/* ========== COUNTDOWN TIMER ========== */
+.countdown-section{background:linear-gradient(135deg,rgba(160,0,255,.12),rgba(255,0,128,.08));border-top:1px solid rgba(160,0,255,.15);border-bottom:1px solid rgba(160,0,255,.15);padding:32px 0;text-align:center}
+.countdown-title{font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--npk)}
+.countdown-timer{display:flex;justify-content:center;gap:16px}
+.cd-unit{text-align:center}
+.cd-num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--np),var(--npk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.cd-label{font-size:.65rem;color:var(--td)}
+
+/* ========== STORIES ========== */
+.stories-wrap{display:flex;gap:16px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.stories-wrap::-webkit-scrollbar{display:none}
+.story-circle{flex-shrink:0;width:72px;text-align:center;cursor:pointer}
+.story-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--np),var(--npk),var(--nm));display:flex;align-items:center;justify-content:center;transition:transform var(--t)}
+.story-ring:hover{transform:scale(1.08)}
+.story-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg)}
+.story-ring .story-emoji{font-size:1.8rem;background:var(--bg);width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid var(--bg)}
+.story-label{font-size:.6rem;color:var(--td);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ========== STICKY ORDER BTN ========== */
+#sticky-order{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,15,.95);backdrop-filter:blur(12px);border-top:1px solid rgba(160,0,255,.2);padding:10px 20px;display:none;justify-content:center;align-items:center;gap:16px;z-index:998}
+#sticky-order.show{display:flex}
+.sticky-text{font-size:.82rem;font-weight:700}
+.sticky-btn{padding:10px 28px;border-radius:50px;font-size:.85rem;font-weight:700;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;box-shadow:0 0 16px var(--gp);transition:all var(--t)}
+
+/* ========== SHARE BUTTONS ========== */
+.share-btns{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.share-btn{width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid rgba(160,0,255,.2);display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all var(--t)}
+.share-btn:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+
+/* ========== NEWSLETTER POPUP ========== */
+#newsletter-popup{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+#newsletter-popup.show{display:flex}
+.nl-card{background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:var(--r);padding:36px;text-align:center;max-width:380px;width:100%;animation:fadeUp .3s ease}
+.nl-card h3{font-size:1.2rem;margin-bottom:8px}
+.nl-card p{font-size:.82rem;color:var(--td);margin-bottom:20px}
+.nl-card input{width:100%;padding:12px 16px;background:rgba(10,10,15,.6);border:1.5px solid rgba(160,0,255,.15);border-radius:50px;color:var(--tw);font-size:.88rem;font-family:inherit;outline:none;margin-bottom:12px;text-align:center}
+.nl-card input:focus{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.nl-card .nl-btn{width:100%;padding:12px;border-radius:50px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;font-size:.9rem;font-weight:700;box-shadow:0 0 16px var(--gp)}
+.nl-close{position:absolute;top:12px;left:12px;color:var(--td);font-size:1.1rem;cursor:pointer}
+
+/* ========== FAQ ACCORDION ========== */
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{border:1px solid rgba(160,0,255,.1);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.faq-q{width:100%;padding:16px 20px;background:var(--bg2);color:var(--tw);font-size:.88rem;font-weight:600;text-align:right;display:flex;justify-content:space-between;align-items:center;transition:all var(--t)}
+.faq-q:hover{background:rgba(160,0,255,.06)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:.82rem;color:var(--td);line-height:1.7;padding:0 20px;background:var(--bg)}
+.faq-a.open{max-height:300px;padding:16px 20px}
+
+/* ========== INDIVIDUAL PRODUCT PAGE ========== */
+#product-page{display:none;padding-top:80px}
+#product-page.show{display:block}
+.pp-back{font-size:.85rem;color:var(--np);margin-bottom:20px;display:inline-block;cursor:pointer}
+.pp-back:hover{text-decoration:underline}
+.pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto}
+.pp-gallery{position:relative;border-radius:0;overflow:hidden;background:var(--bg2);aspect-ratio:1;margin:-80px -20px 0;width:calc(100% + 40px)}
+.pp-gallery img{width:100%;height:100%;object-fit:cover;border-radius:0;min-height:400px}
+@media(min-width:769px){.pp-gallery{margin:0;width:100%;border-radius:var(--r)}.pp-gallery img{min-height:auto;border-radius:var(--r)}}
+.pp-gallery .pp-zoom-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-size:.65rem;color:var(--td);background:rgba(0,0,0,.5);padding:4px 12px;border-radius:20px}
+.pp-info{display:flex;flex-direction:column;gap:16px}
+.pp-title{font-size:1.6rem;font-weight:900}
+.pp-price-row{display:flex;align-items:baseline;gap:12px}
+.pp-main-price{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pp-old-price{font-size:1.1rem;color:var(--td);text-decoration:line-through}
+.pp-discount{background:var(--npk);color:#fff;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px}
+.pp-desc{font-size:.9rem;color:var(--td);line-height:1.8}
+.pp-details{font-size:.8rem;color:var(--td);line-height:1.8}
+.pp-details span{display:block;padding:6px 0;border-bottom:1px solid rgba(160,0,255,.08)}
+.pp-order-btn{padding:16px 40px;border-radius:50px;background:linear-gradient(135deg,var(--np),var(--npk));color:#fff;font-size:1.05rem;font-weight:700;box-shadow:0 0 24px var(--gp);transition:all var(--t);text-align:center;display:block}
+.pp-order-btn:hover{box-shadow:0 0 40px var(--gp);transform:translateY(-2px)}
+.pp-share{display:flex;gap:8px;margin-top:8px}
+.pp-share button{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:1px solid rgba(160,0,255,.15);color:var(--td);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all var(--t)}
+.pp-share button:hover{border-color:var(--np);color:var(--tw);box-shadow:0 0 12px var(--gp)}
+.pp-related{margin-top:48px}
+.pp-related-title{font-size:1.1rem;font-weight:700;margin-bottom:20px}
+.pp-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.pp-related-grid .p-card{min-width:0}
+@media(max-width:768px){.pp-grid{grid-template-columns:1fr;gap:20px}}
+
+/* ========== QUIZ PAGE ========== */
+#quiz-page{display:none;padding-top:80px}
+#quiz-page.show{display:block}
+.quiz-card{max-width:500px;margin:0 auto;background:var(--bg2);border-radius:var(--r);padding:40px 36px;border:1px solid rgba(160,0,255,.15);text-align:center}
+.quiz-q{font-size:1.1rem;font-weight:700;margin-bottom:24px}
+.quiz-progress{height:4px;background:var(--bg);border-radius:2px;margin-bottom:24px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--np),var(--npk));border-radius:2px;transition:width .4s ease}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-opt{padding:14px 20px;border-radius:12px;background:var(--bg);border:1.5px solid rgba(160,0,255,.12);text-align:right;font-size:.9rem;font-weight:600;transition:all var(--t);cursor:pointer}
+.quiz-opt:hover{border-color:var(--np);box-shadow:0 0 16px var(--gp);background:rgba(160,0,255,.06)}
+.quiz-results{display:none}
+.quiz-results.show{display:block}
+
+/* ========== BUNDLE BUILDER ========== */
+#bundle-page{display:none;padding-top:80px}
+#bundle-page.show{display:block}
+.bundle-header{text-align:center;margin-bottom:32px}
+.bundle-price-bar{display:flex;justify-content:center;align-items:center;gap:16px;background:var(--bg2);border:1px solid rgba(160,0,255,.15);border-radius:var(--r);padding:16px 24px;margin-bottom:32px;max-width:500px;margin-inline:auto}
+.bundle-total{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--npk),var(--np));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.bundle-savings{font-size:.85rem;color:var(--nm);font-weight:700}
+.bundle-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:600px;margin:0 auto 32px}
+.bundle-slot{border:2px dashed rgba(160,0,255,.2);border-radius:var(--r);height:120px;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--td);cursor:pointer;transition:all var(--t);position:relative;overflow:hidden}
+.bundle-slot:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.bundle-slot.filled{border-style:solid;border-color:var(--np)}
+.bundle-slot.filled img{width:100%;height:100%;object-fit:cover}
+.bundle-slot .remove-slot{position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:rgba(255,0,128,.8);color:#fff;font-size:.8rem;display:none;align-items:center;justify-content:center;cursor:pointer}
+.bundle-slot.filled .remove-slot{display:flex}
+.bundle-product-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}
+.bundle-pick-item{width:100%;aspect-ratio:1;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all var(--t);position:relative}
+.bundle-pick-item:hover,.bundle-pick-item.selected{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+.bundle-pick-item img{width:100%;height:100%;object-fit:cover}
+.bundle-pick-item .pick-price{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.7);color:var(--npk);font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:10px}
+
+/* ========== WISHLIST PAGE ========== */
+#wishlist-page{display:none;padding-top:80px}
+#wishlist-page.show{display:block}
+.wishlist-empty{text-align:center;padding:60px 20px;color:var(--td)}
+.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+
+/* ========== GAMIFICATION ========== */
+.points-badge{position:fixed;top:72px;left:16px;background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:50px;padding:6px 14px;font-size:.72rem;font-weight:700;color:var(--np);z-index:998;display:flex;align-items:center;gap:6px;box-shadow:0 0 12px rgba(160,0,255,.1);transition:all var(--t)}
+.points-badge:hover{box-shadow:0 0 20px var(--gp)}
+.points-num{color:var(--npk);font-weight:900}
+.points-add{position:fixed;top:72px;left:16px;color:var(--nm);font-size:1rem;font-weight:900;z-index:999;pointer-events:none;animation:pointsFloat 1s ease forwards;opacity:0}
+@keyframes pointsFloat{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-30px)}}
+
+/* ========== REFERRAL ========== */
+.referral-section{background:linear-gradient(135deg,rgba(160,0,255,.08),rgba(255,0,128,.06));border:1px solid rgba(160,0,255,.12);border-radius:var(--r);padding:28px;text-align:center;max-width:500px;margin:32px auto}
+.referral-link{background:var(--bg);border:1px solid rgba(160,0,255,.2);border-radius:10px;padding:10px 16px;font-size:.78rem;color:var(--np);word-break:break-all;margin:12px 0;cursor:pointer;transition:all var(--t)}
+.referral-link:hover{border-color:var(--np);box-shadow:0 0 12px var(--gp)}
+
+/* ========== CHATBOT ========== */
+#chatbot-btn{position:fixed;bottom:90px;left:24px;width:48px;height:48px;background:linear-gradient(135deg,var(--np),var(--npk));border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:998;box-shadow:0 0 20px var(--gp);transition:all var(--t);font-size:1.2rem;cursor:pointer}
+#chatbot-btn:hover{transform:scale(1.1);box-shadow:0 0 32px var(--gp)}
+#chatbot-panel{position:fixed;bottom:150px;left:24px;width:320px;max-height:400px;background:var(--bg2);border:1px solid rgba(160,0,255,.2);border-radius:var(--r);display:none;flex-direction:column;z-index:998;box-shadow:0 0 40px rgba(0,0,0,.5);overflow:hidden}
+#chatbot-panel.show{display:flex}
+.chat-header{background:linear-gradient(135deg,var(--np),var(--npk));padding:12px 16px;font-size:.85rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;max-height:260px}
+.chat-msg{padding:8px 12px;border-radius:10px;font-size:.8rem;line-height:1.5;max-width:85%}
+.chat-msg.bot{background:rgba(160,0,255,.1);border:1px solid rgba(160,0,255,.1);align-self:flex-start;color:var(--tw)}
+.chat-msg.user{background:var(--np);color:#fff;align-self:flex-end}
+.chat-input-wrap{display:flex;border-top:1px solid rgba(160,0,255,.1);padding:8px}
+.chat-input-wrap input{flex:1;background:var(--bg);border:1px solid rgba(160,0,255,.15);border-radius:50px;padding:8px 14px;color:var(--tw);font-size:.82rem;font-family:inherit;outline:none}
+.chat-input-wrap button{width:36px;height:36px;border-radius:50%;background:var(--np);color:#fff;margin-right:6px;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all var(--t)}
+
+/* ========== MOBILE ========== */
+@media(max-width:900px){.steps{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+@media(max-width:768px){
+  header{height:58px}
+  .nav-menu{display:none}
+  .hamburger{display:flex}
+  #menu-toggle:checked~.nav-menu{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(10,10,15,.97);backdrop-filter:blur(18px);padding:20px;gap:16px;border-bottom:1px solid rgba(160,0,255,.15);z-index:999}
+  .products-grid{grid-template-columns:1fr;max-width:100%;margin:0 -20px;width:calc(100% + 40px)}
+  section{padding:56px 0}
+  .form-wrap{padding:28px 20px}
+  .about-card{padding:36px 20px}
+  .p-card-img{height:180px}
+}
+@media(min-width:480px) and (max-width:768px){.products-grid{grid-template-columns:repeat(2,1fr);max-width:100%}}
+@media(min-width:769px){.products-grid{gap:2px;border-radius:var(--r);overflow:hidden}}
+</style>
+</head>
+<body>
+
+<!-- ========== SPLASH SCREEN ========== -->
+<div id="splash">
+  <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="slg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a000ff"/><stop offset="50%" stop-color="#ff0080"/><stop offset="100%" stop-color="#00ff88"/></linearGradient></defs>
+    <path d="M4 32 L4 36 Q4 38 6 38 L42 38 Q44 38 44 36 L44 32 Z" fill="url(#slg)" opacity=".85"/>
+    <path d="M4 32 L12 12 L24 24 L36 6 L44 32" fill="none" stroke="url(#slg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="3" fill="#ff0080"/><circle cx="24" cy="24" r="3" fill="#a000ff"/>
+    <circle cx="36" cy="6" r="3.5" fill="#00ff88"/><circle cx="4" cy="32" r="2.5" fill="#a000ff"/><circle cx="44" cy="32" r="2.5" fill="#ff0080"/>
+  </svg>
+  <div class="splash-name">פרינסס אנה</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+
+<!-- Store Closed Banner -->
+<div id="store-closed" style="display:none">👑 אנה בהפסקה! חוזרת בקרוב 🌸</div>
+
+<!-- ========== QUICK VIEW MODAL ========== -->
+<div id="qv-overlay" onclick="if(event.target===this)closeQV()">
+  <div class="qv-card">
+    <button class="qv-close" onclick="closeQV()">✕</button>
+    <img class="qv-img" id="qv-img" src="" alt="">
+    <div class="qv-body">
+      <h3 class="qv-name" id="qv-name"></h3>
+      <p class="qv-desc" id="qv-desc"></p>
+      <span class="qv-price" id="qv-price"></span>
+      <a href="#order" class="qv-btn" id="qv-order-btn" onclick="closeQV()">להזמנה ✨</a>
+      <a href="javascript:void(0)" style="display:block;text-align:center;margin-top:10px;font-size:.78rem;color:var(--np)" id="qv-fullpage-link">צפייה בעמוד המוצר המלא →</a>
+      <a class="qv-ali-link" id="qv-ali-link" target="_blank" rel="noopener">צפייה במוצר המקורי ←</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header>
+<div class="container h-inner">
+  <a href="#home" class="logo-wrap">
+    <svg class="logo-crown" viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a000ff"/><stop offset="50%" stop-color="#ff0080"/><stop offset="100%" stop-color="#00ff88"/></linearGradient></defs>
+      <path d="M4 32 L4 36 Q4 38 6 38 L42 38 Q44 38 44 36 L44 32 Z" fill="url(#lg)" opacity=".85"/>
+      <path d="M4 32 L12 12 L24 24 L36 6 L44 32" fill="none" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="12" r="3" fill="#ff0080" filter="url(#glow)"/>
+      <circle cx="24" cy="24" r="3" fill="#a000ff"/>
+      <circle cx="36" cy="6" r="3.5" fill="#00ff88"/>
+      <circle cx="4" cy="32" r="2.5" fill="#a000ff"/>
+      <circle cx="44" cy="32" r="2.5" fill="#ff0080"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">פרינסס אנה</span>
+      <span class="logo-sub">✦ אקססוריז ✦</span>
+    </div>
+  </a>
+  <input type="checkbox" id="menu-toggle" aria-hidden="true">
+  <ul class="nav-menu">
+    <li><a href="#home">בית</a></li>
+    <li><a href="#shop">חנות</a></li>
+    <li><a href="#about">עלינו</a></li>
+    <li><a href="#order">הזמנה</a></li>
+    <li><a href="javascript:void(0)" onclick="openPage('quiz')">🧪 קוויז</a></li>
+    <li><a href="javascript:void(0)" onclick="openPage('bundle')">🎁 בני סט</a></li>
+    <li><a href="javascript:void(0)" onclick="openPage('wishlist')">💜</a></li>
+  </ul>
+  <button id="mute-btn" onclick="toggleMute()" title="השתק/הפעל צלילים">🔊</button>
+  <label class="hamburger" for="menu-toggle" aria-label="תפריט"><span></span><span></span><span></span></label>
+</div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section id="home">
+  <!-- Video background from Mixkit (free, no copyright) -->
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;z-index:0">
+    <source src="https://assets.mixkit.co/videos/32284/32284-720.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg" style="background:transparent">
+    <div class="particle" style="width:6px;height:6px;background:var(--np);top:15%;right:10%;--d:5s;--dl:0s"></div>
+    <div class="particle" style="width:4px;height:4px;background:var(--npk);top:25%;right:75%;--d:7s;--dl:1s"></div>
+    <div class="particle" style="width:8px;height:8px;background:var(--nm);top:60%;right:20%;--d:6s;--dl:.5s"></div>
+    <div class="particle" style="width:5px;height:5px;background:var(--nc);top:40%;right:55%;--d:8s;--dl:2s"></div>
+    <div class="particle" style="width:3px;height:3px;background:var(--np);top:70%;right:80%;--d:5.5s;--dl:1.5s"></div>
+    <div class="particle" style="width:7px;height:7px;background:var(--npk);top:80%;right:40%;--d:9s;--dl:3s"></div>
+    <div class="particle" style="width:4px;height:4px;background:var(--nm);top:10%;right:45%;--d:6.5s;--dl:.8s"></div>
+    <div class="particle" style="width:6px;height:6px;background:var(--nc);top:50%;right:90%;--d:7.5s;--dl:2.5s"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">✨ <span class="glow">הקולקציה החדשה</span> כאן</h1>
+    <p class="hero-sub">תכשיטים, אקססוריז ועוד — עד הבית שלך</p>
+    <a href="#shop" class="btn-neon">לחנות →</a>
+  </div>
+</section>
+
+<!-- ========== STORIES ========== -->
+<div class="container" style="padding-top:24px">
+  <div class="stories-wrap" id="stories-wrap">
+    <div class="story-circle" onclick="document.querySelector('.cat-btn[data-cat=jewelry]')?.click()||location.hash='#shop'"><div class="story-ring"><div class="story-emoji">💍</div></div><div class="story-label">תכשיטים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">💇</div></div><div class="story-label">שיער</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">👜</div></div><div class="story-label">תיקים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">💄</div></div><div class="story-label">יופי</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">🔑</div></div><div class="story-label">מחזיקים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">😎</div></div><div class="story-label">משקפיים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">🔥</div></div><div class="story-label">חדשים</div></div>
+    <div class="story-circle" onclick="location.hash='#shop'"><div class="story-ring"><div class="story-emoji">⭐</div></div><div class="story-label">נמכרים</div></div>
+  </div>
+</div>
+
+<!-- ========== COUNTDOWN ========== -->
+<div class="countdown-section">
+  <div class="countdown-title">🔥 מבצע מיוחד — נגמר בעוד:</div>
+  <div class="countdown-timer" id="countdown">
+    <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-label">שעות</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-label">דקות</span></div>
+    <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-label">שניות</span></div>
+  </div>
+</div>
+
+<!-- ========== SHOP ========== -->
+<section id="shop">
+<div class="container">
+  <h2 class="section-title">🔥 החנות</h2>
+  <div class="section-glow"></div>
+
+  <!-- Featured carousel -->
+  <h3 style="text-align:center;font-size:1rem;color:var(--np);margin-bottom:16px;font-weight:700">⭐ מומלצים</h3>
+  <div class="carousel-wrap">
+    <button class="carousel-btn prev" onclick="scrollCarousel(1)">→</button>
+    <div class="carousel-track" id="carousel-track"></div>
+    <button class="carousel-btn next" onclick="scrollCarousel(-1)">←</button>
+  </div>
+
+  <!-- Search bar -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="חפשי מוצר..." oninput="filterProducts()">
+  </div>
+
+  <!-- Stats / counters -->
+  <div class="stats reveal">
+    <div class="stat"><div class="stat-num" data-target="35">0</div><div class="stat-label">מוצרים</div></div>
+    <div class="stat"><div class="stat-num" data-target="150">0</div><div class="stat-label">לקוחות מרוצים</div></div>
+    <div class="stat"><div class="stat-num" data-target="50">0</div><div class="stat-label">ערים</div></div>
+  </div>
+
+  <div class="cat-filters" id="cat-filters"></div>
+
+  <!-- Sorting -->
+  <div class="sort-wrap">
+    <button class="sort-btn active" onclick="sortProducts('default',this)">⭐ פופולרי</button>
+    <button class="sort-btn" onclick="sortProducts('price-asc',this)">מחיר ↑</button>
+    <button class="sort-btn" onclick="sortProducts('price-desc',this)">מחיר ↓</button>
+    <button class="sort-btn" onclick="sortProducts('new',this)">🆕 חדש</button>
+  </div>
+
+  <!-- Skeleton loading (shown while products load) -->
+  <div id="skeleton-grid" class="products-grid">
+    <div class="skeleton skel-card"></div><div class="skeleton skel-card"></div>
+    <div class="skeleton skel-card"></div><div class="skeleton skel-card"></div>
+  </div>
+
+  <div class="products-grid" id="products-grid" style="display:none"></div>
+</div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section id="how" class="reveal">
+<div class="container">
+  <h2 class="section-title">איך זה עובד</h2>
+  <div class="section-glow"></div>
+  <div class="steps">
+    <div class="step"><span class="step-icon">🛍️</span><div class="step-text">בחרי מוצר</div></div>
+    <div class="step"><span class="step-icon">📝</span><div class="step-text">מלאי הזמנה</div></div>
+    <div class="step"><span class="step-icon">📦</span><div class="step-text">מקבלים הביתה</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ========== REVIEWS ========== -->
+<section id="reviews" class="reveal">
+<div class="container">
+  <h2 class="section-title">⭐ מה הלקוחות אומרות</h2>
+  <div class="section-glow"></div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"הזמנתי שרשרת כוכב לבת שלי, היא פשוט מתה על זה! איכות מעולה ומשלוח מהיר"</p>
+      <div class="review-name">מיכל כ.</div>
+      <div class="review-badge">✓ לקוחה מאומתת</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"סט התכשיטים הכי יפה שראיתי! הבת שלי לא מורידה את זה. ממליצה בחום"</p>
+      <div class="review-name">שירה ל.</div>
+      <div class="review-badge">✓ לקוחה מאומתת</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"אנה הכי חמודה! שירות אישי ומוצרים באיכות גבוהה. כבר הזמנתי פעמיים"</p>
+      <div class="review-name">נועה מ.</div>
+      <div class="review-badge">✓ לקוחה מאומתת</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ========== ORDER FORM ========== -->
+<section id="order">
+<div class="container">
+  <h2 class="section-title">👑 הזמינו עכשיו</h2>
+  <div class="section-glow"></div>
+  <div class="form-wrap">
+    <div id="thank-you">
+      <p class="ty-text">👑 תודה רבה! אנה קיבלה את ההזמנה שלך ותיצור איתך קשר תוך 24 שעות לאישור תשלום דרך ביט או פייבוקס. תתכוננו למשהו קסום! ✨</p>
+    </div>
+    <form id="order-form" action="https://formspree.io/f/xnjobpwo" method="POST">
+      <div class="f-row"><label>שם מלא *</label><input type="text" name="full_name" required placeholder="השם המלא שלך"></div>
+      <div class="f-row"><label>טלפון *</label><input type="tel" name="phone" required placeholder="מספר הטלפון שלך"></div>
+      <div class="f-row"><label>אימייל *</label><input type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="f-row"><label>עיר *</label><input type="text" name="city" required placeholder="העיר שלך"></div>
+      <div class="f-row"><label>כתובת מלאה *</label><input type="text" name="address" required placeholder="רחוב, מספר, קומה/דירה"></div>
+      <div class="f-row"><label>מוצר *</label><select name="product" required id="product-select"><option value="">— בחרי מוצר —</option></select></div>
+      <div class="f-row"><label>כמות</label><input type="number" name="quantity" min="1" max="10" value="1"></div>
+      <div class="f-row"><label>הערות</label><textarea name="notes" placeholder="בקשות מיוחדות?"></textarea></div>
+      <div class="pay-box">💳 התשלום מתבצע לאחר אישור ההזמנה דרך ביט או פייבוקס</div>
+      <button type="submit" class="btn-submit" id="submit-btn">שליחת הזמנה ✨</button>
+    </form>
+  </div>
+</div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="reveal">
+<div class="container">
+  <div class="about-card">
+    <span class="about-crown">👑</span>
+    <h2 class="section-title" style="margin-bottom:16px">על פרינסס אנה</h2>
+    <p class="about-text">היי! אני אנה, ובת 8. אני אוהבת דברים יפים — תכשיטים מנצנצים, אקססוריז צבעוניים, וכל מה שגורם לך להרגיש כמו נסיכה. אני בוחרת בקפידה כל מוצר בחנות שלי כדי שתקבלי רק את הפריטים הכי קסומים. תודה שאתם תומכים בחנות הקטנה שלי! 👑</p>
+  </div>
+</div>
+</section>
+
+<!-- ========== REFERRAL ========== -->
+<div class="container reveal">
+  <div class="referral-section">
+    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px">🎁 הזמיני חברה וקבלי 15% הנחה!</h3>
+    <p style="font-size:.82rem;color:var(--td)">שתפי את הלינק האישי שלך. כשחברה מזמינה — שתיכן מקבלות הנחה!</p>
+    <div class="referral-link" id="referral-link" onclick="copyReferral()"></div>
+    <button class="btn-order" onclick="copyReferral()" style="margin-top:8px">העתיקי לינק 🔗</button>
+  </div>
+</div>
+
+<!-- ========== FAQ ========== -->
+<section id="faq" class="reveal">
+<div class="container">
+  <h2 class="section-title">❓ שאלות נפוצות</h2>
+  <div class="section-glow"></div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">כמה זמן לוקח המשלוח? <span>▼</span></button><div class="faq-a">המשלוח מגיע תוך 10-20 ימי עסקים לכל כתובת בארץ. תקבלו עדכון ברגע שהחבילה בדרך!</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">איך משלמים? <span>▼</span></button><div class="faq-a">התשלום מתבצע בביט או פייבוקס לאחר אישור ההזמנה. אנה תיצור איתך קשר תוך 24 שעות.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">אפשר להחזיר מוצר? <span>▼</span></button><div class="faq-a">כן! ניתן להחזיר מוצר תוך 14 יום מקבלתו. צרי קשר באמצעות וואטסאפ ונסדר הכל.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">המוצרים בטוחים לילדות? <span>▼</span></button><div class="faq-a">בהחלט! כל המוצרים נבחרים בקפידה ומתאימים לבנות. עגילי הקליפס לא דורשים ניקוב, והגלוסים בטוחים לשימוש.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')">יש משלוח חינם? <span>▼</span></button><div class="faq-a">המשלוח כלול במחיר המוצר! אין תשלום נוסף.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ========== NEWSLETTER POPUP ========== -->
+<div id="newsletter-popup" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="nl-card" style="position:relative">
+    <span class="nl-close" onclick="document.getElementById('newsletter-popup').classList.remove('show');localStorage.setItem('pa-nl','1')">✕</span>
+    <h3>🎁 קבלי 10% הנחה!</h3>
+    <p>השאירי אימייל ותקבלי קוד הנחה + עדכונים על מוצרים חדשים</p>
+    <input type="email" id="nl-email" placeholder="האימייל שלך...">
+    <button class="nl-btn" onclick="var e=document.getElementById('nl-email').value;if(e){localStorage.setItem('pa-nl','1');document.getElementById('newsletter-popup').classList.remove('show');alert('תודה! קוד ההנחה: ANNA10 ✨')}">הרשמי ✨</button>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Sticky Order Button -->
+<div id="sticky-order">
+  <span class="sticky-text">👑 מצאת משהו? </span>
+  <a href="#order" class="sticky-btn">להזמנה ←</a>
+</div>
+
+<!-- ========== INDIVIDUAL PRODUCT PAGE ========== -->
+<section id="product-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <div class="pp-grid">
+    <div class="pp-gallery"><img id="pp-img" src="" alt=""><div class="pp-zoom-hint">🔍 לחצי להגדלה</div></div>
+    <div class="pp-info">
+      <h2 class="pp-title" id="pp-title"></h2>
+      <div class="pp-price-row">
+        <span class="pp-main-price" id="pp-price"></span>
+        <span class="pp-old-price" id="pp-old-price"></span>
+        <span class="pp-discount" id="pp-discount"></span>
+      </div>
+      <p class="pp-desc" id="pp-desc"></p>
+      <div class="pp-details" id="pp-details">
+        <span>📦 משלוח: 10-20 ימי עסקים</span>
+        <span>💳 תשלום: ביט / פייבוקס</span>
+        <span>↩️ החזרה: עד 14 יום</span>
+      </div>
+      <a href="#order" class="pp-order-btn" id="pp-order-btn" onclick="closePage()">הזמינו עכשיו ✨</a>
+      <div class="pp-share">
+        <button onclick="shareCurrentProduct('whatsapp')" title="שתפי בוואטסאפ">📱</button>
+        <button onclick="shareCurrentProduct('copy')" title="העתיקי לינק">🔗</button>
+      </div>
+    </div>
+  </div>
+  <div class="pp-related">
+    <h3 class="pp-related-title">💜 אולי תאהבי גם:</h3>
+    <div class="pp-related-grid" id="pp-related"></div>
+  </div>
+</section>
+
+<!-- ========== QUIZ PAGE ========== -->
+<section id="quiz-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <h2 class="section-title" style="margin-bottom:8px">✨ מה מתאים לך?</h2>
+  <p style="text-align:center;color:var(--td);font-size:.88rem;margin-bottom:32px">עני על 5 שאלות ונמצא לך את המוצר המושלם!</p>
+  <div class="quiz-card" id="quiz-card">
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress" style="width:20%"></div></div>
+    <div class="quiz-q" id="quiz-q"></div>
+    <div class="quiz-options" id="quiz-opts"></div>
+  </div>
+  <div class="quiz-results" id="quiz-results">
+    <h3 class="section-title" style="margin-bottom:24px">🎯 המוצרים שמתאימים לך:</h3>
+    <div class="products-grid" id="quiz-results-grid"></div>
+  </div>
+</section>
+
+<!-- ========== BUNDLE BUILDER ========== -->
+<section id="bundle-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <div class="bundle-header">
+    <h2 class="section-title">🎁 בני סט משלך!</h2>
+    <p style="color:var(--td);font-size:.88rem;margin-top:8px">בחרי 3 מוצרים וקבלי 20% הנחה על הסט!</p>
+  </div>
+  <div class="bundle-price-bar">
+    <span style="color:var(--td);font-size:.85rem">סה"כ:</span>
+    <span class="bundle-total" id="bundle-total">₪0</span>
+    <span class="bundle-savings" id="bundle-savings"></span>
+  </div>
+  <div class="bundle-slots" id="bundle-slots">
+    <div class="bundle-slot">+ בחרי מוצר</div>
+    <div class="bundle-slot">+ בחרי מוצר</div>
+    <div class="bundle-slot">+ בחרי מוצר</div>
+  </div>
+  <a href="#order" class="pp-order-btn" id="bundle-order-btn" style="max-width:400px;margin:0 auto;display:none" onclick="closePage()">להזמנת הסט ✨</a>
+  <h3 style="text-align:center;margin:32px 0 16px;font-size:1rem;color:var(--td)">בחרי מוצרים:</h3>
+  <div class="bundle-product-picker" id="bundle-picker"></div>
+</section>
+
+<!-- ========== WISHLIST PAGE ========== -->
+<section id="wishlist-page" class="container">
+  <span class="pp-back" onclick="closePage()">← חזרה לחנות</span>
+  <h2 class="section-title">💜 המועדפים שלי</h2>
+  <div class="section-glow"></div>
+  <div class="wishlist-empty" id="wishlist-empty">
+    <p style="font-size:2rem;margin-bottom:12px">💜</p>
+    <p>עדיין לא הוספת מוצרים למועדפים</p>
+    <p style="font-size:.8rem;margin-top:8px">לחצי על ♡ בכרטיס מוצר כדי להוסיף</p>
+  </div>
+  <div class="wishlist-grid" id="wishlist-grid"></div>
+</section>
+
+<!-- Unboxing Animation Overlay -->
+<div id="unbox-overlay" onclick="this.classList.remove('show')">
+  <div class="unbox-box">
+    <div class="unbox-lid" id="unbox-lid"></div>
+    <div class="unbox-body"><span class="unbox-product" id="unbox-emoji"></span></div>
+  </div>
+</div>
+
+<!-- Points Badge -->
+<div class="points-badge" id="points-badge" title="הנקודות שלך">⭐ <span class="points-num" id="points-num">0</span> נקודות</div>
+
+<!-- Chatbot -->
+<div id="chatbot-btn" onclick="toggleChat()" title="צ'אט עם אנה">💬</div>
+<div id="chatbot-panel">
+  <div class="chat-header"><span>💬 צ'אט עם אנה</span><span onclick="toggleChat()" style="cursor:pointer">✕</span></div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">היי! 👑 אני אנה! איך אפשר לעזור?<br><br>נסי לשאול:<br>• "מה הנמכר ביותר?"<br>• "יש משהו עד 40 שקל?"<br>• "מה מתאים למתנה?"</div>
+  </div>
+  <div class="chat-input-wrap">
+    <button onclick="sendChat()">→</button>
+    <input type="text" id="chat-input" placeholder="כתבי הודעה..." onkeydown="if(event.key==='Enter')sendChat()">
+  </div>
+</div>
+
+<!-- Recently Viewed -->
+<div id="recently-viewed">
+  <span class="rv-close" onclick="document.getElementById('recently-viewed').classList.remove('show')">✕</span>
+  <div class="rv-title">צפית לאחרונה:</div>
+  <div class="rv-scroll" id="rv-scroll"></div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+<div class="container">
+  <div class="f-logo">פרינסס אנה</div>
+  <div class="f-sub">✦ אקססוריז ✦</div>
+  <div class="social-links">
+    <a href="REPLACE_INSTAGRAM" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="REPLACE_TIKTOK" class="social-btn" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+  </div>
+  <!-- Policy accordion -->
+  <div class="policy-section">
+    <button class="policy-toggle" onclick="this.nextElementSibling.classList.toggle('open')">מדיניות משלוחים והחזרות <span>▼</span></button>
+    <div class="policy-content">משלוח לכל רחבי הארץ תוך 10-20 ימי עסקים. תשלום באמצעות ביט או פייבוקס לאחר אישור ההזמנה. החזרות תוך 14 יום מקבלת המוצר. המידע שלך משמש רק לעיבוד ההזמנה ולא יועבר לאף גורם אחר.</div>
+  </div>
+  <p class="f-info">🌍 משלוח לכל הארץ &nbsp;|&nbsp; 💳 ביט ופייבוקס &nbsp;|&nbsp; 📦 10-20 ימים</p>
+  <p class="f-copy">© 2025 פרינסס אנה — כל הזכויות שמורות</p>
+</div>
+</footer>
+
+<!-- ========== WHATSAPP ========== -->
+<a id="wa-btn" href="https://wa.me/REPLACE_WITH_PHONE_NUMBER" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Back to Top -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner">
+  <span class="cookie-text">האתר משתמש בעוגיות לשיפור חוויית השימוש</span>
+  <button class="cookie-btn" onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('pa-cookies','1')">אישור</button>
+</div>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+var STORE_OPEN = true;
+var ALL_PRODUCTS = [];
+
+// Store closed
+if(!STORE_OPEN) document.getElementById('store-closed').style.display='block';
+
+// Splash screen — hide after 1.8s, play chime
+setTimeout(function(){document.getElementById('splash').classList.add('hide');playSound('chime')},1800);
+
+// Cookie banner
+if(!localStorage.getItem('pa-cookies')){document.getElementById('cookie-banner').classList.add('show')}
+
+// Load products
+fetch('products.json').then(function(r){return r.json()}).then(function(products){
+  ALL_PRODUCTS=products;
+  var grid=document.getElementById('products-grid');
+  var select=document.getElementById('product-select');
+  var carousel=document.getElementById('carousel-track');
+  var cats=new Set(['all']);
+  products.forEach(function(p){cats.add(p.category)});
+
+  // Category labels
+  var catLabels={all:'✨ הכל',jewelry:'💍 תכשיטים',hair:'💇 שיער',bags:'👜 תיקים',beauty:'💄 יופי',keychains:'🔑 מחזיקים',dressup:'🎀 תחפושות',stationery:'📚 כתיבה',fun:'😎 כיף'};
+  var filtersEl=document.getElementById('cat-filters');
+  cats.forEach(function(c){
+    var btn=document.createElement('button');
+    btn.className='cat-btn'+(c==='all'?' active':'');
+    btn.textContent=catLabels[c]||c;
+    btn.onclick=function(){
+      playSound('click');
+      document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      document.querySelectorAll('#products-grid .p-card').forEach(function(card){
+        card.style.display=(c==='all'||card.dataset.cat===c)?'':'none';
+      });
+    };
+    filtersEl.appendChild(btn);
+  });
+
+  // Render products
+  products.forEach(function(p,idx){
+    var cardHTML=buildCard(p);
+
+    // Add to grid
+    var card=document.createElement('div');
+    card.className='p-card reveal';
+    card.dataset.cat=p.category;
+    card.dataset.name=p.name;
+    card.dataset.idx=idx;
+    card.innerHTML=cardHTML;
+    card.querySelector('.p-card-img').addEventListener('click',function(){openQV(idx)});
+    grid.appendChild(card);
+
+    // Featured carousel (items with badge)
+    if(p.badge && carousel){
+      var cCard=document.createElement('div');
+      cCard.className='p-card';
+      cCard.dataset.idx=idx;
+      cCard.innerHTML=cardHTML;
+      cCard.querySelector('.p-card-img').addEventListener('click',function(){openQV(idx)});
+      carousel.appendChild(cCard);
+    }
+
+    // Add to select dropdown
+    var opt=document.createElement('option');
+    opt.value=p.id;
+    opt.textContent=p.name+' — ₪'+p.price;
+    select.appendChild(opt);
+  });
+
+  // Hide skeleton, show real grid
+  document.getElementById('skeleton-grid').style.display='none';
+  document.getElementById('products-grid').style.display='';
+
+  observeReveal();
+  animateCounters();
+}).catch(function(){
+  document.getElementById('skeleton-grid').style.display='none';
+  document.getElementById('products-grid').style.display='';
+  document.getElementById('products-grid').innerHTML='<p style="text-align:center;color:var(--td)">טוען מוצרים...</p>';
+});
+
+function buildCard(p){
+  var op = p.originalPrice ? '<span class="p-original-price">₪'+p.originalPrice+'</span>' : '';
+  var viewers = p.viewers ? '<div class="viewers-badge"><span class="viewers-dot"></span>'+p.viewers+' צופים עכשיו</div>' : '';
+  return '<div class="p-card-img" style="cursor:pointer" title="לחצי לצפייה מהירה">'+
+    '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
+    '<div class="emoji-fallback" style="display:none">'+p.emoji+'</div>'+
+    (p.badge?'<div class="p-badge" style="background:'+(p.badgeColor||'var(--np)')+';box-shadow:0 0 12px '+(p.badgeColor||'var(--gp)')+'">'+p.badge+'</div>':'')+
+    '<button class="heart-btn" aria-label="מועדפים" onclick="event.stopPropagation();toggleWishlist(this,\''+p.id+'\')">♡</button>'+
+  '</div>'+
+  '<div class="p-body">'+
+    '<h3 class="p-name">'+p.name+'</h3>'+
+    '<p class="p-desc">'+p.desc+'</p>'+
+    viewers+
+    '<div class="p-footer">'+
+      '<div><span class="p-price">₪'+p.price+'</span>'+op+'</div>'+
+      '<a href="javascript:void(0)" class="btn-order" onclick="event.stopPropagation();playUnboxing(\''+p.emoji+'\',\''+p.id+'\')">להזמנה</a>'+
+    '</div>'+
+  '</div>';
+}
+
+// ========== QUICK VIEW ==========
+function openQV(idx){
+  var p=ALL_PRODUCTS[idx];if(!p)return;
+  document.getElementById('qv-img').src=p.img;
+  document.getElementById('qv-img').alt=p.name;
+  document.getElementById('qv-name').textContent=p.name;
+  document.getElementById('qv-desc').textContent=p.desc;
+  document.getElementById('qv-price').textContent='₪'+p.price;
+  document.getElementById('qv-order-btn').onclick=function(){closeQV();preselectProduct(p.id);};
+  var aliLink=document.getElementById('qv-ali-link');
+  if(p.aliId){aliLink.href='https://he.aliexpress.com/item/'+p.aliId+'.html';aliLink.style.display='block';}
+  else{aliLink.style.display='none';}
+  document.getElementById('qv-fullpage-link').onclick=function(){closeQV();openPage('product',idx)};
+  document.getElementById('qv-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeQV(){
+  document.getElementById('qv-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeQV()});
+
+// ========== SEARCH ==========
+function filterProducts(){
+  var q=document.getElementById('search-input').value.trim().toLowerCase();
+  document.querySelectorAll('#products-grid .p-card').forEach(function(card){
+    card.style.display=(!q||card.dataset.name.toLowerCase().includes(q))?'':'none';
+  });
+}
+
+// ========== CAROUSEL SCROLL ==========
+function scrollCarousel(dir){
+  playSound('slide');
+  var track=document.getElementById('carousel-track');
+  track.scrollBy({left:dir*280,behavior:'smooth'});
+}
+// Make carousel scrollable
+(function(){
+  var t=document.getElementById('carousel-track');
+  if(t){t.style.overflowX='auto';t.style.scrollSnapType='x mandatory';t.style.scrollbarWidth='none';
+    var s=document.createElement('style');s.textContent='.carousel-track::-webkit-scrollbar{display:none}';document.head.appendChild(s);
+  }
+})();
+
+// ========== ANIMATED COUNTERS ==========
+function animateCounters(){
+  var counters=document.querySelectorAll('.stat-num');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el=e.target;var target=parseInt(el.dataset.target);var current=0;
+        var step=Math.ceil(target/40);
+        var timer=setInterval(function(){
+          current+=step;if(current>=target){current=target;clearInterval(timer);}
+          el.textContent=current+'+';
+        },30);
+        obs.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(function(c){obs.observe(c)});
+}
+
+function preselectProduct(v){
+  document.getElementById('product-select').value=v;
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
+
+// Form submission
+var form=document.getElementById('order-form');
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='שולחת... ✨';
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+  .then(function(r){
+    if(r.ok){form.style.display='none';document.getElementById('thank-you').classList.add('show');playSound('fanfare')}
+    else{btn.disabled=false;btn.textContent='שליחת הזמנה ✨';alert('שגיאה בשליחה. נסי שוב.')}
+  }).catch(function(){btn.disabled=false;btn.textContent='שליחת הזמנה ✨';alert('שגיאת רשת.')});
+})}
+
+// Back to top
+window.addEventListener('scroll',function(){
+  document.getElementById('btt').classList.toggle('show',window.scrollY>600);
+});
+
+// Scroll reveal (Intersection Observer)
+function observeReveal(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+}
+observeReveal();
+
+// ========== UNBOXING ANIMATION ==========
+function playUnboxing(emoji, productId){
+  var overlay=document.getElementById('unbox-overlay');
+  var lid=document.getElementById('unbox-lid');
+  var prod=document.getElementById('unbox-emoji');
+  lid.classList.remove('open');prod.classList.remove('show');
+  prod.textContent=emoji;
+  overlay.classList.add('show');
+  playSound('pop');
+  setTimeout(function(){lid.classList.add('open');playSound('whoosh')},400);
+  setTimeout(function(){prod.classList.add('show');playSound('bling')},1000);
+  setTimeout(function(){overlay.classList.remove('show');preselectProduct(productId);},2800);
+}
+
+// ========== REAL MP3 SOUND EFFECTS ==========
+var soundMuted=localStorage.getItem('pa-mute')==='1';
+var soundCache={};
+var SOUNDS={
+  bling:'sounds/bling.mp3',    // wishlist add, points earned
+  click:'sounds/click.mp3',    // category filter, sort, general click
+  whoosh:'sounds/whoosh.mp3',  // unboxing, carousel scroll
+  chime:'sounds/chime.mp3',    // page load complete, quiz results
+  fanfare:'sounds/fanfare.mp3',// order submitted, bundle complete
+  slide:'sounds/slide.mp3',    // carousel, page transition
+  pop:'sounds/pop.mp3',        // quiz answer, story click, button press
+  coin:'sounds/coin.mp3',      // points earned
+  tap:'sounds/tap.mp3',        // hover, subtle interactions
+  notify:'sounds/notify.mp3',  // toast notification, chat reply
+  reveal:'sounds/reveal.mp3',  // quiz results, product page open
+  swoosh:'sounds/swoosh.mp3'   // close modal, back to top
+};
+// Preload all sounds
+Object.keys(SOUNDS).forEach(function(k){
+  var a=new Audio();a.preload='auto';a.src=SOUNDS[k];a.volume=0.3;soundCache[k]=a;
+});
+function playSound(type){
+  if(soundMuted)return;
+  try{
+    var a=soundCache[type];
+    if(!a)return;
+    a.currentTime=0;
+    a.play().catch(function(){});
+  }catch(e){}
+}
+function toggleMute(){
+  soundMuted=!soundMuted;
+  localStorage.setItem('pa-mute',soundMuted?'1':'0');
+  document.getElementById('mute-btn').textContent=soundMuted?'🔇':'🔊';
+  if(!soundMuted)playSound('pop');
+}
+
+// ========== WISHLIST (localStorage) ==========
+var wishlist=JSON.parse(localStorage.getItem('pa-wishlist')||'[]');
+function toggleWishlist(btn,id){
+  var idx=wishlist.indexOf(id);
+  if(idx===-1){wishlist.push(id);btn.textContent='♥';btn.style.color='var(--npk)';playSound('bling');}
+  else{wishlist.splice(idx,1);btn.textContent='♡';btn.style.color='';}
+  localStorage.setItem('pa-wishlist',JSON.stringify(wishlist));
+}
+// Restore wishlist state on load
+setTimeout(function(){
+  document.querySelectorAll('.heart-btn').forEach(function(btn){
+    var card=btn.closest('.p-card');if(!card)return;
+    var idx=parseInt(card.dataset.idx);
+    if(ALL_PRODUCTS[idx]&&wishlist.includes(ALL_PRODUCTS[idx].id)){btn.textContent='♥';btn.style.color='var(--npk)';}
+  });
+},500);
+
+// ========== SORTING ==========
+function sortProducts(type,btn){
+  playSound('click');
+  document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active')});
+  if(btn)btn.classList.add('active');
+  var grid=document.getElementById('products-grid');
+  var cards=Array.from(grid.querySelectorAll('.p-card'));
+  cards.sort(function(a,b){
+    var ai=parseInt(a.dataset.idx),bi=parseInt(b.dataset.idx);
+    var ap=ALL_PRODUCTS[ai],bp=ALL_PRODUCTS[bi];
+    if(!ap||!bp)return 0;
+    if(type==='price-asc')return ap.price-bp.price;
+    if(type==='price-desc')return bp.price-ap.price;
+    if(type==='new')return bi-ai;
+    return (bp.popularity||0)-(ap.popularity||0);
+  });
+  cards.forEach(function(c){grid.appendChild(c)});
+}
+
+// ========== RECENTLY VIEWED ==========
+var recentlyViewed=JSON.parse(localStorage.getItem('pa-rv')||'[]');
+function addToRecentlyViewed(idx){
+  if(recentlyViewed.includes(idx))return;
+  recentlyViewed.unshift(idx);
+  if(recentlyViewed.length>10)recentlyViewed.pop();
+  localStorage.setItem('pa-rv',JSON.stringify(recentlyViewed));
+  renderRecentlyViewed();
+}
+function renderRecentlyViewed(){
+  if(recentlyViewed.length<2)return;
+  var scroll=document.getElementById('rv-scroll');scroll.innerHTML='';
+  recentlyViewed.forEach(function(idx){
+    var p=ALL_PRODUCTS[idx];if(!p)return;
+    var item=document.createElement('div');item.className='rv-item';
+    item.innerHTML='<img src="'+p.img+'" alt="'+p.name+'" onerror="this.parentElement.remove()">';
+    item.onclick=function(){openQV(idx)};
+    scroll.appendChild(item);
+  });
+  document.getElementById('recently-viewed').classList.add('show');
+}
+// Patch openQV to track recently viewed
+var _origOpenQV=openQV;
+openQV=function(idx){addToRecentlyViewed(idx);_origOpenQV(idx)};
+setTimeout(renderRecentlyViewed,1000);
+
+// ========== 3D CARD TILT ==========
+document.addEventListener('mousemove',function(e){
+  document.querySelectorAll('.p-card').forEach(function(card){
+    var r=card.getBoundingClientRect();
+    if(e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom){
+      var x=(e.clientX-r.left)/r.width-.5;
+      var y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform='perspective(800px) rotateY('+x*8+'deg) rotateX('+-y*8+'deg) translateY(-8px)';
+    }else{card.style.transform='';}
+  });
+});
+
+// ========== CURSOR TRAIL ==========
+(function(){
+  var colors=['#a000ff','#ff0080','#00ff88','#00e5ff'];
+  document.addEventListener('mousemove',function(e){
+    var dot=document.createElement('div');dot.className='cursor-dot';
+    dot.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;background:'+colors[Math.floor(Math.random()*4)]+';opacity:.7;';
+    document.body.appendChild(dot);
+    setTimeout(function(){dot.style.opacity='0'},200);
+    setTimeout(function(){dot.remove()},500);
+  });
+})();
+
+// ========== COUNTDOWN TIMER ==========
+(function(){
+  // Set end time: 23h 59m 59s from now (resets daily)
+  var end=new Date();end.setHours(23,59,59,999);
+  function tick(){
+    var now=new Date();var diff=end-now;
+    if(diff<=0){end.setDate(end.getDate()+1);diff=end-now;}
+    var h=Math.floor(diff/3600000);var m=Math.floor((diff%3600000)/60000);var s=Math.floor((diff%60000)/1000);
+    document.getElementById('cd-h').textContent=h<10?'0'+h:h;
+    document.getElementById('cd-m').textContent=m<10?'0'+m:m;
+    document.getElementById('cd-s').textContent=s<10?'0'+s:s;
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// ========== TOAST SOCIAL PROOF ==========
+(function(){
+  var names=['מיכל מירושלים','שירה מתל אביב','נועה מחיפה','דנה מרעננה','יעל מפתח תקווה','מאיה מנתניה','רונית מבאר שבע','ליאת מהרצליה','עדי מאשדוד','טל מכפר סבא'];
+  var products=['שרשרת כוכב קריסטל','צמיד פרפר','עגילי קליפס','תיק לב','סט גלוסים','משקפי לב'];
+  var container=document.getElementById('toast-container');
+  function showToast(){
+    var n=names[Math.floor(Math.random()*names.length)];
+    var p=products[Math.floor(Math.random()*products.length)];
+    var toast=document.createElement('div');toast.className='toast';
+    toast.innerHTML='🛍️ <strong>'+n+'</strong> הזמינה '+p;
+    container.appendChild(toast);
+    playSound('notify');
+    setTimeout(function(){toast.remove()},4500);
+  }
+  setTimeout(showToast,8000);
+  setInterval(showToast,15000+Math.random()*10000);
+})();
+
+// ========== STICKY ORDER BUTTON ==========
+window.addEventListener('scroll',function(){
+  var shop=document.getElementById('shop');
+  var order=document.getElementById('order');
+  if(!shop||!order)return;
+  var inShop=window.scrollY>shop.offsetTop-200&&window.scrollY<order.offsetTop-300;
+  document.getElementById('sticky-order').classList.toggle('show',inShop);
+});
+
+// ========== NEWSLETTER POPUP ==========
+if(!localStorage.getItem('pa-nl')){
+  setTimeout(function(){document.getElementById('newsletter-popup').classList.add('show')},25000);
+}
+
+// ========== SHARE BUTTONS IN QUICK VIEW ==========
+function shareProduct(p){
+  var url='https://hanan2-tech.github.io/princess-anna/#shop';
+  var text='בואי לראות את '+p.name+' בחנות של פרינסס אנה! 👑 ₪'+p.price;
+  window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url),'_blank');
+}
+
+// ========== PAGE ROUTING ==========
+var mainSections=['home','shop','how','reviews','order','about','faq'];
+var pageIds=['product-page','quiz-page','bundle-page','wishlist-page'];
+
+function openPage(page,data){
+  playSound('swoosh');
+  // Hide main content
+  mainSections.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display='none'});
+  document.querySelectorAll('.countdown-section,.stories-wrap').forEach(function(e){e.closest('div').style.display='none'});
+  // Hide all pages
+  pageIds.forEach(function(p){document.getElementById(p).classList.remove('show')});
+  // Show target page
+  document.getElementById(page+'-page').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Init page
+  if(page==='product'&&data!==undefined)initProductPage(data);
+  if(page==='quiz')initQuiz();
+  if(page==='bundle')initBundle();
+  if(page==='wishlist')initWishlistPage();
+}
+
+function closePage(){
+  pageIds.forEach(function(p){document.getElementById(p).classList.remove('show')});
+  mainSections.forEach(function(s){var el=document.getElementById(s);if(el)el.style.display=''});
+  document.querySelectorAll('.countdown-section,.stories-wrap').forEach(function(e){var d=e.closest('div');if(d)d.style.display=''});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ========== INDIVIDUAL PRODUCT PAGE ==========
+var currentProductIdx=null;
+function initProductPage(idx){
+  currentProductIdx=idx;
+  var p=ALL_PRODUCTS[idx];if(!p)return;
+  document.getElementById('pp-img').src=p.img;
+  document.getElementById('pp-img').alt=p.name;
+  document.getElementById('pp-title').textContent=p.name;
+  document.getElementById('pp-price').textContent='₪'+p.price;
+  document.getElementById('pp-old-price').textContent=p.originalPrice?'₪'+p.originalPrice:'';
+  var disc=p.originalPrice?Math.round((1-p.price/p.originalPrice)*100):0;
+  document.getElementById('pp-discount').textContent=disc>0?disc+'% הנחה':'';
+  document.getElementById('pp-discount').style.display=disc>0?'':'none';
+  document.getElementById('pp-desc').textContent=p.desc;
+  document.getElementById('pp-order-btn').onclick=function(){closePage();preselectProduct(p.id)};
+  // Related products (same category, exclude current)
+  var related=ALL_PRODUCTS.filter(function(r,i){return r.category===p.category&&i!==idx}).slice(0,4);
+  var rGrid=document.getElementById('pp-related');rGrid.innerHTML='';
+  related.forEach(function(r,ri){
+    var rIdx=ALL_PRODUCTS.indexOf(r);
+    var card=document.createElement('div');card.className='p-card';
+    card.innerHTML=buildCard(r);
+    card.querySelector('.p-card-img').onclick=function(){openPage('product',rIdx)};
+    rGrid.appendChild(card);
+  });
+  addToRecentlyViewed(idx);
+}
+// Open product page from card click
+function openProductPage(idx){openPage('product',idx)}
+function shareCurrentProduct(type){
+  var p=ALL_PRODUCTS[currentProductIdx];if(!p)return;
+  var url=location.origin+location.pathname;
+  var text='בואי לראות: '+p.name+' ₪'+p.price+' בפרינסס אנה! 👑';
+  if(type==='whatsapp')window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url));
+  else{navigator.clipboard.writeText(url).then(function(){alert('הלינק הועתק! 🔗')}).catch(function(){});}
+}
+
+// ========== QUIZ ==========
+var quizStep=0;var quizAnswers=[];
+var quizQuestions=[
+  {q:'מה את הכי אוהבת ללבוש?',opts:[{t:'💍 תכשיטים',cat:'jewelry'},{t:'💇 אביזרי שיער',cat:'hair'},{t:'👜 תיקים',cat:'bags'},{t:'💄 איפור ויופי',cat:'beauty'}]},
+  {q:'מה הצבע האהוב עליך?',opts:[{t:'💜 סגול',tag:'purple'},{t:'💗 ורוד',tag:'pink'},{t:'✨ זהב/כסף',tag:'gold'},{t:'🌈 צבעוני',tag:'rainbow'}]},
+  {q:'לאיזה אירוע?',opts:[{t:'🏫 יומיומי',tag:'daily'},{t:'🎉 מסיבה',tag:'party'},{t:'🎂 יום הולדת',tag:'birthday'},{t:'🎁 מתנה',tag:'gift'}]},
+  {q:'מה המחיר שנוח לך?',opts:[{t:'עד ₪40',max:40},{t:'₪40-₪60',max:60},{t:'₪60-₪80',max:80},{t:'כל מחיר',max:999}]},
+  {q:'מה יותר חשוב לך?',opts:[{t:'⭐ הנמכרים ביותר',sort:'popular'},{t:'🆕 הכי חדש',sort:'new'},{t:'💰 הכי משתלם',sort:'value'},{t:'✨ הכי מיוחד',sort:'unique'}]}
+];
+function initQuiz(){
+  quizStep=0;quizAnswers=[];
+  document.getElementById('quiz-results').classList.remove('show');
+  document.getElementById('quiz-card').style.display='';
+  renderQuizStep();
+}
+function renderQuizStep(){
+  var q=quizQuestions[quizStep];
+  document.getElementById('quiz-progress').style.width=((quizStep+1)/quizQuestions.length*100)+'%';
+  document.getElementById('quiz-q').textContent=q.q;
+  var opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  q.opts.forEach(function(opt,i){
+    var btn=document.createElement('button');btn.className='quiz-opt';
+    btn.textContent=opt.t;
+    btn.onclick=function(){
+      playSound('pop');
+      quizAnswers.push(opt);
+      quizStep++;
+      if(quizStep<quizQuestions.length){renderQuizStep();}
+      else{playSound('reveal');showQuizResults();}
+    };
+    opts.appendChild(btn);
+  });
+}
+function showQuizResults(){
+  document.getElementById('quiz-card').style.display='none';
+  var results=ALL_PRODUCTS.slice();
+  // Filter by category if chosen
+  var catAnswer=quizAnswers[0];
+  if(catAnswer&&catAnswer.cat){results=results.filter(function(p){return p.category===catAnswer.cat})}
+  // Filter by price
+  var priceAnswer=quizAnswers[3];
+  if(priceAnswer&&priceAnswer.max){results=results.filter(function(p){return p.price<=priceAnswer.max})}
+  // Take top 6
+  results=results.slice(0,6);
+  var grid=document.getElementById('quiz-results-grid');grid.innerHTML='';
+  results.forEach(function(p){
+    var idx=ALL_PRODUCTS.indexOf(p);
+    var card=document.createElement('div');card.className='p-card reveal';
+    card.innerHTML=buildCard(p);
+    card.querySelector('.p-card-img').onclick=function(){openPage('product',idx)};
+    grid.appendChild(card);
+  });
+  document.getElementById('quiz-results').classList.add('show');
+  observeReveal();
+}
+
+// ========== BUNDLE BUILDER ==========
+var bundleSlots=[null,null,null];
+function initBundle(){
+  bundleSlots=[null,null,null];
+  updateBundleUI();
+  var picker=document.getElementById('bundle-picker');picker.innerHTML='';
+  ALL_PRODUCTS.forEach(function(p,idx){
+    var item=document.createElement('div');item.className='bundle-pick-item';
+    item.innerHTML='<img src="'+p.img+'" alt="'+p.name+'" onerror="this.parentElement.style.display=\'none\'"><div class="pick-price">₪'+p.price+'</div>';
+    item.onclick=function(){addToBundle(idx)};
+    picker.appendChild(item);
+  });
+}
+function addToBundle(idx){
+  var emptySlot=bundleSlots.indexOf(null);
+  if(emptySlot===-1){alert('כל המשבצות מלאות! הסירי מוצר קודם.');return;}
+  bundleSlots[emptySlot]=idx;
+  playSound('bling');
+  updateBundleUI();
+}
+function removeFromBundle(slot){
+  bundleSlots[slot]=null;
+  updateBundleUI();
+}
+function updateBundleUI(){
+  var slotsEl=document.getElementById('bundle-slots');
+  slotsEl.innerHTML='';
+  var total=0;var count=0;
+  bundleSlots.forEach(function(idx,i){
+    var slot=document.createElement('div');
+    slot.className='bundle-slot'+(idx!==null?' filled':'');
+    if(idx!==null){
+      var p=ALL_PRODUCTS[idx];
+      total+=p.price;count++;
+      slot.innerHTML='<img src="'+p.img+'" alt="'+p.name+'"><div class="remove-slot" onclick="event.stopPropagation();removeFromBundle('+i+')">✕</div>';
+    }else{
+      slot.textContent='+ בחרי מוצר';
+      slot.onclick=function(){};
+    }
+    slotsEl.appendChild(slot);
+  });
+  var discount=count===3?Math.round(total*0.2):0;
+  var finalPrice=total-discount;
+  document.getElementById('bundle-total').textContent='₪'+finalPrice;
+  document.getElementById('bundle-savings').textContent=discount>0?'חסכת ₪'+discount+'! 🎉':'בחרי 3 לקבלת 20% הנחה';
+  document.getElementById('bundle-order-btn').style.display=count===3?'block':'none';
+  if(count===3)playSound('fanfare');
+}
+
+// ========== WISHLIST PAGE ==========
+function initWishlistPage(){
+  var grid=document.getElementById('wishlist-grid');grid.innerHTML='';
+  var empty=document.getElementById('wishlist-empty');
+  var wl=JSON.parse(localStorage.getItem('pa-wishlist')||'[]');
+  if(wl.length===0){empty.style.display='';return;}
+  empty.style.display='none';
+  wl.forEach(function(id){
+    var idx=ALL_PRODUCTS.findIndex(function(p){return p.id===id});
+    if(idx===-1)return;
+    var p=ALL_PRODUCTS[idx];
+    var card=document.createElement('div');card.className='p-card';
+    card.innerHTML=buildCard(p);
+    card.querySelector('.p-card-img').onclick=function(){openPage('product',idx)};
+    grid.appendChild(card);
+  });
+}
+
+// ========== GAMIFICATION / POINTS ==========
+var points=parseInt(localStorage.getItem('pa-points')||'0');
+function updatePointsBadge(){document.getElementById('points-num').textContent=points}
+function addPoints(n){
+  points+=n;localStorage.setItem('pa-points',points.toString());updatePointsBadge();playSound('coin');
+  // Float animation
+  var fl=document.createElement('div');fl.className='points-add';fl.textContent='+'+n;
+  document.body.appendChild(fl);setTimeout(function(){fl.remove()},1200);
+}
+updatePointsBadge();
+if(soundMuted)document.getElementById('mute-btn').textContent='🔇';
+// Award points: 5 for visiting, 2 for viewing product, 10 for ordering
+if(!sessionStorage.getItem('pa-visit-pts')){addPoints(5);sessionStorage.setItem('pa-visit-pts','1')}
+// Patch openQV to award points
+var __origQV2=openQV;
+openQV=function(idx){addPoints(2);__origQV2(idx)};
+
+// ========== REFERRAL ==========
+var refCode='ANNA'+Math.random().toString(36).substr(2,6).toUpperCase();
+if(localStorage.getItem('pa-ref'))refCode=localStorage.getItem('pa-ref');
+else localStorage.setItem('pa-ref',refCode);
+document.getElementById('referral-link').textContent=location.origin+location.pathname+'?ref='+refCode;
+function copyReferral(){
+  var link=document.getElementById('referral-link').textContent;
+  navigator.clipboard.writeText(link).then(function(){alert('הלינק הועתק! שתפי עם חברות 🎁');addPoints(5)}).catch(function(){});
+}
+
+// ========== CHATBOT ==========
+function toggleChat(){document.getElementById('chatbot-panel').classList.toggle('show')}
+function sendChat(){
+  var input=document.getElementById('chat-input');
+  var msg=input.value.trim();if(!msg)return;
+  input.value='';playSound('swoosh');
+  var msgs=document.getElementById('chat-messages');
+  // User message
+  var uDiv=document.createElement('div');uDiv.className='chat-msg user';uDiv.textContent=msg;msgs.appendChild(uDiv);
+  // Bot reply (simple pattern matching)
+  setTimeout(function(){
+    var reply=chatReply(msg);
+    var bDiv=document.createElement('div');bDiv.className='chat-msg bot';bDiv.innerHTML=reply;
+    msgs.appendChild(bDiv);msgs.scrollTop=msgs.scrollHeight;
+    playSound('notify');
+  },600);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+function chatReply(msg){
+  var m=msg.toLowerCase();
+  if(m.includes('נמכר')||m.includes('פופולר')||m.includes('מומלץ'))return '⭐ הנמכרים ביותר שלנו: שרשרת כוכב קריסטל (₪55) וצמיד פרפר (₪55)! <br><a href="#shop" onclick="closePage();toggleChat()" style="color:var(--np)">לחנות →</a>';
+  if(m.includes('40')||m.includes('זול')||m.includes('משתלם'))return '💰 יש לנו מלא עד ₪40! סיכות שיער מ-₪25, מחזיקי מפתחות מ-₪25, ועגילי קליפס מ-₪35 <br><a href="#shop" onclick="closePage();toggleChat()" style="color:var(--np)">לחנות →</a>';
+  if(m.includes('מתנה')||m.includes('יום הולדת'))return '🎁 מתנה מושלמת: סט תכשיטים (₪79) או ערכת יצירת גלוס (₪65)! או נסי את הקוויז שלנו 🧪<br><a href="javascript:void(0)" onclick="toggleChat();openPage(\'quiz\')" style="color:var(--np)">לקוויז →</a>';
+  if(m.includes('משלוח'))return '📦 המשלוח מגיע תוך 10-20 ימי עסקים לכל כתובת בארץ. המשלוח כלול במחיר!';
+  if(m.includes('תשלום')||m.includes('ביט'))return '💳 התשלום דרך ביט או פייבוקס. אני אצור איתך קשר תוך 24 שעות אחרי ההזמנה לאישור!';
+  if(m.includes('החזר'))return '↩️ אפשר להחזיר כל מוצר תוך 14 יום. פשוט שלחי הודעה בוואטסאפ!';
+  if(m.includes('סט')||m.includes('bundle'))return '🎁 נסי את בונה הסטים שלנו! בחרי 3 מוצרים וקבלי 20% הנחה! <br><a href="javascript:void(0)" onclick="toggleChat();openPage(\'bundle\')" style="color:var(--np)">לבונה סטים →</a>';
+  return '👑 תודה על ההודעה! אשמח לעזור. נסי לשאול על מוצרים, מחירים, משלוחים, או מתנות! <br>או שלחי הודעה בוואטסאפ ואחזור אליך אישית 💜';
+}
+
+// ========== PWA SERVICE WORKER ==========
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
+</script>
+</body>
+</html>
